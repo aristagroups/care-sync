@@ -1,0 +1,63 @@
+.tableContainer {
+  width: 100%;
+  margin: 0 auto;
+}
+
+.tableContainer table {
+  max-width: 100%;
+  min-width: 600px;
+  border-collapse: separate;
+  border-spacing: 0 0.5em;
+}
+
+.tableRow {
+  max-width: 600px !important;
+  height: 56px;
+  border: 5px solid transparent;
+  box-shadow: 0px 4px 20px rgba(178, 178, 233, 0.308);
+  border-radius: 20px 0px;
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  align-items: center;
+  margin: 10px auto;
+  border-left: none;
+  text-align: left;
+}
+
+.tableRow:hover {
+  background-color: #d2eeeb;
+}
+.tableRow:hover .tdBtn {
+  border-bottom-right-radius: 20px;
+}
+.tableRow:hover .tdNumber {
+  border-top-left-radius: 20px;
+}
+
+.tdNumber div {
+  height: 56px !important;
+  width: 40px !important;
+  padding: 18px;
+  text-align: center;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin-left: -2px;
+  border-bottom-right-radius: 20px;
+  border-top-left-radius: 20px;
+  background-color: #6ac7be;
+}
+.roomList {
+  overflow: hidden;
+}
+.roomList ul li {
+  display: inline-block;
+  margin: 0 5px;
+}
+
+.circle div {
+  height: 42px;
+  width: 42px;
+  border-radius: 50%;
+}

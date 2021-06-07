@@ -1,0 +1,140 @@
+.sequenceContainer {
+  padding: 15px !important;
+  display: grid;
+  grid-template-columns: 1fr;
+  grid-template-rows: 3fr;
+  gap: 10px 10px;
+  grid-template-areas: ".";
+}
+
+.wrapper {
+  overflow: hidden;
+  position: relative;
+  width: 20rem; /* real length of dropdown */
+  border: 1px solid lightgray;
+  border-radius: 20px;
+  padding: 9px 20px;
+  margin-top: 10px;
+}
+
+.wrapper:after {
+  content: "▾";
+  font-size: 1.1rem;
+  pointer-events: none; /* ▼ click triggers dropdown */
+  position: absolute;
+  right: 1rem;
+  top: 0.5rem;
+  z-index: 1;
+}
+
+select {
+  /* remove default caret */
+  -webkit-appearance: none; /* webkit browsers */
+  -moz-appearance: none; /* firefox */
+  appearance: none; /* modern browsers */
+  width: 100%;
+  border: none;
+  background: transparent;
+  outline: none;
+  font-weight: 400;
+}
+
+label {
+  font-weight: 600;
+}
+
+select::-ms-expand {
+  display: none; /* remove default caret for ie */
+}
+
+.dropBoxParent {
+  width: 100%;
+  overflow: scroll;
+  padding-left: 0 !important;
+}
+
+#DropBox {
+  height: 170px;
+  width: 100%;
+  margin: 20px auto;
+  background: #fff;
+  display: flex;
+  align-items: center;
+  flex-direction: row;
+  padding-left: 15px;
+  padding-top: 10px;
+  padding-right: 15px;
+  overflow-y: hidden;
+}
+
+#DropBox {
+  background-image: repeating-linear-gradient(
+      -2deg,
+      var(--color1),
+      var(--color1) 5px,
+      transparent 5px,
+      transparent 10px,
+      var(--color1) 10px
+    ),
+    repeating-linear-gradient(
+      88deg,
+      var(--color1),
+      var(--color1) 5px,
+      transparent 5px,
+      transparent 10px,
+      var(--color1) 10px
+    ),
+    repeating-linear-gradient(
+      178deg,
+      var(--color1),
+      var(--color1) 5px,
+      transparent 5px,
+      transparent 10px,
+      var(--color1) 10px
+    ),
+    repeating-linear-gradient(
+      268deg,
+      var(--color1),
+      var(--color1) 5px,
+      transparent 5px,
+      transparent 10px,
+      var(--color1) 10px
+    );
+  background-size: 1px 100%, 100% 1px, 1px 100%, 100% 1px;
+  background-position: 0 0, 0 0, 100% 0, 0 100%;
+  background-repeat: no-repeat;
+}
+
+.RoomsContainer {
+  padding: 0px 15px;
+  display: grid;
+  grid-template-columns: 1fr 1fr 1fr 1fr 1fr 1fr;
+  grid-template-rows: 1fr;
+  gap: 2px 2px;
+  grid-template-areas: ". . . . . .";
+}
+
+.createRoom {
+  max-width: 170px;
+  min-width: 170px;
+  margin: 0px 19px 15px 0px !important;
+  height: 130px;
+  background: #fff;
+  border: none;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  color: var(--color1);
+  font-weight: 500;
+  border-bottom-left-radius: 16px !important;
+  border-top-right-radius: 16px;
+  border-top-left-radius: 16px !important;
+  border-bottom-right-radius: none !important;
+  box-shadow: 0 2.8px 2.2px rgba(141, 140, 140, 0.034),
+    0 6.7px 5.3px rgba(134, 134, 134, 0.048),
+    0 12.5px 10px rgba(138, 137, 137, 0.06),
+    0 22.3px 17.9px rgba(124, 124, 124, 0.072),
+    0 41.8px 33.4px rgba(116, 115, 115, 0.086),
+    0 100px 80px rgba(136, 134, 134, 0.12);
+}
