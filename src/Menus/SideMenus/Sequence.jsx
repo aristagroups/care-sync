@@ -160,7 +160,7 @@ const Sequence = ({ drList }) => {
                     <Col md={12} style={{ display: 'flex', justifyContent: 'space-between' }}>
                         <div>
                             <label htmlFor="DrSelect">
-                                Choose Doctor
+                                Choose a Doctor
                                 <div className={styles.wrapper}>
                                     <select
                                         name="DrSelect"
