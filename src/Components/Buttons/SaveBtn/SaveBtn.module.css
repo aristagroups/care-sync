@@ -29,3 +29,9 @@
   border: 2px solid var(--color4);
   color: var(--color4);
 }
+
+@media screen and (max-width: 575px) {
+  .SaveBtn {
+    width: 980% !important;
+  }
+}

@@ -71,3 +71,39 @@
   background-color: #ccc;
   outline: none;
 }
+
+/* media query for responsive */
+@media screen and (max-width: 520px) {
+  .AdminLoginWrapper {
+    max-width: 420px;
+    padding: 40px 40px;
+  }
+}
+
+@media screen and (max-width: 440px) {
+  .AdminLoginWrapper {
+    max-width: 378px;
+    padding: 30px 20px;
+  }
+}
+
+@media screen and (max-width: 400px) {
+  .AdminLoginWrapper {
+    max-width: 320px;
+    padding: 20px 20px;
+  }
+  .AdminLoginWrapper input {
+    width: 100%;
+  }
+
+  .AdminLoginWrapper input[type="submit"] {
+    width: 100%;
+  }
+}
+
+@media screen and (max-width: 324px) {
+  .AdminLoginWrapper {
+    max-width: 300px;
+    padding: 10px 10px;
+  }
+}

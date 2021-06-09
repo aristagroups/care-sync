@@ -50,9 +50,9 @@ const Stuff = () => {
 
     return (
         <Router>
-            <Container fluid style={{ padding: '30px' }}>
-                <Row>
-                    <Col md={4}>
+            <Container fluid style={{ padding: '30px' }} className={styles.stuff_container}>
+                <Row className={styles.stuff_wrapper}>
+                    <Col md={4} xs={12}>
                         <ul
                             className={styles.tabLinks}
                             style={{
@@ -75,7 +75,12 @@ const Stuff = () => {
                             </li>
                         </ul>
                     </Col>
-                    <Col md={8} style={{ display: 'flex', justifyContent: 'flex-end' }}>
+                    <Col
+                        md={8}
+                        xs={12}
+                        className={styles.button_wrapper}
+                        style={{ display: 'flex', justifyContent: 'flex-end' }}
+                    >
                         <Switch>
                             <Route path={`${path}/doctors`}>
                                 <SaveBtn handleClick={handleAddDrData} name="Add new" />
@@ -94,7 +99,7 @@ const Stuff = () => {
                     </Col>
                 </Row>
                 <Row>
-                    <Col md={12}>
+                    <Col md={12} xs={12}>
                         <div>
                             <Switch>
                                 <Route path={`${path}/doctors`}>
