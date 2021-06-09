@@ -59,7 +59,7 @@ const Dashboard = () => {
             <Container fluid id={styles.dashboard}>
                 {data.map((doc) => (
                     <Row key={doc.dr.id} className={styles.drDeck}>
-                        <Col md={3} className={styles.drArea}>
+                        <Col md={3} sm={4} className={styles.drArea}>
                             <div className={styles.drAreaWrapper}>
                                 <div className={styles.drAreaTop}>
                                     <ResetBtn />
@@ -79,7 +79,7 @@ const Dashboard = () => {
                                 </div>
                             </div>
                         </Col>
-                        <Col md={9} className={styles.dropBoxParent}>
+                        <Col md={9} sm={8} className={styles.dropBoxParent}>
                             <CardDeck id={styles.DropBox}>
                                 {doc.rooms.map((room) => (
                                     <DashCard

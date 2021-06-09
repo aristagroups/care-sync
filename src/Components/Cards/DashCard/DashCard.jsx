@@ -10,31 +10,33 @@ const DashCard = (props) => {
     const { data, room, alertSelector, openAlertModal, selectedAlert } = props;
 
     return (
-        <Card className={styles.dashCard}>
-            <Card.Header className={styles.roomCardTop}>
-                <div className={styles.topLeft}>
-                    <span>{room.name}</span>
-                    <RBtn />
-                </div>
-                <div className={styles.timer}>
-                    <span>10:56</span>
-                </div>
-            </Card.Header>
-            <Card.Body className={styles.roomCardMid}>
-                <div className={styles.alert}>
-                    <span>1</span>
-                </div>
-                <div>
-                    <button
-                        onClick={() => openAlertModal()}
-                        type="button"
-                        className={styles.wrapper}
-                    >
-                        Dropdown Items
-                    </button>
-                </div>
-            </Card.Body>
-        </Card>
+        <div>
+            <Card className={styles.dashCard}>
+                <Card.Header className={styles.roomCardTop}>
+                    <div className={styles.topLeft}>
+                        <span>{room.name}</span>
+                        <RBtn />
+                    </div>
+                    <div className={styles.timer}>
+                        <span>10:56</span>
+                    </div>
+                </Card.Header>
+                <Card.Body className={styles.roomCardMid}>
+                    <div className={styles.alert}>
+                        <span>1</span>
+                    </div>
+                    <div>
+                        <button
+                            onClick={() => openAlertModal()}
+                            type="button"
+                            className={styles.wrapper}
+                        >
+                            Dropdown Items
+                        </button>
+                    </div>
+                </Card.Body>
+            </Card>
+        </div>
     );
 };
 
