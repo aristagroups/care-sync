@@ -138,3 +138,24 @@ select::-ms-expand {
     0 41.8px 33.4px rgba(116, 115, 115, 0.086),
     0 100px 80px rgba(136, 134, 134, 0.12);
 }
+
+.alert {
+  padding: 20px;
+  background-color: #f44336;
+  color: white;
+}
+
+.closeBtn {
+  margin-left: 15px;
+  color: white;
+  font-weight: bold;
+  float: right;
+  font-size: 22px;
+  line-height: 20px;
+  cursor: pointer;
+  transition: 0.3s;
+}
+
+.closeBtn:hover {
+  color: black;
+}

@@ -77,7 +77,12 @@ function ControlPanel(props) {
             const drArray = [];
             const snapshot = await db.collection('doctors').get();
             snapshot.forEach((doc) => {
-                const appObj = { id: doc.id, name: doc.data().name, rooms: doc.data().rooms };
+                const appObj = {
+                    id: doc.id,
+                    name: doc.data().name,
+                    email: doc.data().email,
+                    phone: doc.data().phone,
+                };
                 drArray.push(appObj);
             });
             setDrList(drArray);

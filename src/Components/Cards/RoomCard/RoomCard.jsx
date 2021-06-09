@@ -1,3 +1,4 @@
+/* eslint-disable no-alert */
 /* eslint-disable react/button-has-type */
 /* eslint-disable import/no-cycle */
 /* eslint-disable react/destructuring-assignment */
@@ -13,11 +14,25 @@ const RoomCard = (props) => {
     const [globalData, updateGlobalData] = useContext(GlobalContext);
     const [info, setInfo] = useContext(DataContext);
     const [roomId, setRoomId] = useState(null);
-    const { handleDelData, handleUpdateData, room, selected, specificDr, rooms } = props;
+    const {
+        handleDelData,
+        handleUpdateData,
+        room,
+        selected,
+        specificDr,
+        rooms,
+        updateRoomList,
+        handleSearchUpdate,
+    } = props;
     const [onCard, setOnCard] = useState([]);
 
     const handelDel = () => {
-        handleDelData(room.id);
+        if (rooms.find((sRoom) => sRoom.id === room.id)) {
+            const newRoomList = rooms.filter((rm) => rm !== room);
+            updateRoomList(newRoomList);
+        } else {
+            handleDelData(room.id);
+        }
     };
 
     const handleUpdate = () => {
@@ -29,10 +44,17 @@ const RoomCard = (props) => {
     };
     const clickHandler = (event) => {
         event.preventDefault();
-        selected(room);
-        roomList.push(room);
-        checkToAdd();
+        if (specificDr.length === 0) {
+            alert('Select a doctor first');
+        } else {
+            selected(room);
+            roomList.push(room);
+            checkToAdd();
+        }
     };
+
+    // console.log(rooms);
+    // console.log(specificDr);
 
     return (
         <Card className={styles.createRoom}>
@@ -71,7 +93,7 @@ const RoomCard = (props) => {
                         minHeight: '25px !important',
                     }}
                 >
-                    {rooms.includes(room.name) ? globalData.dr.specificDr.name : false}
+                    {rooms.find((sRoom) => sRoom.name === room.name) ? specificDr.name : false}
                 </span>
             </div>
         </Card>

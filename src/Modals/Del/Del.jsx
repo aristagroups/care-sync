@@ -21,8 +21,8 @@ const Del = () => {
     async function deleteDocument(e) {
         e.preventDefault();
         const res = await db.collection(info.collection).doc(info.id).delete();
-        onCloseModal();
         setInfo({});
+        onCloseModal();
     }
 
     useEffect(() => {

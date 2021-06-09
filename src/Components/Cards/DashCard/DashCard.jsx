@@ -13,7 +13,7 @@ const DashCard = (props) => {
         <Card className={styles.dashCard}>
             <Card.Header className={styles.roomCardTop}>
                 <div className={styles.topLeft}>
-                    <span>{room}</span>
+                    <span>{room.name}</span>
                     <RBtn />
                 </div>
                 <div className={styles.timer}>

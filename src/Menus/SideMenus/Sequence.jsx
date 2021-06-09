@@ -6,13 +6,15 @@
 /* eslint-disable react/no-array-index-key */
 import React, { useContext, useEffect, useState } from 'react';
 import { Card, CardDeck, Col, Container, Row } from 'react-bootstrap';
-import { updateDr } from '../../API/Api';
+import { ErrorBoundary } from 'react-error-boundary';
+import { addDashData } from '../../API/Api';
 import { db } from '../../API/firebase';
 import { DataContext, GlobalContext, ModalContext } from '../../App';
 import AddAlertBtn from '../../Components/Buttons/AddAllertBtn/AddAlertBtn';
 import SaveBtn from '../../Components/Buttons/SaveBtn/SaveBtn';
 import RoomCard from '../../Components/Cards/RoomCard/RoomCard';
 import DroppedRoom from '../../Components/Rooms/DroppedRoom/DroppedRoom';
+import ErrorFallback from '../../ErrorFallback';
 import Add from '../../Modals/Add/Add';
 import Del from '../../Modals/Del/Del';
 import Update from '../../Modals/Update/Update';
@@ -25,27 +27,30 @@ const Sequence = ({ drList }) => {
     const [info, setInfo] = useContext(DataContext);
     const [roomData, setRoomData] = useState([]);
     const [open, setOpen] = useState(null);
-    const [specificDr, setSpecificDr] = useState({});
+    const [specificDr, setSpecificDr] = useState([]);
     const [rooms, setRooms] = useState([]);
+    const [mainData, setMainData] = useState([]);
+    const [sequence, setSequence] = useState([]);
 
     useEffect(() => {
         async function getData() {
             const roomList = [];
             const snapshot = await db.collection('rooms').get();
             snapshot.forEach((doc) => {
-                const appObj = { id: doc.id, name: doc.data().name };
+                const appObj = {
+                    id: doc.id,
+                    name: doc.data().name,
+                    alert: '',
+                    bg: '',
+                    border: '',
+                };
                 roomList.push(appObj);
             });
             setRoomData(roomList);
         }
         getData();
 
-        updateGlobalData({
-            dr: {
-                specificDr,
-                rooms,
-            },
-        });
+        updateGlobalData();
 
         // eslint-disable-next-line react-hooks/exhaustive-deps
     }, [roomData, specificDr]);
@@ -91,15 +96,22 @@ const Sequence = ({ drList }) => {
             id,
             onOpenModal,
         });
-        console.log(id);
     };
 
     const updateData = () => {
-        console.log(globalData);
-        updateDr(globalData);
+        addDashData(sequence);
         setRooms([]);
         setSpecificDr({});
         updateGlobalData({});
+    };
+
+    const drSelect = (e) => {
+        const selectedDr = drList.find((dr) => dr.name === e.target.value);
+        setSpecificDr(selectedDr);
+        setSequence({
+            dr: selectedDr,
+            rooms: rooms,
+        });
     };
 
     const drApiCall = (e) => {
@@ -108,17 +120,27 @@ const Sequence = ({ drList }) => {
         updateData();
     };
 
-    const drSelect = (e) => {
-        const selectedDr = drList.find((dr) => dr.name === e.target.value);
-        setSpecificDr(selectedDr);
-    };
-
     const view = () => {
-        console.log(rooms);
+        // rooms.map((room) =>
+        //     setSequence({
+        //         ...sequence,
+        //         rooms: [
+        //             {
+        //                 id: room.id,
+        //                 room: room.name,
+        //                 alert: {
+        //                     alert: '',
+        //                     bg: '',
+        //                     border: '',
+        //                 },
+        //             },
+        //         ],
+        //     })
+        // );
     };
 
     const selected = (room) => {
-        rooms.push(room.name);
+        rooms.push(room);
         view();
     };
 
@@ -127,81 +149,90 @@ const Sequence = ({ drList }) => {
     };
 
     return (
-        <Container fluid className={styles.sequenceContainer}>
-            <Row>
-                <Col md={6}>
-                    <label htmlFor="DrSelect">
-                        Choose a Doctor
-                        <div className={styles.wrapper}>
-                            <select
-                                name="DrSelect"
-                                id="DrSelect"
-                                onChange={(e) => drSelect(e)}
-                                className={styles.DrSelect}
-                            >
-                                {drList.map((dr, index) => (
-                                    <option key={index}>{dr.name}</option>
-                                ))}
-                            </select>
+        <ErrorBoundary
+            FallbackComponent={ErrorFallback}
+            onReset={() => {
+                document.location.reload(true);
+            }}
+        >
+            <Container fluid className={styles.sequenceContainer}>
+                <Row>
+                    <Col md={12} style={{ display: 'flex', justifyContent: 'space-between' }}>
+                        <div>
+                            <label htmlFor="DrSelect">
+                                Choose a Doctor
+                                <div className={styles.wrapper}>
+                                    <select
+                                        name="DrSelect"
+                                        id="DrSelect"
+                                        onChange={(e) => drSelect(e)}
+                                        className={styles.DrSelect}
+                                    >
+                                        {drList.map((dr, index) => (
+                                            <option key={index}>{dr.name}</option>
+                                        ))}
+                                    </select>
+                                </div>
+                            </label>
                         </div>
-                    </label>
-                </Col>
-                <Col md={6} style={{ textAlign: 'right' }}>
-                    <SaveBtn handleClick={drApiCall} name="Save" />
-                </Col>
-            </Row>
+                        <div style={{ marginTop: '30px' }}>
+                            <SaveBtn handleClick={drApiCall} name="Save" />
+                        </div>
+                    </Col>
+                </Row>
 
-            <Row>
-                <Col md={12} className={styles.dropBoxParent}>
-                    <div id={styles.DropBox}>
-                        {rooms.map((room, index) => {
-                            return (
-                                <DroppedRoom
-                                    room={room}
-                                    specificDr={specificDr}
-                                    key={index}
-                                    handleDelData={handleDelData}
-                                    handleUpdateData={handleUpdateData}
-                                    rooms={rooms}
-                                    updateRoomList={updateRoomList}
-                                    roomData={roomData}
-                                    handleSearchUpdate={handleSearchUpdate}
-                                />
-                            );
-                        })}
-                    </div>
-                </Col>
-            </Row>
+                <Row>
+                    <Col md={12} className={styles.dropBoxParent}>
+                        <div id={styles.DropBox}>
+                            {rooms.map((room, index) => {
+                                return (
+                                    <DroppedRoom
+                                        room={room}
+                                        key={index}
+                                        handleDelData={handleDelData}
+                                        handleUpdateData={handleUpdateData}
+                                        selected={selected}
+                                        specificDr={specificDr}
+                                        rooms={rooms}
+                                        updateRoomList={updateRoomList}
+                                        handleSearchUpdate={handleSearchUpdate}
+                                    />
+                                );
+                            })}
+                        </div>
+                    </Col>
+                </Row>
 
-            <h2 style={{ marginBottom: '20px' }}>Select rooms to show in the box</h2>
-            <CardDeck
-                style={{
-                    paddingLeft: '15px',
-                    display: 'flex',
-                    flexWrap: 'wrap',
-                }}
-            >
-                <Card className={styles.createRoom}>
-                    <AddAlertBtn handleClick={handleAddData} />
-                    <span style={{ marginTop: '5px' }}>Add a room</span>
-                </Card>
-                {roomData.map((room, index) => (
-                    <RoomCard
-                        room={room}
-                        key={index}
-                        handleDelData={handleDelData}
-                        handleUpdateData={handleUpdateData}
-                        selected={selected}
-                        specificDr={specificDr}
-                        rooms={rooms}
-                    />
-                ))}
-            </CardDeck>
+                <h2 style={{ marginBottom: '20px' }}>Select rooms to show in the box</h2>
+                <CardDeck
+                    style={{
+                        paddingLeft: '15px',
+                        display: 'flex',
+                        flexWrap: 'wrap',
+                    }}
+                >
+                    <Card className={styles.createRoom}>
+                        <AddAlertBtn handleClick={handleAddData} />
+                        <span style={{ marginTop: '5px' }}>Add a room</span>
+                    </Card>
+                    {roomData.map((room, index) => (
+                        <RoomCard
+                            room={room}
+                            key={index}
+                            handleDelData={handleDelData}
+                            handleUpdateData={handleUpdateData}
+                            selected={selected}
+                            specificDr={specificDr}
+                            rooms={rooms}
+                        />
+                    ))}
+                </CardDeck>
 
-            <Add />
-            <Del />
-            <Update />
-        </Container>
+                <Add />
+                <Del />
+                <Update />
+            </Container>
+        </ErrorBoundary>
     );
 };
 

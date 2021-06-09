@@ -16,6 +16,8 @@ const ModalComponent = ({ open, setOpen, items, detail, setDetail }) => {
     const onCloseModal = () => {
         setOpen(false);
         setMod({ ...mod, detail });
+
+        console.log(detail);
     };
 
     return (

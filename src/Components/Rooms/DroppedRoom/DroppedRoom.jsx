@@ -1,3 +1,4 @@
+/* eslint-disable react/button-has-type */
 /* eslint-disable import/no-cycle */
 /* eslint-disable react/destructuring-assignment */
 /* eslint-disable no-shadow */
@@ -9,6 +10,7 @@ import { DataContext, GlobalContext } from '../../../App';
 import styles from './DroppedRoom.module.css';
 
 const DroppedRoom = (props) => {
+    const [globalData, updateGlobalData] = useContext(GlobalContext);
     const [info, setInfo] = useContext(DataContext);
     const [roomId, setRoomId] = useState(null);
     const {
@@ -17,41 +19,49 @@ const DroppedRoom = (props) => {
         room,
         selected,
         specificDr,
-        updateRoomList,
         rooms,
+        updateRoomList,
         handleSearchUpdate,
     } = props;
-    const [globalData, updateGlobalData] = useContext(GlobalContext);
+    const [onCard, setOnCard] = useState([]);
 
     const handelDel = () => {
+        if (rooms.find((sRoom) => sRoom.id === room.id)) {
+            const newRoomList = rooms.filter((rm) => rm !== room);
+            updateRoomList(newRoomList);
+        } else {
+            handleDelData(room.id);
+        }
+    };
+
+    const handleUpdate = () => {
+        handleUpdateData(room.id);
+        handleSearchUpdate(room.id);
         const newRoomList = rooms.filter((rm) => rm !== room);
         updateRoomList(newRoomList);
     };
-
-    const handleUpdate = (room) => {
-        handleSearchUpdate(room.id);
+    const roomList = [];
+    const checkToAdd = () => {
+        return roomList.includes(room);
     };
 
-    const clickHandler = (event) => {
-        event.preventDefault();
-        selected(room);
-    };
+    // console.log(rooms);
+    // console.log(specificDr);
 
     return (
-        <Card style={{ overflow: 'hidden' }} className={styles.createRoom}>
+        <Card className={styles.createRoom}>
             <Card.Header className={styles.roomCardTop}>
                 <div>
-                    <Button onClick={() => handelDel(room)} className={styles.topBtn}>
+                    <Button onClick={() => handelDel()} className={styles.topBtn}>
                         <FontAwesomeIcon className={styles.crossIcon} icon={faTimes} size="1x" />
                     </Button>
                 </div>
                 <div>
-                    <Button disabled className={styles.topBtn} onClick={() => handleUpdate(room)}>
+                    <Button className={styles.topBtn} onClick={() => handleUpdate()}>
                         <FontAwesomeIcon className={styles.crossIcon} icon={faPen} size="1x" />
                     </Button>
                 </div>
             </Card.Header>
-
             <Card.Body
                 style={{
                     textAlign: 'center',
@@ -61,13 +71,18 @@ const DroppedRoom = (props) => {
                     flex: 'none',
                 }}
             >
-                <Button onClick={(e) => clickHandler(e)} className={styles.roomNo}>
-                    {room}
-                </Button>
+                <div className={styles.roomNo}>{room.name}</div>
             </Card.Body>
-            <span style={{ marginTop: '5px', color: 'var(--color4)', height: '25px' }}>
-                {specificDr.name}
-            </span>
+            <div style={{ minHeight: '25px' }}>
+                <span
+                    style={{
+                        color: 'var(--color4)',
+                        minHeight: '25px !important',
+                    }}
+                >
+                    {rooms.find((sRoom) => sRoom.name === room.name) ? specificDr.name : false}
+                </span>
+            </div>
         </Card>
     );
 };
