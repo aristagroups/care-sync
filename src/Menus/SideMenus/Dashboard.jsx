@@ -79,7 +79,7 @@ const Dashboard = () => {
                                 </div>
                             </div>
                         </Col>
-                        <Col md={9} className={styles.dropBoxParent}>
+                        <Col md={9} sm={8} className={styles.dropBoxParent}>
                             <CardDeck id={styles.DropBox}>
                                 {doc.rooms.map((room) => (
                                     <DashCard
