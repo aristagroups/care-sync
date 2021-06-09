@@ -57,8 +57,8 @@ const Dashboard = () => {
             }}
         >
             <Container fluid id={styles.dashboard}>
-                {data.map((doc) => (
-                    <Row key={doc.dr.id} className={styles.drDeck}>
+                {data.map((doc, index) => (
+                    <Row key={index} className={styles.drDeck}>
                         <Col md={3} className={styles.drArea}>
                             <div className={styles.drAreaWrapper}>
                                 <div className={styles.drAreaTop}>

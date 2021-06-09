@@ -5,8 +5,9 @@
 /* eslint-disable no-shadow */
 import { faPen, faTimes } from '@fortawesome/free-solid-svg-icons';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import React, { useContext, useState } from 'react';
+import React, { useContext, useEffect, useState } from 'react';
 import { Button, Card } from 'react-bootstrap';
+import { db } from '../../../API/firebase';
 import { DataContext, GlobalContext } from '../../../App';
 import styles from './RoomCard.module.css';
 
@@ -25,6 +26,16 @@ const RoomCard = (props) => {
         handleSearchUpdate,
     } = props;
     const [onCard, setOnCard] = useState([]);
+    const [data, setData] = useState([]);
+
+    useEffect(() => {
+        async function getData() {
+            const drList = [];
+            const res = await db.collection('dashboard').get();
+            res.forEach((doc) => setData([...data, doc.data().data.rooms]));
+        }
+        getData();
+    }, [data, rooms]);
 
     const handelDel = () => {
         if (rooms.find((sRoom) => sRoom.id === room.id)) {
@@ -39,17 +50,18 @@ const RoomCard = (props) => {
         handleUpdateData(room.id);
     };
     const roomList = [];
-    const checkToAdd = () => {
-        return roomList.includes(room);
+    // console.log(data);
+    const test = data.map((d) => d);
+    const checkToAdd = (room) => {
+        selected(room);
+        roomList.push(room);
     };
     const clickHandler = (event) => {
         event.preventDefault();
         if (specificDr.length === 0) {
             alert('Select a doctor first');
         } else {
-            selected(room);
-            roomList.push(room);
-            checkToAdd();
+            checkToAdd(room);
         }
     };
 
