@@ -1,3 +1,4 @@
+/* eslint-disable no-undef */
 /* eslint-disable no-alert */
 /* eslint-disable no-plusplus */
 
@@ -30,10 +31,15 @@ export async function updateData(info) {
     console.log(res);
 }
 
-export function addDashData(data) {
+export function addDashData(sequence) {
+    const { rooms } = sequence;
     async function upload() {
-        const aTuringRef = db.collection('dashboard');
-        const res = await aTuringRef.add({ data });
+        const aTuringRef = db
+            .collection('dashboard')
+            .doc(sequence.dr.name)
+            .collection('rooms')
+            .doc();
+        await aTuringRef.set({ rooms });
         // eslint-disable-next-line no-alert
         // eslint-disable-next-line prettier/prettier
     alert("Success");

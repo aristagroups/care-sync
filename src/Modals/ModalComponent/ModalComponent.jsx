@@ -3,21 +3,53 @@
 import React, { useContext } from 'react';
 import { Modal } from 'react-responsive-modal';
 import 'react-responsive-modal/styles.css';
-import { ModalContext } from '../../App';
+import { db } from '../../API/firebase';
+import { GlobalContext, ModalContext } from '../../App';
 import './ModalBuiltIn.css';
 import styles from './ModalComponent.module.css';
 
 const ModalComponent = ({ open, setOpen, items, detail, setDetail }) => {
+    const [globalData, updateGlobalData] = useContext(GlobalContext);
     const [mod, setMod] = useContext(ModalContext);
     const middleIndex = Math.ceil(items.length / 2);
     const leftSideItems = items.slice().splice(0, middleIndex);
     const rightSideItems = items.slice(middleIndex);
 
+    const updater = () => {
+        // First data of the desired document
+        db.collection('dashboard')
+            .doc(globalData.docId)
+            .get()
+            .then((doc) => {
+                // Assign array to local javascript variable
+                const objects = doc.data().data.rooms;
+
+                // Assign desired element of object to local javascript variable
+                const objectToUpdate = objects[globalData?.arrIndex];
+
+                // Update field of the element assigned to local javascript variable
+                objectToUpdate.alert = detail.name;
+                objectToUpdate.bg = detail.bg;
+                objectToUpdate.border = detail.border;
+
+                // reassign object to local array variable
+                objects[globalData.arrIndex] = objectToUpdate;
+
+                console.log(objectToUpdate);
+
+                // Update complete array with update copy of element we have
+                // created in local javascript variable.
+                db.collection('dashboard')
+                    .doc(globalData.docId)
+                    .update(objects[globalData.arrIndex]);
+            });
+    };
+
     const onCloseModal = () => {
         setOpen(false);
         setMod({ ...mod, detail });
 
-        console.log(detail);
+        updater();
     };
 
     return (

@@ -5,7 +5,7 @@
 /* eslint-disable no-shadow */
 import { faPen, faTimes } from '@fortawesome/free-solid-svg-icons';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import React, { useContext, useEffect, useState } from 'react';
+import React, { useContext, useState } from 'react';
 import { Button, Card } from 'react-bootstrap';
 import { db } from '../../../API/firebase';
 import { DataContext, GlobalContext } from '../../../App';
@@ -28,14 +28,11 @@ const RoomCard = (props) => {
     const [onCard, setOnCard] = useState([]);
     const [data, setData] = useState([]);
 
-    useEffect(() => {
-        async function getData() {
-            const drList = [];
-            const res = await db.collection('dashboard').get();
-            res.forEach((doc) => setData([...data, doc.data().data?.rooms]));
-        }
-        getData();
-    }, [data, rooms]);
+    async function getData() {
+        const drList = [];
+        const res = await db.collection('dashboard').get();
+        res.forEach((doc) => setData([...data, doc.data().data?.rooms]));
+    }
 
     const handelDel = () => {
         if (rooms.find((sRoom) => sRoom.id === room.id)) {

@@ -71,13 +71,10 @@ function App() {
             setItems(alertList);
         }
         getData();
-    }, []);
-
-    useEffect(() => {
         if (mod.onOpenModal !== undefined) {
             mod.onOpenModal = onOpenModal();
         }
-    }, [mod]);
+    }, []);
 
     return (
         <div style={{ textAlign: 'center' }}>

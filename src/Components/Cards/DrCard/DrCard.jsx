@@ -24,7 +24,6 @@ const DrCard = (props) => {
     const item = {};
 
     useEffect(() => {
-        console.log(props);
         // eslint-disable-next-line react-hooks/exhaustive-deps
     }, []);
 

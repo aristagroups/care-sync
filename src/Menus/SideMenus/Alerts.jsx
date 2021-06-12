@@ -1,3 +1,4 @@
+/* eslint-disable react-hooks/exhaustive-deps */
 /* eslint-disable import/no-cycle */
 import React, { useContext, useEffect, useState } from 'react';
 import { Col, Container, Row } from 'react-bootstrap';
@@ -43,7 +44,7 @@ const Alerts = () => {
             setHeader(alertList);
         }
         getData();
-    }, [allAlerts, setHeader]);
+    }, []);
 
     const onOpenModal = () => {
         setOpen(true);

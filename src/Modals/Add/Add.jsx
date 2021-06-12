@@ -49,9 +49,9 @@ const Add = () => {
         e.preventDefault();
 
         async function storeData() {
-            const aTuringRef = db.collection(info.collection);
+            const aTuringRef = db.collection(info.collection).doc(data.name);
 
-            const res = await aTuringRef.add(data);
+            const res = await aTuringRef.set(data);
 
             setInfo({});
         }
