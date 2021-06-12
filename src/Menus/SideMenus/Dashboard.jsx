@@ -25,8 +25,8 @@ const Dashboard = () => {
             res.forEach((doc) => {
                 const item = doc.data().data;
                 const appObj = {
-                    dr: item.dr,
-                    rooms: item.rooms,
+                    dr: item?.dr,
+                    rooms: item?.rooms,
                 };
                 drList.push(appObj);
             });
@@ -65,7 +65,7 @@ const Dashboard = () => {
                                     <ResetBtn />
                                 </div>
                                 <div className={styles.drAreaTitle}>
-                                    <h1>{doc.dr.name}</h1>
+                                    <h1>{doc.dr?.name}</h1>
                                     <p>Therapist</p>
                                 </div>
                                 <div className={styles.drAreaBottom}>
@@ -81,7 +81,7 @@ const Dashboard = () => {
                         </Col>
                         <Col md={9} sm={8} className={styles.dropBoxParent}>
                             <CardDeck id={styles.DropBox}>
-                                {doc.rooms.map((room) => (
+                                {doc.rooms?.map((room) => (
                                     <DashCard
                                         key={room.id}
                                         room={room}

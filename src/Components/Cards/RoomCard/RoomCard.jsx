@@ -32,7 +32,7 @@ const RoomCard = (props) => {
         async function getData() {
             const drList = [];
             const res = await db.collection('dashboard').get();
-            res.forEach((doc) => setData([...data, doc.data().data.rooms]));
+            res.forEach((doc) => setData([...data, doc.data().data?.rooms]));
         }
         getData();
     }, [data, rooms]);
