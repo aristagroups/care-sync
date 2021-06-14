@@ -22,7 +22,7 @@ const ModalComponent = ({ open, setOpen, items, detail, setDetail }) => {
             .get()
             .then((doc) => {
                 // Assign array to local javascript variable
-                const objects = doc.data().data.rooms;
+                const objects = doc.data().data?.rooms;
 
                 // Assign desired element of object to local javascript variable
                 const objectToUpdate = objects[globalData?.arrIndex];

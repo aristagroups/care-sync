@@ -1,4 +1,3 @@
-/* eslint-disable react-hooks/exhaustive-deps */
 /* eslint-disable import/no-cycle */
 import React, { useContext, useEffect, useState } from 'react';
 import { Col, Container, Row } from 'react-bootstrap';
@@ -18,6 +17,14 @@ const Alerts = () => {
     const [editState, setEditState] = useState({ modal: false });
     const [allAlerts, setAllAlerts] = useState([]);
     const [alertId, setAlertId] = useState();
+    const [state, setState] = useState({});
+
+    const myFunction = () => {
+        setState({
+            name: 'Jhon',
+            surname: 'Doe',
+        });
+    };
 
     const selectModalAdd = () => {
         setAddState({ modal: !addState.modal });
@@ -44,7 +51,11 @@ const Alerts = () => {
             setHeader(alertList);
         }
         getData();
-    }, []);
+        myFunction();
+        return () => {
+            setState({}); // This worked for me
+        };
+    }, [allAlerts, setHeader]);
 
     const onOpenModal = () => {
         setOpen(true);

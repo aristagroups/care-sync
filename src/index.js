@@ -1,11 +1,14 @@
+import Amplify from 'aws-amplify';
 import 'bootstrap/dist/css/bootstrap.min.css';
 import React from 'react';
 import ReactDOM from 'react-dom';
 import 'react-responsive-modal/styles.css';
 import App from './App';
+import awsconfig from './aws-exports';
 import './index.css';
 import reportWebVitals from './reportWebVitals';
 
+Amplify.configure(awsconfig);
 ReactDOM.render(
     <React.StrictMode>
         <App />

@@ -10,6 +10,14 @@ import styles from './ConnectDr.module.css';
 const ConnectDr = (props) => {
     const [dr, setDr] = useState({});
     const [drList, setDrList] = useState([]);
+    const [state, setState] = useState({});
+
+    const myFunction = () => {
+        setState({
+            name: 'Jhon',
+            surname: 'Doe',
+        });
+    };
 
     const divStyle = {
         display: props.displayModal ? 'block' : 'none',
@@ -27,6 +35,10 @@ const ConnectDr = (props) => {
         }
 
         getDoctors();
+        myFunction();
+        return () => {
+            setState({}); // This worked for me
+        };
     }, [drList]);
 
     function closeModal(e) {

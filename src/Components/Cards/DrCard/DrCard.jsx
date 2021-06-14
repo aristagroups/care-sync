@@ -5,12 +5,14 @@
 /* eslint-disable react/button-has-type */
 import { faPen, faTrashAlt } from '@fortawesome/free-solid-svg-icons';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import React, { useEffect } from 'react';
+import React from 'react';
 import styles from './DrCard.module.css';
 
 const DrCard = (props) => {
-    const { id, name, email, phone, rooms } = props.data;
+    const { key, id, name, email, phone, rooms } = props.data;
     const { index, handleUpdateData, handleDelData } = props;
+
+    // console.log(key);
 
     const alerts = [
         { border: '#63BFF2', bg: '#63BFF2' },
@@ -22,10 +24,6 @@ const DrCard = (props) => {
     ];
 
     const item = {};
-
-    useEffect(() => {
-        // eslint-disable-next-line react-hooks/exhaustive-deps
-    }, []);
 
     return (
         <div className={[styles.tableContainer].join(' ')}>
@@ -54,8 +52,9 @@ const DrCard = (props) => {
                                     alignItems: 'center',
                                 }}
                             >
-                                {alerts.map((alert) => (
+                                {alerts.map((alert, index) => (
                                     <div
+                                        key={index}
                                         style={{
                                             marginLeft: '5px',
                                             width: '12px',

@@ -26,7 +26,6 @@ const Dashboard = () => {
             const res = await db.collection('dashboard').get();
             res.forEach((doc) => {
                 const item = doc.data();
-                console.log(doc);
                 const appObj = {
                     dr: item?.dr,
                     rooms: item?.rooms,
@@ -69,7 +68,7 @@ const Dashboard = () => {
                                     <ResetBtn />
                                 </div>
                                 <div className={styles.drAreaTitle}>
-                                    <h1>{doc.dr?.name}</h1>
+                                    <h1>{doc.id}</h1>
                                     <p>Therapist</p>
                                 </div>
                                 <div className={styles.drAreaBottom}>

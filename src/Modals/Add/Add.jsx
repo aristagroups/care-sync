@@ -13,6 +13,7 @@ import SaveBtn from '../../Components/Buttons/SaveBtn/SaveBtn';
 import styles from '../Styles/Modal.Module.css';
 import ValidateEmail from '../Validator/Validator';
 
+
 const Add = () => {
     const [info, setInfo] = useContext(DataContext);
     const [data, setData] = useState({});
@@ -62,7 +63,19 @@ const Add = () => {
 
     const handleChange = (e) => {
         e.preventDefault();
-        setData({ ...data, [e.target.name]: e.target.value });
+        if(info.type === 'doctor') {
+            setData({ ...data, [e.target.name]: e.target.value, rooms: []});
+        } else if(info.type === 'assistant') {
+            setData({ ...data, [e.target.name]: e.target.value, dr: ''});
+        } else if(info.type === 'room') {
+            setData({ ...data, [e.target.name]: e.target.value, alert: {
+                name: '',
+                bg: '',
+                border: '',
+            }});
+        } else {
+            setData({ ...data, [e.target.name]: e.target.value});
+        }
     };
 
     const emailValidation = (e) => {

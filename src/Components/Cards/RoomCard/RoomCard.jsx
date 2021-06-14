@@ -55,7 +55,9 @@ const RoomCard = (props) => {
     };
     const clickHandler = (event) => {
         event.preventDefault();
-        if (specificDr.length === 0) {
+        if (specificDr === undefined) {
+            alert('Select a doctor first');
+        } else if (specificDr.length === 0) {
             alert('Select a doctor first');
         } else {
             checkToAdd(room);
