@@ -212,15 +212,15 @@
 .alert {
   height: 64px;
   width: 64px;
-  background: powderblue;
+  background: #fff;
   border-radius: 50%;
-  border: 2px solid skyblue;
+  border: 2px solid #ccc;
   display: flex;
   flex-direction: row;
   justify-content: center;
   align-items: center;
   font-size: 30px;
-  color: skyblue;
+  color: #ccc;
 }
 
 .wrapper {

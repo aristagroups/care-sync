@@ -62,9 +62,9 @@ function App() {
             snapshot.forEach((doc) => {
                 const appObj = {
                     id: doc.id,
-                    name: doc.data().name,
-                    bg: doc.data().bg,
-                    border: doc.data().border,
+                    name: doc.data().name || '',
+                    bg: doc.data().bg || '',
+                    border: doc.data().border || '',
                 };
                 alertList.push(appObj);
             });

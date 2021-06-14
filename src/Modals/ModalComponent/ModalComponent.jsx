@@ -10,36 +10,39 @@ import './ModalBuiltIn.css';
 import styles from './ModalComponent.module.css';
 
 const ModalComponent = ({ open, setOpen, items, detail, setDetail }) => {
+    const [data, setData] = useState({});
     const [mod, setMod] = useContext(ModalContext);
     const [globalData, updateGlobalData] = useContext(GlobalContext);
+
     const middleIndex = Math.ceil(items.length / 2);
     const leftSideItems = items.slice().splice(0, middleIndex);
     const rightSideItems = items.slice(middleIndex);
-    const [data, setData] = useState({});
 
     const apiCall = () => {};
 
     const onCloseModal = () => {
         setOpen(false);
         setMod({ ...mod, detail });
-        addAlert({
-            docId: globalData.docId,
-            arrIndex: globalData.arrIndex,
-            alert: detail?.name,
-            bg: detail?.bg,
-            border: detail?.border,
-        });
+        if (detail !== null) {
+            addAlert({
+                docId: globalData.docId,
+                arrIndex: globalData.arrIndex,
+                alert: detail?.name,
+                bg: detail?.bg,
+                border: detail?.border,
+            });
+        }
     };
 
     return (
         <div>
             <Modal open={open} onClose={onCloseModal} center>
                 <div className={styles.modalContainer}>
-                    <div className={styles.leftSideItems}>
+                    <div className={styles.rightSideItems}>
                         {leftSideItems.length > 0 &&
                             leftSideItems.map((item, index) => (
                                 <div
-                                    onChange={() => setDetail(item)}
+                                    onClick={() => setDetail(item)}
                                     className={
                                         item.id === detail?.id
                                             ? [styles.items, styles.active].join(' ')

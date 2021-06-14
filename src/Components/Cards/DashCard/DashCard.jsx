@@ -6,6 +6,7 @@ import { Card } from 'react-bootstrap';
 import { GlobalContext } from '../../../App';
 import RBtn from '../../Buttons/RBtn/RBtn';
 import styles from './DashCard.module.css';
+import MyStopwatch from './MyStopWatch';
 
 const DashCard = (props) => {
     // eslint-disable-next-line prettier/prettier
@@ -22,7 +23,9 @@ const DashCard = (props) => {
                         <RBtn />
                     </div>
                     <div className={styles.timer}>
-                        <span>10:56</span>
+                        <span>
+                            <MyStopwatch />
+                        </span>
                     </div>
                 </Card.Header>
                 <Card.Body className={styles.roomCardMid}>

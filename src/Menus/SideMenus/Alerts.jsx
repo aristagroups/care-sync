@@ -37,8 +37,8 @@ const Alerts = () => {
     useEffect(() => {
         async function getData() {
             const alertList = [];
-            const snapshot = await db.collection('alerts').get();
-            snapshot.forEach((doc) => {
+            const res = await db.collection('alerts').get();
+            res.forEach((doc) => {
                 const appObj = {
                     id: doc.id,
                     name: doc.data().name,

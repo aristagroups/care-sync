@@ -1,5 +1,7 @@
 /* eslint-disable import/no-cycle */
 import { createContext, useState } from 'react';
+import { ErrorBoundary } from 'react-error-boundary';
+import ErrorFallback from './ErrorFallback';
 import MainRouter from './MainRouter/MainRouter';
 
 export const ApiContext = createContext();
@@ -36,15 +38,22 @@ const App = () => {
     ]);
 
     return (
-        <ApiContext.Provider value={[header, setHeader]}>
-            <GlobalContext.Provider value={[globalData, updateGlobalData]}>
-                <DataContext.Provider value={[info, setInfo]}>
-                    <ModalContext.Provider value={[mod, setMod]}>
-                        <MainRouter />
-                    </ModalContext.Provider>
-                </DataContext.Provider>
-            </GlobalContext.Provider>
-        </ApiContext.Provider>
+        <ErrorBoundary
+            FallbackComponent={ErrorFallback}
+            onReset={() => {
+                document.location.reload(true);
+            }}
+        >
+            <ApiContext.Provider value={[header, setHeader]}>
+                <GlobalContext.Provider value={[globalData, updateGlobalData]}>
+                    <DataContext.Provider value={[info, setInfo]}>
+                        <ModalContext.Provider value={[mod, setMod]}>
+                            <MainRouter />
+                        </ModalContext.Provider>
+                    </DataContext.Provider>
+                </GlobalContext.Provider>
+            </ApiContext.Provider>
+        </ErrorBoundary>
     );
 };
 
