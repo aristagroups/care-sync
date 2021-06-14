@@ -48,9 +48,8 @@ const Dashboard = () => {
         setMod({
             onOpenModal,
         });
+        console.log('ok');
     };
-
-    // console.log(data[0]);
 
     return (
         <ErrorBoundary
@@ -61,7 +60,7 @@ const Dashboard = () => {
         >
             <Container fluid id={styles.dashboard}>
                 {data.map((doc, index) => (
-                    <Row key={doc.id} className={styles.drDeck}>
+                    <Row key={index} className={styles.drDeck}>
                         <Col md={3} className={styles.drArea}>
                             <div className={styles.drAreaWrapper}>
                                 <div className={styles.drAreaTop}>

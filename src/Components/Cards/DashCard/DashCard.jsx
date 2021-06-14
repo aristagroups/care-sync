@@ -13,15 +13,6 @@ const DashCard = (props) => {
     const { data, room, alertSelector, openAlertModal, selectedAlert, docId, handler } = props;
     const [globalData, updateGlobalData] = useContext(GlobalContext);
 
-    const pass = () => {
-        openAlertModal();
-        updateGlobalData({ ...globalData, docId });
-    };
-
-    const clickHandler = () => {
-        pass();
-    };
-
     return (
         <div onClick={handler}>
             <Card className={styles.dashCard}>
@@ -35,16 +26,19 @@ const DashCard = (props) => {
                     </div>
                 </Card.Header>
                 <Card.Body className={styles.roomCardMid}>
-                    <div className={styles.alert}>
-                        <span>1</span>
+                    <div
+                        style={{ backgroundColor: `${room.bg}`, borderColor: `${room.border}` }}
+                        className={styles.alert}
+                    >
+                        <span style={{ color: `${room.border}` }}>1</span>
                     </div>
                     <div>
                         <button
-                            onClick={() => clickHandler()}
+                            onClick={() => openAlertModal()}
                             type="button"
                             className={styles.wrapper}
                         >
-                            Dropdown Items
+                            {room.alert || 'Dropdown Items'}
                         </button>
                     </div>
                 </Card.Body>

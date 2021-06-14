@@ -74,7 +74,9 @@ function App() {
         if (mod.onOpenModal !== undefined) {
             mod.onOpenModal = onOpenModal();
         }
-    }, []);
+    }, [mod]);
+
+    // console.log(mod.onOpenModal);
 
     return (
         <div style={{ textAlign: 'center' }}>
