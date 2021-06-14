@@ -85,6 +85,7 @@ const Dashboard = () => {
                                     }
                                     docId={doc.id}
                                     key={room.id}
+                                    idx={index}
                                     room={room}
                                     data={doc}
                                     openAlertModal={openAlertModal}
