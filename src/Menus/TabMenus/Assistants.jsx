@@ -5,29 +5,15 @@ import { Container } from 'react-bootstrap';
 import { db } from '../../API/firebase';
 import { DataContext } from '../../App';
 import AssistantsCard from '../../Components/Cards/AssistantsCard/AssistantsCard';
+import Connect from '../../Components/Cards/AssistantsCard/Connect';
 import Del from '../../Modals/Del/Del';
 import Update from '../../Modals/Update/Update';
-import ConnectDr from '../SideMenus/Modals/Assistants/ConnectDr';
 
 const Assistants = () => {
     const [info, setInfo] = useContext(DataContext);
     const [open, setOpen] = useState(null);
     const [drData, setDrData] = useState([]);
     const [drId, setDrId] = useState(null);
-    const [state, setState] = useState({});
-
-    const myFunction = () => {
-        setState({
-            name: 'Jhon',
-            surname: 'Doe',
-        });
-    };
-
-    const [connectState, setConnectState] = useState({ modal: false });
-
-    const selectConnectDr = () => {
-        setConnectState({ modal: !connectState.modal });
-    };
 
     useEffect(() => {
         async function getData() {
@@ -45,10 +31,6 @@ const Assistants = () => {
             setDrData(drList);
         }
         getData();
-        myFunction();
-        return () => {
-            setState({}); // This worked for me
-        };
     }, [drData]);
 
     const onOpenModal = () => {
@@ -75,6 +57,16 @@ const Assistants = () => {
         });
     };
 
+    const handleConnectDr = (id) => {
+        setInfo({
+            method: 'con',
+            type: 'assistant',
+            collection: 'assistants',
+            id,
+            onOpenModal,
+        });
+    };
+
     return (
         <Container fluid>
             {drData.map((data, index) => (
@@ -82,21 +74,14 @@ const Assistants = () => {
                     key={data.id}
                     handleUpdateData={handleUpdateData}
                     handleDelData={handleDelData}
-                    selectConnectDr={selectConnectDr}
+                    handleConnectDr={handleConnectDr}
                     data={data}
                     index={index}
                 />
             ))}
-
-            {
-                <ConnectDr
-                    displayModal={connectState.modal}
-                    closeModal={selectConnectDr}
-                    drId={drId}
-                />
-            }
             <Update />
             <Del />
+            <Connect />
         </Container>
     );
 };

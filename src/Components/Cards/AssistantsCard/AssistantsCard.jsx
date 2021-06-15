@@ -10,7 +10,7 @@ import styles from './AssistantsCard.module.css';
 
 const AssistantsCard = (props) => {
     const { id, name, email, phone } = props.data;
-    const { index, handleUpdateData, handleDelData } = props;
+    const { index, handleUpdateData, handleDelData, handleConnectDr } = props;
 
     const item = {};
 
@@ -32,7 +32,7 @@ const AssistantsCard = (props) => {
                             style={{ width: '15%' }}
                             className={[styles.tdBtn, styles.iconBtn].join(' ')}
                         >
-                            <button onClick={props.selectConnectDr}>
+                            <button onClick={() => handleConnectDr(id)}>
                                 <FontAwesomeIcon icon={faStethoscope} />
                             </button>
                             <button onClick={() => handleUpdateData(id)}>
