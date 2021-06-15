@@ -94,3 +94,7 @@ h5 {
 .row {
   margin: 0px;
 }
+
+li {
+  list-style: none;
+}

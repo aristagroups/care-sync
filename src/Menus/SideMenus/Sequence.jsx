@@ -7,7 +7,7 @@
 import React, { useContext, useEffect, useState } from 'react';
 import { Card, CardDeck, Col, Container, Row } from 'react-bootstrap';
 import { ErrorBoundary } from 'react-error-boundary';
-import { addDashData, doctorSimUpdate } from '../../API/Api';
+import { addDashData } from '../../API/Api';
 import { db } from '../../API/firebase';
 import { DataContext, GlobalContext, ModalContext } from '../../App';
 import AddAlertBtn from '../../Components/Buttons/AddAllertBtn/AddAlertBtn';
@@ -31,14 +31,6 @@ const Sequence = ({ drList }) => {
     const [rooms, setRooms] = useState([]);
     const [mainData, setMainData] = useState([]);
     const [sequence, setSequence] = useState([]);
-    const [state, setState] = useState({});
-
-    const myFunction = () => {
-        setState({
-            name: 'Jhon',
-            surname: 'Doe',
-        });
-    };
 
     useEffect(() => {
         async function getData() {
@@ -59,10 +51,7 @@ const Sequence = ({ drList }) => {
         getData();
 
         updateGlobalData();
-        myFunction();
-        return () => {
-            setState({}); // This worked for me
-        };
+
         // eslint-disable-next-line react-hooks/exhaustive-deps
     }, [roomData, specificDr]);
 
@@ -112,10 +101,6 @@ const Sequence = ({ drList }) => {
     const updateData = () => {
         console.log('Not updating');
         addDashData(sequence);
-        console.log(sequence);
-        doctorSimUpdate({
-            sequence,
-        });
 
         setRooms([]);
         setSpecificDr({});
@@ -129,11 +114,11 @@ const Sequence = ({ drList }) => {
     };
 
     const drSelect = (e) => {
-        const selectedDr = drList.find((dr) => dr.name === e.target.value);
+        const selectedDr = drList.find((dr) => dr.id === e.target.value);
         console.log(selectedDr);
         setSpecificDr(selectedDr);
         setSequence({
-            dr: selectedDr.name,
+            dr: selectedDr,
             rooms: rooms,
         });
     };
@@ -194,7 +179,7 @@ const Sequence = ({ drList }) => {
                                     >
                                         <option value="" />
                                         {drList.map((dr, index) => (
-                                            <option key={index}>{dr.name}</option>
+                                            <option key={index}>{dr.id}</option>
                                         ))}
                                     </select>
                                 </div>

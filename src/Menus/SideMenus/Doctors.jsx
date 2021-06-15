@@ -13,6 +13,7 @@ const Doctors = () => {
     const [open, setOpen] = useState(null);
     const [drData, setDrData] = useState([]);
     const [drId, setDrId] = useState(null);
+    const [data, setData] = useState([]);
     const [state, setState] = useState({});
 
     const myFunction = () => {
@@ -25,25 +26,27 @@ const Doctors = () => {
     useEffect(() => {
         async function getData() {
             const drList = [];
-            const snapshot = await db.collection('doctors').get();
+            const citiesRef = db.collection('dashboard');
+            const snapshot = await citiesRef.get();
             snapshot.forEach((doc) => {
+                const item = doc.data();
                 const appObj = {
                     id: doc.id,
-                    name: doc.data().name,
-                    email: doc.data().email,
-                    phone: doc.data().phone,
-                    rooms: doc.data().rooms,
+                    dr: doc.id,
+                    email: item?.email,
+                    phone: item?.phone,
+                    rooms: item?.rooms,
                 };
                 drList.push(appObj);
             });
-            setDrData(drList);
+            setData(drList);
         }
         getData();
         myFunction();
         return () => {
             setState({}); // This worked for me
         };
-    }, [drData]);
+    }, [data]);
 
     const onOpenModal = () => {
         setOpen(true);
@@ -53,7 +56,7 @@ const Doctors = () => {
         setInfo({
             method: 'del',
             type: 'doctor',
-            collection: 'doctors',
+            collection: 'dashboard',
             id,
             onOpenModal,
         });
@@ -63,7 +66,7 @@ const Doctors = () => {
         setInfo({
             method: 'update',
             type: 'doctor',
-            collection: 'doctors',
+            collection: 'dashboard',
             id,
             onOpenModal,
         });
@@ -73,10 +76,10 @@ const Doctors = () => {
 
     return (
         <Container fluid>
-            {drData.map((data, index) => (
+            {data.map((pass, index) => (
                 <Fragment key={Math.random().toString(36).substr(2, 9)}>
                     <DrCard
-                        data={data}
+                        data={pass}
                         index={index}
                         handleDelData={handleDelData}
                         handleUpdateData={handleUpdateData}

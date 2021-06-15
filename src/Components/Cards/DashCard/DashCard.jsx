@@ -40,9 +40,7 @@ const DashCard = (props) => {
                         <RBtn handleClick={resetDashCard} />
                     </div>
                     <div className={styles.timer}>
-                        <span>
-                            <MyStopwatch />
-                        </span>
+                        <span>{room.alert ? <MyStopwatch /> : '00:00'}</span>
                     </div>
                 </Card.Header>
                 <Card.Body className={styles.roomCardMid}>
@@ -50,7 +48,7 @@ const DashCard = (props) => {
                         style={{ backgroundColor: `${room.bg}`, borderColor: `${room.border}` }}
                         className={styles.alert}
                     >
-                        <span style={{ color: `${room.border}` }}>1</span>
+                        <span style={{ color: `${room.border}` }}>{room.alert.slice(0, 1)}</span>
                     </div>
                     <div>
                         <button
@@ -58,7 +56,7 @@ const DashCard = (props) => {
                             type="button"
                             className={styles.wrapper}
                         >
-                            {room.alert || 'Dropdown Items'}
+                            {room.alert || 'Empty'}
                         </button>
                     </div>
                 </Card.Body>

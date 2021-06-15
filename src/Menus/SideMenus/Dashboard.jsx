@@ -4,6 +4,7 @@
 /* eslint-disable import/no-cycle */
 import React, { useContext, useEffect, useState } from 'react';
 import { CardDeck, Col, Container, Row } from 'react-bootstrap';
+import { resetAll } from '../../API/Api';
 import { db } from '../../API/firebase';
 import { GlobalContext, ModalContext } from '../../App';
 import ResetBtn from '../../Components/Buttons/ResetBtn/ResetBtn';
@@ -17,12 +18,21 @@ const Dashboard = () => {
     const [globalData, updateGlobalData] = useContext(GlobalContext);
     const [open, setOpen] = useState(false);
     const [data, setData] = useState([]);
+    const [state, setState] = useState({});
+
+    const myFunction = () => {
+        setState({
+            name: 'Jhon',
+            surname: 'Doe',
+        });
+    };
 
     useEffect(() => {
         async function getData() {
             const drList = [];
-            const res = await db.collection('dashboard').get();
-            res.forEach((doc) => {
+            const citiesRef = db.collection('dashboard');
+            const snapshot = await citiesRef.get();
+            snapshot.forEach((doc) => {
                 const item = doc.data();
                 const appObj = {
                     dr: item?.dr,
@@ -34,7 +44,11 @@ const Dashboard = () => {
             setData(drList);
         }
         getData();
-    }, [mod.detail]);
+        myFunction();
+        return () => {
+            setState({}); // This worked for me
+        };
+    }, [data, mod.detail, updateGlobalData]);
 
     // console.log(data);
 
@@ -48,6 +62,12 @@ const Dashboard = () => {
         });
     };
 
+    const reset = (doc) => {
+        resetAll({
+            docId: doc.id,
+        });
+    };
+
     return (
         <Container fluid id={styles.dashboard}>
             {data.map((doc, index) => (
@@ -55,7 +75,7 @@ const Dashboard = () => {
                     <Col md={3} className={styles.drArea}>
                         <div className={styles.drAreaWrapper}>
                             <div className={styles.drAreaTop}>
-                                <ResetBtn />
+                                <ResetBtn handleClick={() => reset(doc)} />
                             </div>
                             <div className={styles.drAreaTitle}>
                                 <h1>{doc.id}</h1>

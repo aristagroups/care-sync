@@ -35,7 +35,7 @@ const DrCard = (props) => {
                                 <span>{index + 1}</span>
                             </div>
                         </td>
-                        <td style={{ width: '20%', paddingLeft: '10px' }}>{name}</td>
+                        <td style={{ width: '20%', paddingLeft: '10px' }}>{id}</td>
                         <td style={{ width: '20%' }}>{email}</td>
                         <td style={{ width: '16%', paddingLeft: '10px' }}>{phone}</td>
                         <td
@@ -52,15 +52,15 @@ const DrCard = (props) => {
                                     alignItems: 'center',
                                 }}
                             >
-                                {alerts.map((alert, index) => (
+                                {rooms.map((alert, index) => (
                                     <div
                                         key={index}
                                         style={{
                                             marginLeft: '5px',
-                                            width: '12px',
-                                            height: '12px',
-                                            backgroundColor: `${alert.bg}`,
-                                            border: `2px solid ${alert.border}`,
+                                            width: '13px',
+                                            height: '13px',
+                                            backgroundColor: `${alert.border}`,
+                                            border: `0.2px solid ${alert.border}`,
                                             borderRadius: '50%',
                                         }}
                                     />
@@ -69,7 +69,7 @@ const DrCard = (props) => {
                         </td>
                         <td style={{ width: '20%' }}>
                             <span style={{ marginRight: '5px' }}>Rooms</span>{' '}
-                            {rooms?.map((room) => ` ${room}, `)}
+                            {rooms?.map((room) => ` ${room.name}, `)}
                         </td>
 
                         <td

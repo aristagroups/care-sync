@@ -25,7 +25,7 @@ const Stuff = () => {
         setInfo({
             method: 'add',
             type: 'doctor',
-            collection: 'doctors',
+            collection: 'dashboard',
             onOpenModal,
         });
     };

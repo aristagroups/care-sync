@@ -75,11 +75,11 @@ function ControlPanel(props) {
     useEffect(() => {
         async function getDoctors() {
             const drArray = [];
-            const snapshot = await db.collection('doctors').get();
+            const snapshot = await db.collection('dashboard').get();
             snapshot.forEach((doc) => {
                 const appObj = {
                     id: doc.id,
-                    name: doc.data().name,
+                    name: doc.id,
                     email: doc.data().email,
                     phone: doc.data().phone,
                     rooms: doc.data().rooms,
