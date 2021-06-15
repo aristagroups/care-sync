@@ -19,7 +19,6 @@ export async function addDashData(data) {
         phone: data.dr.phone,
         rooms: data.rooms,
     });
-    alert('success');
 }
 
 export async function doctorSimUpdate() {}
@@ -54,34 +53,34 @@ export async function addAlert(data) {
         });
 }
 
-// Reset All
-export async function resetAll(data) {
-    console.log(data);
-    // First data of the desired document
-    db.collection('dashboard')
-        .doc(data.docId)
-        .get()
-        .then((doc) => {
-            // Assign array to local javascript variable
-            let objects = doc.data().rooms;
+// // Reset All
+// export async function resetAll(data) {
+//     console.log(data);
+//     // First data of the desired document
+//     db.collection('dashboard')
+//         .doc(data.docId)
+//         .get()
+//         .then((doc) => {
+//             // Assign array to local javascript variable
+//             let objects = doc.data().rooms;
 
-            // Assing desired element of object to local javascript variable
-            console.log(objects);
-            const objectToupdate = objects.map((room) => {
-                room.alert = '';
-                room.bg = '';
-                room.border = '';
-            });
-            console.log(objectToupdate);
+//             // Assing desired element of object to local javascript variable
+//             console.log(objects);
+//             const objectToupdate = objects.map((room) => {
+//                 room.alert = '';
+//                 room.bg = '';
+//                 room.border = '';
+//             });
+//             console.log(objectToupdate);
 
-            // Update field of the element assigned to local javascript variable
+//             // Update field of the element assigned to local javascript variable
 
-            // reassign object to local array variable
-            objects = objectToupdate;
+//             // reassign object to local array variable
+//             objects = objectToupdate;
 
-            // Update complete array with update copy of element we have
-            // created in local javascript variable.
-            console.log(objects);
-            db.collection('dashboard').doc(data.docId).update({ rooms: objects });
-        });
-}
+//             // Update complete array with update copy of element we have
+//             // created in local javascript variable.
+//             console.log(objects);
+//             db.collection('dashboard').doc(data.docId).update({ rooms: objects });
+//         });
+// }

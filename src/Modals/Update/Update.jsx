@@ -82,8 +82,18 @@ const Update = () => {
                 </h4>
                 <br />
                 <form id="addRoomForm" onSubmit={handleSubmit} className={styles.addRoomForm}>
-                    <label htmlFor="name">Name</label>
-                    <input onChange={(e) => handleChange(e)} type="text" name="name" id="name" />
+                    {info.type === 'doctor' ? null : (
+                        <>
+                            <label htmlFor="name">Name</label>
+
+                            <input
+                                onChange={(e) => handleChange(e)}
+                                type="text"
+                                name="name"
+                                id="name"
+                            />
+                        </>
+                    )}
                     {(info.type === 'doctor' ||
                         info.type === 'assistant' ||
                         info.type === 'receptionist') && (

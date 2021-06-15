@@ -4,7 +4,7 @@
 /* eslint-disable import/no-cycle */
 import React, { useContext, useEffect, useState } from 'react';
 import { CardDeck, Col, Container, Row } from 'react-bootstrap';
-import { resetAll } from '../../API/Api';
+import { addDashData } from '../../API/Api';
 import { db } from '../../API/firebase';
 import { GlobalContext, ModalContext } from '../../App';
 import ResetBtn from '../../Components/Buttons/ResetBtn/ResetBtn';
@@ -36,6 +36,8 @@ const Dashboard = () => {
                 const item = doc.data();
                 const appObj = {
                     dr: item?.dr,
+                    email: item?.email,
+                    phone: item?.phone,
                     rooms: item?.rooms,
                     id: doc.id,
                 };
@@ -63,8 +65,26 @@ const Dashboard = () => {
     };
 
     const reset = (doc) => {
-        resetAll({
-            docId: doc.id,
+        console.log(doc);
+        const emptyRooms = [];
+        const newRooms = doc.rooms.map((room) => {
+            const rObj = {
+                alert: '',
+                bg: '',
+                border: '',
+                id: room.id,
+                name: room.id,
+            };
+            emptyRooms.push(rObj);
+        });
+        addDashData({
+            dr: {
+                dr: doc.dr,
+                email: doc.email,
+                phone: doc.phone,
+                id: doc.id,
+            },
+            rooms: emptyRooms,
         });
     };
 

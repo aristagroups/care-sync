@@ -31,6 +31,14 @@ const Sequence = ({ drList }) => {
     const [rooms, setRooms] = useState([]);
     const [mainData, setMainData] = useState([]);
     const [sequence, setSequence] = useState([]);
+    const [state, setState] = useState({});
+
+    const myFunction = () => {
+        setState({
+            name: 'Jhon',
+            surname: 'Doe',
+        });
+    };
 
     useEffect(() => {
         async function getData() {
@@ -51,7 +59,10 @@ const Sequence = ({ drList }) => {
         getData();
 
         updateGlobalData();
-
+        myFunction();
+        return () => {
+            setState({}); // This worked for me
+        };
         // eslint-disable-next-line react-hooks/exhaustive-deps
     }, [roomData, specificDr]);
 
@@ -145,7 +156,7 @@ const Sequence = ({ drList }) => {
     const selected = (room) => {
         if (rooms?.find((rm) => rm.id.includes(room.id))) {
             alert('Already added');
-        } else if (specificDr.rooms?.find((r) => r.includes(room.name))) {
+        } else if (specificDr.rooms?.find((r) => r.id.includes(room.name))) {
             alert('Already added');
         } else {
             rooms.push(room);
