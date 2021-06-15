@@ -1,26 +1,53 @@
+/* eslint-disable react/no-array-index-key */
+/* eslint-disable jsx-a11y/no-onchange */
+/* eslint-disable no-undef */
 /* eslint-disable import/no-cycle */
 /* eslint-disable jsx-a11y/label-has-associated-control */
 /* eslint-disable react/button-has-type */
 import React, { useContext, useEffect, useState } from 'react';
 import Modal from 'react-responsive-modal';
+import { db } from '../../../API/firebase';
 import { DataContext } from '../../../App';
 import SaveBtn from '../../Buttons/SaveBtn/SaveBtn';
 import styles from './AssistantsCard.module.css';
 
 const Connect = (props) => {
     const [info, setInfo] = useContext(DataContext);
-    const [data, setData] = useState({});
+    const [data, setData] = useState([]);
     const [open, setOpen] = useState(false);
-
+    const [state, setState] = useState({});
+    const [drId, setDrId] = useState('');
     const onOpenModal = () => setOpen(true);
     const onCloseModal = () => setOpen(false);
 
-    // async function deleteDocument(e) {
-    //     e.preventDefault();
-    //     const res = await db.collection(info.collection).doc(info.id).delete();
-    //     setInfo({});
-    //     onCloseModal();
-    // }
+    const myFunction = () => {
+        setState({
+            name: 'Jhon',
+            surname: 'Doe',
+        });
+    };
+
+    useEffect(() => {
+        async function getData() {
+            const drList = [];
+            const citiesRef = db.collection('dashboard');
+            const snapshot = await citiesRef.get();
+            snapshot.forEach((doc) => {
+                const item = doc.data();
+                const appObj = {
+                    dr: item?.dr,
+                    id: doc.id,
+                };
+                drList.push(appObj);
+            });
+            setData(drList);
+        }
+        getData();
+        myFunction();
+        return () => {
+            setState({}); // This worked for me
+        };
+    }, [data]);
 
     useEffect(() => {
         if (info.onOpenModal !== undefined && info.method === 'con') {
@@ -28,25 +55,55 @@ const Connect = (props) => {
         }
     }, [info]);
 
+    const drSelect = (e) => {
+        e.preventDefault();
+        setDrId(e.target.value);
+    };
+
+    async function updateDr() {
+        const cityRef = db.collection('assistants').doc(info.id);
+        const res = await cityRef.update({ dr: drId });
+        onCloseModal();
+    }
+
     return (
         <div>
-            <Modal open={open} onClose={onCloseModal} center>
-                <h4 id="modHeader1">Connect To Doctor</h4>
+            <Modal className={styles.modal} open={open} onClose={onCloseModal} center>
+                <h4>Connect to the doctor</h4>
                 <br />
-                <form id="addAsForm" style={{ padding: '10px 30px' }}>
-                    <div style={{ textAlign: 'left' }}>
-                        <label htmlFor="name" style={{ marginLeft: '5px' }}>
-                            Choose a Doctor
-                        </label>
-                        <div className={styles.wrapper}>
-                            <select name="drSelect" id="drSelect">
-                                <option value="Test">Test</option>
-                                <option value="Test">Test</option>
-                            </select>
-                        </div>
+                <div
+                    style={{
+                        display: 'flex',
+                        justifyContent: 'center',
+                        flexDirection: 'column',
+                        padding: '0px 30px',
+                    }}
+                >
+                    <label style={{ marginRight: 'auto' }} htmlFor="DrSelect">
+                        <span style={{ fontWeight: '500', marginBottom: '10px' }}>
+                            Choose a doctor
+                        </span>
+                    </label>
+                    <div className={styles.wrapper}>
+                        <select
+                            name="DrSelect"
+                            id="DrSelect"
+                            onChange={(e) => drSelect(e)}
+                            className={styles.DrSelect}
+                        >
+                            {data.map((dr) => (
+                                <option key={dr.id} value={dr.id}>
+                                    {dr.id}
+                                </option>
+                            ))}
+                        </select>
                     </div>
-                    <SaveBtn style={{ margin: 'o auto', textAlign: 'center' }} name="Save" />
-                </form>
+                </div>
+                <div
+                    style={{ display: 'flex', justifyContent: 'space-evenly', margin: '0px auto' }}
+                >
+                    <SaveBtn handleClick={updateDr} name="Save" />
+                </div>
                 <br />
             </Modal>
         </div>

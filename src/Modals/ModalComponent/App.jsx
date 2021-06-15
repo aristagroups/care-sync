@@ -13,6 +13,14 @@ function App() {
     const onOpenModal = () => {
         setOpen(true);
     };
+    const [state, setState] = useState({});
+
+    const myFunction = () => {
+        setState({
+            name: 'Jhon',
+            surname: 'Doe',
+        });
+    };
 
     const [items, setItems] = useState([]);
 
@@ -74,6 +82,10 @@ function App() {
         if (mod.onOpenModal !== undefined) {
             mod.onOpenModal = onOpenModal();
         }
+        myFunction();
+        return () => {
+            setState({}); // This worked for me
+        };
     }, [mod]);
 
     // console.log(mod.onOpenModal);

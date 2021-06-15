@@ -103,10 +103,25 @@ const Dashboard = () => {
                             </div>
                             <div className={styles.drAreaBottom}>
                                 <p>
-                                    <strong>- 5 +</strong>
+                                    <strong>
+                                        {' '}
+                                        -{' '}
+                                        <span style={{ color: '#FC7E55' }}>
+                                            {doc.rooms.length}
+                                        </span>{' '}
+                                        +{' '}
+                                    </strong>
                                 </p>
                                 <p>
-                                    <span>in line</span>
+                                    <span
+                                        style={{
+                                            color: '#969696',
+                                            fontWeight: '500',
+                                            fontSize: '15px',
+                                        }}
+                                    >
+                                        in line
+                                    </span>
                                 </p>
                                 <StopBtn />
                             </div>

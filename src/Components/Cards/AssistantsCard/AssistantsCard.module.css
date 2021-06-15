@@ -62,3 +62,43 @@
   display: inline-block;
   margin: 0 5px;
 }
+
+.wrapper {
+  overflow: hidden;
+  position: relative;
+  width: 20rem; /* real length of dropdown */
+  border: 1px solid lightgray;
+  border-radius: 20px;
+  padding: 9px 20px;
+  margin: 0px auto 10px auto;
+}
+
+.wrapper:after {
+  content: "▾";
+  font-size: 1.1rem;
+  pointer-events: none; /* ▼ click triggers dropdown */
+  position: absolute;
+  right: 1rem;
+  top: 0.5rem;
+  z-index: 1;
+}
+
+select {
+  /* remove default caret */
+  -webkit-appearance: none; /* webkit browsers */
+  -moz-appearance: none; /* firefox */
+  appearance: none; /* modern browsers */
+  width: 100%;
+  border: none;
+  background: transparent;
+  outline: none;
+  font-weight: 400;
+}
+
+label {
+  font-weight: 400;
+}
+
+select::-ms-expand {
+  display: none; /* remove default caret for ie */
+}

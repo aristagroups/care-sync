@@ -12,8 +12,6 @@ const AssistantsCard = (props) => {
     const { id, name, email, phone } = props.data;
     const { index, handleUpdateData, handleDelData, handleConnectDr } = props;
 
-    const item = {};
-
     return (
         <div className={[styles.tableContainer].join(' ')}>
             <table>

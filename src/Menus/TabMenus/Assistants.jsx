@@ -14,6 +14,14 @@ const Assistants = () => {
     const [open, setOpen] = useState(null);
     const [drData, setDrData] = useState([]);
     const [drId, setDrId] = useState(null);
+    const [state, setState] = useState({});
+
+    const myFunction = () => {
+        setState({
+            name: 'Jhon',
+            surname: 'Doe',
+        });
+    };
 
     useEffect(() => {
         async function getData() {
@@ -31,6 +39,10 @@ const Assistants = () => {
             setDrData(drList);
         }
         getData();
+        myFunction();
+        return () => {
+            setState({}); // This worked for me
+        };
     }, [drData]);
 
     const onOpenModal = () => {

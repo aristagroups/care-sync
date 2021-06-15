@@ -6,6 +6,7 @@
 import { faPen, faTrashAlt } from '@fortawesome/free-solid-svg-icons';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import React from 'react';
+import ConnectBtn from '../../Buttons/ConnectBtn/ConnectBtn';
 import styles from './DrCard.module.css';
 
 const DrCard = (props) => {
@@ -23,7 +24,7 @@ const DrCard = (props) => {
         { border: '#DDDDDD', bg: '#FFFFFF' },
     ];
 
-    const item = {};
+    const url = window.location.href;
 
     return (
         <div className={[styles.tableContainer].join(' ')}>
@@ -72,16 +73,26 @@ const DrCard = (props) => {
                             {rooms?.map((room) => ` ${room.name}, `)}
                         </td>
 
+                        {url !== 'http://localhost:3000/assistant/doctors' && (
+                            <td
+                                style={{ width: '10%' }}
+                                className={[styles.tdBtn, styles.iconBtn].join(' ')}
+                            >
+                                <button onClick={() => handleUpdateData(id)}>
+                                    <FontAwesomeIcon icon={faPen} />
+                                </button>{' '}
+                                <button onClick={() => handleDelData(id)}>
+                                    <FontAwesomeIcon icon={faTrashAlt} />
+                                </button>
+                            </td>
+                        )}
                         <td
                             style={{ width: '10%' }}
                             className={[styles.tdBtn, styles.iconBtn].join(' ')}
                         >
-                            <button onClick={() => handleUpdateData(id)}>
-                                <FontAwesomeIcon icon={faPen} />
-                            </button>{' '}
-                            <button onClick={() => handleDelData(id)}>
-                                <FontAwesomeIcon icon={faTrashAlt} />
-                            </button>
+                            {url === 'http://localhost:3000/assistant/doctors' && (
+                                <ConnectBtn name="Connect" />
+                            )}
                         </td>
                     </tr>
                 </tbody>
