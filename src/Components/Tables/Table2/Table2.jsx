@@ -14,7 +14,7 @@ const Table2 = ({ items, selectedAlert, handleUpdateData }) => {
     return (
         <div className={[styles.tableContainer].join(' ')}>
             <table>
-                <tbody>
+                <tbody className={styles.tableBody}>
                     {items.map((item, index) => (
                         <tr className={[styles.tableRow].join(' ')} key={index}>
                             <td className={[styles.tdNumber]}>

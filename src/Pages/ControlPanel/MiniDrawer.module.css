@@ -1,0 +1,13 @@
+#miniDr {
+  display: none;
+}
+
+@media (min-width: 481px) and (max-width: 1024px) {
+  #miniDr {
+    display: block !important;
+  }
+}
+
+.logo {
+  margin: 20px auto;
+}

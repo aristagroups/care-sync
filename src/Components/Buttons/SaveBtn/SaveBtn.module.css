@@ -32,6 +32,7 @@
 
 @media screen and (max-width: 575px) {
   .SaveBtn {
-    width: 980% !important;
+    width: 100% !important;
+    min-width: 110px !important;
   }
 }
