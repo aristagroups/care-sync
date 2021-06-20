@@ -13,11 +13,9 @@
 }
 
 .main {
-  width: 100% !important;
-  left: 50%;
   min-height: 100vh;
   background: var(--color3);
-  margin-left: auto !important;
+  margin-left: auto;
   display: grid;
   grid-template-columns: 1fr;
   grid-template-rows: repeat(3, 1fr);
@@ -98,21 +96,5 @@
   }
   .main {
     grid-template-rows: inherit !important;
-  }
-}
-
-/* @media (max-width: 1025px) {
-  #fixedDr {
-    display: none;
-  }
-} */
-
-#fixedDr {
-  display: none;
-}
-
-@media (min-width: 1025px) {
-  #fixedDr {
-    display: block !important;
   }
 }

@@ -1,999 +1,161 @@
-/* Responsive styles */
-
-/* 
-  ##Device = Desktops
-  ##Screen = 1281px to higher resolution desktops
-*/
-
-@media (min-width: 1281px) {
-  .sequenceContainer {
-    padding: 15px !important;
-    display: grid;
-    grid-template-columns: 1fr;
-    grid-template-rows: 3fr;
-    gap: 10px 10px;
-    grid-template-areas: ".";
-  }
-
-  .wrapper {
-    overflow: hidden;
-    position: relative;
-    width: 20rem; /* real length of dropdown */
-    border: 1px solid lightgray;
-    border-radius: 20px;
-    padding: 9px 20px;
-    margin-top: 10px;
-  }
-
-  .wrapper:after {
-    content: "▾";
-    font-size: 1.1rem;
-    pointer-events: none; /* ▼ click triggers dropdown */
-    position: absolute;
-    right: 1rem;
-    top: 0.5rem;
-    z-index: 1;
-  }
-
-  select {
-    /* remove default caret */
-    -webkit-appearance: none; /* webkit browsers */
-    -moz-appearance: none; /* firefox */
-    appearance: none; /* modern browsers */
-    width: 100%;
-    border: none;
-    background: transparent;
-    outline: none;
-    font-weight: 400;
-  }
-
-  label {
-    font-weight: 600;
-  }
-
-  select::-ms-expand {
-    display: none; /* remove default caret for ie */
-  }
-
-  .dropBoxParent {
-    width: 75vw !important;
-    overflow: scroll;
-    padding-left: 0 !important;
-  }
-
-  #DropBox {
-    height: 170px;
-    margin: 20px auto;
-    background: #fff;
-    display: flex;
-    align-items: center;
-    flex-direction: row;
-    padding-left: 15px;
-    padding-top: 10px;
-    padding-right: 15px;
-    overflow-y: hidden !important;
-  }
-
-  #DropBox {
-    background-image: repeating-linear-gradient(
-        -2deg,
-        var(--color1),
-        var(--color1) 5px,
-        transparent 5px,
-        transparent 10px,
-        var(--color1) 10px
-      ),
-      repeating-linear-gradient(
-        88deg,
-        var(--color1),
-        var(--color1) 5px,
-        transparent 5px,
-        transparent 10px,
-        var(--color1) 10px
-      ),
-      repeating-linear-gradient(
-        178deg,
-        var(--color1),
-        var(--color1) 5px,
-        transparent 5px,
-        transparent 10px,
-        var(--color1) 10px
-      ),
-      repeating-linear-gradient(
-        268deg,
-        var(--color1),
-        var(--color1) 5px,
-        transparent 5px,
-        transparent 10px,
-        var(--color1) 10px
-      );
-    background-size: 1px 100%, 100% 1px, 1px 100%, 100% 1px;
-    background-position: 0 0, 0 0, 100% 0, 0 100%;
-    background-repeat: no-repeat;
-  }
-
-  .RoomsContainer {
-    padding: 0px 15px;
-    display: grid;
-    grid-template-columns: 1fr 1fr 1fr 1fr 1fr 1fr;
-    grid-template-rows: 1fr;
-    gap: 2px 2px;
-    grid-template-areas: ". . . . . .";
-  }
-
-  .createRoom {
-    max-width: 170px;
-    min-width: 170px;
-    margin: 0px 19px 15px 0px !important;
-    height: 125px;
-    background: #fff;
-    border: none;
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    justify-content: center;
-    color: var(--color1);
-    font-weight: 500;
-    border-bottom-left-radius: 16px !important;
-    border-top-right-radius: 16px;
-    border-top-left-radius: 16px !important;
-    border-bottom-right-radius: none !important;
-    box-shadow: 0 2.8px 2.2px rgba(141, 140, 140, 0.034),
-      0 6.7px 5.3px rgba(134, 134, 134, 0.048),
-      0 12.5px 10px rgba(138, 137, 137, 0.06),
-      0 22.3px 17.9px rgba(124, 124, 124, 0.072),
-      0 41.8px 33.4px rgba(116, 115, 115, 0.086),
-      0 100px 80px rgba(136, 134, 134, 0.12);
-  }
-
-  .alert {
-    padding: 20px;
-    background-color: #f44336;
-    color: white;
-  }
-
-  .closeBtn {
-    margin-left: 15px;
-    color: white;
-    font-weight: bold;
-    float: right;
-    font-size: 22px;
-    line-height: 20px;
-    cursor: pointer;
-    transition: 0.3s;
-  }
-
-  .closeBtn:hover {
-    color: black;
-  }
+.sequenceContainer {
+  padding: 15px !important;
+  display: grid;
+  grid-template-columns: 1fr;
+  grid-template-rows: 3fr;
+  gap: 10px 10px;
+  grid-template-areas: ".";
 }
 
-/* 
-  ##Device = Laptops, Desktops
-  ##Screen = B/w 1025px to 1280px
-*/
-
-@media (min-width: 1025px) and (max-width: 1280px) {
-  .sequenceContainer {
-    padding: 15px !important;
-    display: grid;
-    grid-template-columns: 1fr;
-    grid-template-rows: 3fr;
-    gap: 10px 10px;
-    grid-template-areas: ".";
-  }
-
-  .wrapper {
-    overflow: hidden;
-    position: relative;
-    width: 20rem; /* real length of dropdown */
-    border: 1px solid lightgray;
-    border-radius: 20px;
-    padding: 9px 20px;
-    margin-top: 10px;
-  }
-
-  .wrapper:after {
-    content: "▾";
-    font-size: 1.1rem;
-    pointer-events: none; /* ▼ click triggers dropdown */
-    position: absolute;
-    right: 1rem;
-    top: 0.5rem;
-    z-index: 1;
-  }
-
-  select {
-    /* remove default caret */
-    -webkit-appearance: none; /* webkit browsers */
-    -moz-appearance: none; /* firefox */
-    appearance: none; /* modern browsers */
-    width: 100%;
-    border: none;
-    background: transparent;
-    outline: none;
-    font-weight: 400;
-  }
-
-  label {
-    font-weight: 600;
-  }
-
-  select::-ms-expand {
-    display: none; /* remove default caret for ie */
-  }
-
-  .dropBoxParent {
-    width: 100%;
-    overflow: scroll;
-    padding-left: 0 !important;
-  }
-
-  #DropBox {
-    height: 170px;
-    width: 100%;
-    margin: 20px auto;
-    background: #fff;
-    display: flex;
-    align-items: center;
-    flex-direction: row;
-    padding-left: 15px;
-    padding-top: 10px;
-    padding-right: 15px;
-    overflow-y: hidden;
-  }
-
-  #DropBox {
-    background-image: repeating-linear-gradient(
-        -2deg,
-        var(--color1),
-        var(--color1) 5px,
-        transparent 5px,
-        transparent 10px,
-        var(--color1) 10px
-      ),
-      repeating-linear-gradient(
-        88deg,
-        var(--color1),
-        var(--color1) 5px,
-        transparent 5px,
-        transparent 10px,
-        var(--color1) 10px
-      ),
-      repeating-linear-gradient(
-        178deg,
-        var(--color1),
-        var(--color1) 5px,
-        transparent 5px,
-        transparent 10px,
-        var(--color1) 10px
-      ),
-      repeating-linear-gradient(
-        268deg,
-        var(--color1),
-        var(--color1) 5px,
-        transparent 5px,
-        transparent 10px,
-        var(--color1) 10px
-      );
-    background-size: 1px 100%, 100% 1px, 1px 100%, 100% 1px;
-    background-position: 0 0, 0 0, 100% 0, 0 100%;
-    background-repeat: no-repeat;
-  }
-
-  .RoomsContainer {
-    padding: 0px 15px;
-    display: grid;
-    grid-template-columns: 1fr 1fr 1fr 1fr 1fr 1fr;
-    grid-template-rows: 1fr;
-    gap: 2px 2px;
-    grid-template-areas: ". . . . . .";
-  }
-
-  .createRoom {
-    max-width: 160px;
-    min-width: 160px;
-    margin: 0px 19px 15px 0px !important;
-    height: 125px;
-    background: #fff;
-    border: none;
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    justify-content: center;
-    color: var(--color1);
-    font-weight: 500;
-    border-bottom-left-radius: 16px !important;
-    border-top-right-radius: 16px;
-    border-top-left-radius: 16px !important;
-    border-bottom-right-radius: none !important;
-    box-shadow: 0 2.8px 2.2px rgba(141, 140, 140, 0.034),
-      0 6.7px 5.3px rgba(134, 134, 134, 0.048),
-      0 12.5px 10px rgba(138, 137, 137, 0.06),
-      0 22.3px 17.9px rgba(124, 124, 124, 0.072),
-      0 41.8px 33.4px rgba(116, 115, 115, 0.086),
-      0 100px 80px rgba(136, 134, 134, 0.12);
-  }
-
-  .alert {
-    padding: 20px;
-    background-color: #f44336;
-    color: white;
-  }
-
-  .closeBtn {
-    margin-left: 15px;
-    color: white;
-    font-weight: bold;
-    float: right;
-    font-size: 22px;
-    line-height: 20px;
-    cursor: pointer;
-    transition: 0.3s;
-  }
-
-  .closeBtn:hover {
-    color: black;
-  }
+.wrapper {
+  overflow: hidden;
+  position: relative;
+  width: 20rem; /* real length of dropdown */
+  border: 1px solid lightgray;
+  border-radius: 20px;
+  padding: 9px 20px;
+  margin-top: 10px;
 }
 
-/* 
-  ##Device = Tablets, Ipads (portrait)
-  ##Screen = B/w 768px to 1024px
-*/
-
-@media (min-width: 768px) and (max-width: 1024px) {
-  .sequenceContainer {
-    padding: 15px !important;
-    display: grid;
-    grid-template-columns: 1fr;
-    grid-template-rows: 3fr;
-    gap: 10px 10px;
-    grid-template-areas: ".";
-  }
-
-  .wrapper {
-    overflow: hidden;
-    position: relative;
-    width: 20rem; /* real length of dropdown */
-    border: 1px solid lightgray;
-    border-radius: 20px;
-    padding: 9px 20px;
-    margin-top: 10px;
-  }
-
-  .wrapper:after {
-    content: "▾";
-    font-size: 1.1rem;
-    pointer-events: none; /* ▼ click triggers dropdown */
-    position: absolute;
-    right: 1rem;
-    top: 0.5rem;
-    z-index: 1;
-  }
-
-  select {
-    /* remove default caret */
-    -webkit-appearance: none; /* webkit browsers */
-    -moz-appearance: none; /* firefox */
-    appearance: none; /* modern browsers */
-    width: 100%;
-    border: none;
-    background: transparent;
-    outline: none;
-    font-weight: 400;
-  }
-
-  label {
-    font-weight: 600;
-  }
-
-  select::-ms-expand {
-    display: none; /* remove default caret for ie */
-  }
-
-  .dropBoxParent {
-    width: 100%;
-    overflow: scroll;
-    padding-left: 0 !important;
-  }
-
-  #DropBox {
-    height: 170px;
-    width: 100%;
-    margin: 20px auto;
-    background: #fff;
-    display: flex;
-    align-items: center;
-    flex-direction: row;
-    padding-left: 15px;
-    padding-top: 10px;
-    padding-right: 15px;
-    overflow-y: hidden;
-  }
-
-  #DropBox {
-    background-image: repeating-linear-gradient(
-        -2deg,
-        var(--color1),
-        var(--color1) 5px,
-        transparent 5px,
-        transparent 10px,
-        var(--color1) 10px
-      ),
-      repeating-linear-gradient(
-        88deg,
-        var(--color1),
-        var(--color1) 5px,
-        transparent 5px,
-        transparent 10px,
-        var(--color1) 10px
-      ),
-      repeating-linear-gradient(
-        178deg,
-        var(--color1),
-        var(--color1) 5px,
-        transparent 5px,
-        transparent 10px,
-        var(--color1) 10px
-      ),
-      repeating-linear-gradient(
-        268deg,
-        var(--color1),
-        var(--color1) 5px,
-        transparent 5px,
-        transparent 10px,
-        var(--color1) 10px
-      );
-    background-size: 1px 100%, 100% 1px, 1px 100%, 100% 1px;
-    background-position: 0 0, 0 0, 100% 0, 0 100%;
-    background-repeat: no-repeat;
-  }
-
-  .RoomsContainer {
-    padding: 0px 15px;
-    display: grid;
-    grid-template-columns: 1fr 1fr 1fr 1fr 1fr 1fr;
-    grid-template-rows: 1fr;
-    gap: 2px 2px;
-    grid-template-areas: ". . . . . .";
-  }
-
-  .createRoom {
-    max-width: 160px;
-    min-width: 160px;
-    margin: 0px 19px 15px 0px !important;
-    height: 125px;
-    background: #fff;
-    border: none;
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    justify-content: center;
-    color: var(--color1);
-    font-weight: 500;
-    border-bottom-left-radius: 16px !important;
-    border-top-right-radius: 16px;
-    border-top-left-radius: 16px !important;
-    border-bottom-right-radius: none !important;
-    box-shadow: 0 2.8px 2.2px rgba(141, 140, 140, 0.034),
-      0 6.7px 5.3px rgba(134, 134, 134, 0.048),
-      0 12.5px 10px rgba(138, 137, 137, 0.06),
-      0 22.3px 17.9px rgba(124, 124, 124, 0.072),
-      0 41.8px 33.4px rgba(116, 115, 115, 0.086),
-      0 100px 80px rgba(136, 134, 134, 0.12);
-  }
-
-  .alert {
-    padding: 20px;
-    background-color: #f44336;
-    color: white;
-  }
-
-  .closeBtn {
-    margin-left: 15px;
-    color: white;
-    font-weight: bold;
-    float: right;
-    font-size: 22px;
-    line-height: 20px;
-    cursor: pointer;
-    transition: 0.3s;
-  }
-
-  .closeBtn:hover {
-    color: black;
-  }
+.wrapper:after {
+  content: "▾";
+  font-size: 1.1rem;
+  pointer-events: none; /* ▼ click triggers dropdown */
+  position: absolute;
+  right: 1rem;
+  top: 0.5rem;
+  z-index: 1;
 }
 
-/* 
-  ##Device = Tablets, Ipads (landscape)
-  ##Screen = B/w 768px to 1024px
-*/
-
-@media (min-width: 768px) and (max-width: 1024px) and (orientation: landscape) {
-  .sequenceContainer {
-    padding: 15px !important;
-    display: grid;
-    grid-template-columns: 1fr;
-    grid-template-rows: 3fr;
-    gap: 10px 10px;
-    grid-template-areas: ".";
-  }
-
-  .wrapper {
-    overflow: hidden;
-    position: relative;
-    width: 20rem; /* real length of dropdown */
-    border: 1px solid lightgray;
-    border-radius: 20px;
-    padding: 9px 20px;
-    margin-top: 10px;
-  }
-
-  .wrapper:after {
-    content: "▾";
-    font-size: 1.1rem;
-    pointer-events: none; /* ▼ click triggers dropdown */
-    position: absolute;
-    right: 1rem;
-    top: 0.5rem;
-    z-index: 1;
-  }
-
-  select {
-    /* remove default caret */
-    -webkit-appearance: none; /* webkit browsers */
-    -moz-appearance: none; /* firefox */
-    appearance: none; /* modern browsers */
-    width: 100%;
-    border: none;
-    background: transparent;
-    outline: none;
-    font-weight: 400;
-  }
-
-  label {
-    font-weight: 600;
-  }
-
-  select::-ms-expand {
-    display: none; /* remove default caret for ie */
-  }
-
-  .dropBoxParent {
-    width: 100%;
-    overflow: scroll;
-    padding-left: 0 !important;
-  }
-
-  #DropBox {
-    height: 170px;
-    width: 100%;
-    margin: 20px auto;
-    background: #fff;
-    display: flex;
-    align-items: center;
-    flex-direction: row;
-    padding-left: 15px;
-    padding-top: 10px;
-    padding-right: 15px;
-    overflow-y: hidden;
-  }
-
-  #DropBox {
-    background-image: repeating-linear-gradient(
-        -2deg,
-        var(--color1),
-        var(--color1) 5px,
-        transparent 5px,
-        transparent 10px,
-        var(--color1) 10px
-      ),
-      repeating-linear-gradient(
-        88deg,
-        var(--color1),
-        var(--color1) 5px,
-        transparent 5px,
-        transparent 10px,
-        var(--color1) 10px
-      ),
-      repeating-linear-gradient(
-        178deg,
-        var(--color1),
-        var(--color1) 5px,
-        transparent 5px,
-        transparent 10px,
-        var(--color1) 10px
-      ),
-      repeating-linear-gradient(
-        268deg,
-        var(--color1),
-        var(--color1) 5px,
-        transparent 5px,
-        transparent 10px,
-        var(--color1) 10px
-      );
-    background-size: 1px 100%, 100% 1px, 1px 100%, 100% 1px;
-    background-position: 0 0, 0 0, 100% 0, 0 100%;
-    background-repeat: no-repeat;
-  }
-
-  .RoomsContainer {
-    padding: 0px 15px;
-    display: grid;
-    grid-template-columns: 1fr 1fr 1fr 1fr 1fr 1fr;
-    grid-template-rows: 1fr;
-    gap: 2px 2px;
-    grid-template-areas: ". . . . . .";
-  }
-
-  .createRoom {
-    max-width: 160px;
-    min-width: 160px;
-    margin: 0px 19px 15px 0px !important;
-    height: 125px;
-    background: #fff;
-    border: none;
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    justify-content: center;
-    color: var(--color1);
-    font-weight: 500;
-    border-bottom-left-radius: 16px !important;
-    border-top-right-radius: 16px;
-    border-top-left-radius: 16px !important;
-    border-bottom-right-radius: none !important;
-    box-shadow: 0 2.8px 2.2px rgba(141, 140, 140, 0.034),
-      0 6.7px 5.3px rgba(134, 134, 134, 0.048),
-      0 12.5px 10px rgba(138, 137, 137, 0.06),
-      0 22.3px 17.9px rgba(124, 124, 124, 0.072),
-      0 41.8px 33.4px rgba(116, 115, 115, 0.086),
-      0 100px 80px rgba(136, 134, 134, 0.12);
-  }
-
-  .alert {
-    padding: 20px;
-    background-color: #f44336;
-    color: white;
-  }
-
-  .closeBtn {
-    margin-left: 15px;
-    color: white;
-    font-weight: bold;
-    float: right;
-    font-size: 22px;
-    line-height: 20px;
-    cursor: pointer;
-    transition: 0.3s;
-  }
-
-  .closeBtn:hover {
-    color: black;
-  }
+select {
+  /* remove default caret */
+  -webkit-appearance: none; /* webkit browsers */
+  -moz-appearance: none; /* firefox */
+  appearance: none; /* modern browsers */
+  width: 100%;
+  border: none;
+  background: transparent;
+  outline: none;
+  font-weight: 400;
 }
 
-/* 
-  ##Device = Low Resolution Tablets, Mobiles (Landscape)
-  ##Screen = B/w 481px to 767px
-*/
-
-@media (min-width: 481px) and (max-width: 767px) {
-  .sequenceContainer {
-    padding: 15px !important;
-    display: grid;
-    grid-template-columns: 1fr;
-    grid-template-rows: 3fr;
-    gap: 10px 10px;
-    grid-template-areas: ".";
-  }
-
-  .wrapper {
-    overflow: hidden;
-    position: relative;
-    width: 20rem; /* real length of dropdown */
-    border: 1px solid lightgray;
-    border-radius: 20px;
-    padding: 9px 20px;
-    margin-top: 10px;
-  }
-
-  .wrapper:after {
-    content: "▾";
-    font-size: 1.1rem;
-    pointer-events: none; /* ▼ click triggers dropdown */
-    position: absolute;
-    right: 1rem;
-    top: 0.5rem;
-    z-index: 1;
-  }
-
-  select {
-    /* remove default caret */
-    -webkit-appearance: none; /* webkit browsers */
-    -moz-appearance: none; /* firefox */
-    appearance: none; /* modern browsers */
-    width: 100%;
-    border: none;
-    background: transparent;
-    outline: none;
-    font-weight: 400;
-  }
-
-  label {
-    font-weight: 600;
-  }
-
-  select::-ms-expand {
-    display: none; /* remove default caret for ie */
-  }
-
-  .dropBoxParent {
-    width: 100%;
-    overflow: scroll;
-    padding-left: 0 !important;
-  }
-
-  #DropBox {
-    height: 170px;
-    width: 100%;
-    margin: 20px auto;
-    background: #fff;
-    display: flex;
-    align-items: center;
-    flex-direction: row;
-    padding-left: 15px;
-    padding-top: 10px;
-    padding-right: 15px;
-    overflow-y: hidden;
-  }
-
-  #DropBox {
-    background-image: repeating-linear-gradient(
-        -2deg,
-        var(--color1),
-        var(--color1) 5px,
-        transparent 5px,
-        transparent 10px,
-        var(--color1) 10px
-      ),
-      repeating-linear-gradient(
-        88deg,
-        var(--color1),
-        var(--color1) 5px,
-        transparent 5px,
-        transparent 10px,
-        var(--color1) 10px
-      ),
-      repeating-linear-gradient(
-        178deg,
-        var(--color1),
-        var(--color1) 5px,
-        transparent 5px,
-        transparent 10px,
-        var(--color1) 10px
-      ),
-      repeating-linear-gradient(
-        268deg,
-        var(--color1),
-        var(--color1) 5px,
-        transparent 5px,
-        transparent 10px,
-        var(--color1) 10px
-      );
-    background-size: 1px 100%, 100% 1px, 1px 100%, 100% 1px;
-    background-position: 0 0, 0 0, 100% 0, 0 100%;
-    background-repeat: no-repeat;
-  }
-
-  .RoomsContainer {
-    padding: 0px 15px;
-    display: grid;
-    grid-template-columns: 1fr 1fr 1fr 1fr 1fr 1fr;
-    grid-template-rows: 1fr;
-    gap: 2px 2px;
-    grid-template-areas: ". . . . . .";
-  }
-
-  .createRoom {
-    max-width: 160px;
-    min-width: 160px;
-    margin: 0px 19px 15px 0px !important;
-    height: 125px;
-    background: #fff;
-    border: none;
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    justify-content: center;
-    color: var(--color1);
-    font-weight: 500;
-    border-bottom-left-radius: 16px !important;
-    border-top-right-radius: 16px;
-    border-top-left-radius: 16px !important;
-    border-bottom-right-radius: none !important;
-    box-shadow: 0 2.8px 2.2px rgba(141, 140, 140, 0.034),
-      0 6.7px 5.3px rgba(134, 134, 134, 0.048),
-      0 12.5px 10px rgba(138, 137, 137, 0.06),
-      0 22.3px 17.9px rgba(124, 124, 124, 0.072),
-      0 41.8px 33.4px rgba(116, 115, 115, 0.086),
-      0 100px 80px rgba(136, 134, 134, 0.12);
-  }
-
-  .alert {
-    padding: 20px;
-    background-color: #f44336;
-    color: white;
-  }
-
-  .closeBtn {
-    margin-left: 15px;
-    color: white;
-    font-weight: bold;
-    float: right;
-    font-size: 22px;
-    line-height: 20px;
-    cursor: pointer;
-    transition: 0.3s;
-  }
-
-  .closeBtn:hover {
-    color: black;
-  }
+label {
+  font-weight: 600;
 }
 
-/* 
-  ##Device = Most of the Smartphones Mobiles (Portrait)
-  ##Screen = B/w 320px to 479px
-*/
+select::-ms-expand {
+  display: none; /* remove default caret for ie */
+}
 
-@media (min-width: 320px) and (max-width: 480px) {
-  .sequenceContainer {
-    padding: 0px !important;
-    margin: 0px !important;
-    display: flex;
-    flex-direction: column;
-  }
+.dropBoxParent {
+  width: 100%;
+  overflow: scroll;
+  padding-left: 0 !important;
+}
 
-  .sequenceTop {
-    display: flex;
-    flex-direction: column;
-  }
+#DropBox {
+  height: 170px;
+  width: 100%;
+  margin: 20px auto;
+  background: #fff;
+  display: flex;
+  align-items: center;
+  flex-direction: row;
+  padding-left: 15px;
+  padding-top: 10px;
+  padding-right: 15px;
+  overflow-y: hidden;
+}
 
-  .createRoom {
-    width: 30%;
-    margin: 0px 10px 10px 0px !important;
-    height: 125px;
-    background: #fff;
-    border: none;
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    justify-content: center;
-    color: var(--color1);
-    font-weight: 500;
-    border-bottom-left-radius: 16px !important;
-    border-top-right-radius: 16px;
-    border-top-left-radius: 16px !important;
-    border-bottom-right-radius: none !important;
-    box-shadow: 0 2.8px 2.2px rgba(141, 140, 140, 0.034),
-      0 6.7px 5.3px rgba(134, 134, 134, 0.048),
-      0 12.5px 10px rgba(138, 137, 137, 0.06),
-      0 22.3px 17.9px rgba(124, 124, 124, 0.072),
-      0 41.8px 33.4px rgba(116, 115, 115, 0.086),
-      0 100px 80px rgba(136, 134, 134, 0.12);
-  }
+#DropBox {
+  background-image: repeating-linear-gradient(
+      -2deg,
+      var(--color1),
+      var(--color1) 5px,
+      transparent 5px,
+      transparent 10px,
+      var(--color1) 10px
+    ),
+    repeating-linear-gradient(
+      88deg,
+      var(--color1),
+      var(--color1) 5px,
+      transparent 5px,
+      transparent 10px,
+      var(--color1) 10px
+    ),
+    repeating-linear-gradient(
+      178deg,
+      var(--color1),
+      var(--color1) 5px,
+      transparent 5px,
+      transparent 10px,
+      var(--color1) 10px
+    ),
+    repeating-linear-gradient(
+      268deg,
+      var(--color1),
+      var(--color1) 5px,
+      transparent 5px,
+      transparent 10px,
+      var(--color1) 10px
+    );
+  background-size: 1px 100%, 100% 1px, 1px 100%, 100% 1px;
+  background-position: 0 0, 0 0, 100% 0, 0 100%;
+  background-repeat: no-repeat;
+}
 
-  .wrapper {
-    overflow: hidden;
-    position: relative;
-    width: 100% !important;
-    max-width: 480px;
-    min-width: 320px; /* real length of dropdown */
-    border: 1px solid lightgray;
-    border-radius: 20px;
-    padding: 9px 20px;
+.RoomsContainer {
+  padding: 0px 15px;
+  display: grid;
+  grid-template-columns: 1fr 1fr 1fr 1fr 1fr 1fr;
+  grid-template-rows: 1fr;
+  gap: 2px 2px;
+  grid-template-areas: ". . . . . .";
+}
 
-    margin-top: 55px !important;
-  }
+.createRoom {
+  max-width: 170px;
+  min-width: 170px;
+  margin: 0px 19px 15px 0px !important;
+  height: 130px;
+  background: #fff;
+  border: none;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  color: var(--color1);
+  font-weight: 500;
+  border-bottom-left-radius: 16px !important;
+  border-top-right-radius: 16px;
+  border-top-left-radius: 16px !important;
+  border-bottom-right-radius: none !important;
+  box-shadow: 0 2.8px 2.2px rgba(141, 140, 140, 0.034),
+    0 6.7px 5.3px rgba(134, 134, 134, 0.048),
+    0 12.5px 10px rgba(138, 137, 137, 0.06),
+    0 22.3px 17.9px rgba(124, 124, 124, 0.072),
+    0 41.8px 33.4px rgba(116, 115, 115, 0.086),
+    0 100px 80px rgba(136, 134, 134, 0.12);
+}
 
-  .wrapper:after {
-    content: "▾";
-    font-size: 1.1rem;
-    pointer-events: none; /* ▼ click triggers dropdown */
-    position: absolute;
-    right: 1rem;
-    top: 0.5rem;
-    z-index: 1;
-  }
+.alert {
+  padding: 20px;
+  background-color: #f44336;
+  color: white;
+}
 
-  select {
-    /* remove default caret */
-    -webkit-appearance: none; /* webkit browsers */
-    -moz-appearance: none; /* firefox */
-    appearance: none; /* modern browsers */
-    width: 100%;
-    border: none;
-    background: transparent;
-    outline: none;
-    font-weight: 400;
-    margin: 0 auto;
-  }
+.closeBtn {
+  margin-left: 15px;
+  color: white;
+  font-weight: bold;
+  float: right;
+  font-size: 22px;
+  line-height: 20px;
+  cursor: pointer;
+  transition: 0.3s;
+}
 
-  label {
-    font-weight: 600;
-    width: 100%;
-  }
-
-  select::-ms-expand {
-    display: none; /* remove default caret for ie */
-  }
-
-  .dropBoxParent {
-    width: 100%;
-    overflow: scroll;
-  }
-
-  #DropBox {
-    height: 150px;
-    width: 100%;
-    margin: 20px auto;
-    background: #fff;
-    display: flex;
-    align-items: center;
-    flex-direction: row;
-    padding-left: 15px;
-    padding-top: 10px;
-    padding-right: 15px;
-    overflow-y: hidden;
-  }
-
-  #DropBox {
-    background-image: repeating-linear-gradient(
-        -2deg,
-        var(--color1),
-        var(--color1) 5px,
-        transparent 5px,
-        transparent 10px,
-        var(--color1) 10px
-      ),
-      repeating-linear-gradient(
-        88deg,
-        var(--color1),
-        var(--color1) 5px,
-        transparent 5px,
-        transparent 10px,
-        var(--color1) 10px
-      ),
-      repeating-linear-gradient(
-        178deg,
-        var(--color1),
-        var(--color1) 5px,
-        transparent 5px,
-        transparent 10px,
-        var(--color1) 10px
-      ),
-      repeating-linear-gradient(
-        268deg,
-        var(--color1),
-        var(--color1) 5px,
-        transparent 5px,
-        transparent 10px,
-        var(--color1) 10px
-      );
-    background-size: 1px 100%, 100% 1px, 1px 100%, 100% 1px;
-    background-position: 0 0, 0 0, 100% 0, 0 100%;
-    background-repeat: no-repeat;
-  }
-  .RoomsContainer {
-    display: flex;
-    flex-direction: row;
-  }
-
-  .selectH2 {
-    text-align: left;
-    margin-left: 15px;
-  }
+.closeBtn:hover {
+  color: black;
 }

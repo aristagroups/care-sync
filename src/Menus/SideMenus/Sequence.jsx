@@ -177,11 +177,7 @@ const Sequence = ({ drList }) => {
         >
             <Container fluid className={styles.sequenceContainer}>
                 <Row>
-                    <Col
-                        className={styles.sequenceTop}
-                        md={12}
-                        style={{ display: 'flex', justifyContent: 'space-between' }}
-                    >
+                    <Col md={12} style={{ display: 'flex', justifyContent: 'space-between' }}>
                         <div>
                             <label htmlFor="DrSelect">
                                 Choose a Doctor
@@ -201,14 +197,11 @@ const Sequence = ({ drList }) => {
                             </label>
                         </div>
                         <div style={{ marginTop: '30px' }}>
-                            <SaveBtn
-                                className={styles.topSave}
-                                handleClick={drApiCall}
-                                name="Save"
-                            />
+                            <SaveBtn handleClick={drApiCall} name="Save" />
                         </div>
                     </Col>
                 </Row>
+
                 <Row>
                     <Col md={12} className={styles.dropBoxParent}>
                         <div id={styles.DropBox}>
@@ -230,9 +223,8 @@ const Sequence = ({ drList }) => {
                         </div>
                     </Col>
                 </Row>
-                <h2 className={styles.selectH2} style={{ marginBottom: '20px' }}>
-                    Select rooms to show in the box
-                </h2>
+
+                <h2 style={{ marginBottom: '20px' }}>Select rooms to show in the box</h2>
                 <CardDeck
                     style={{
                         paddingLeft: '15px',
@@ -256,6 +248,7 @@ const Sequence = ({ drList }) => {
                         />
                     ))}
                 </CardDeck>
+
                 <Add />
                 <Del />
                 <Update />
