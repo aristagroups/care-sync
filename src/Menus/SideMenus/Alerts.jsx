@@ -83,7 +83,7 @@ const Alerts = () => {
     };
 
     return (
-        <Container fluid style={{ padding: '30px' }}>
+        <Container className="alertsContainer" fluid style={{ padding: '30px' }}>
             <Row>
                 <Col md={12} style={{ display: 'flex', justifyContent: 'flex-end' }}>
                     <SaveBtn handleClick={handleAddData} name="Add new" />

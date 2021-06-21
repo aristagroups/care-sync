@@ -176,8 +176,8 @@ const Sequence = ({ drList }) => {
             }}
         >
             <Container fluid className={styles.sequenceContainer}>
-                <Row>
-                    <Col md={12} style={{ display: 'flex', justifyContent: 'space-between' }}>
+                <div className={styles.sequenceTop}>
+                    <div style={{ display: 'flex', justifyContent: 'space-between' }}>
                         <div>
                             <label htmlFor="DrSelect">
                                 Choose a Doctor
@@ -196,11 +196,11 @@ const Sequence = ({ drList }) => {
                                 </div>
                             </label>
                         </div>
-                        <div style={{ marginTop: '30px' }}>
-                            <SaveBtn handleClick={drApiCall} name="Save" />
-                        </div>
-                    </Col>
-                </Row>
+                    </div>
+                    <div style={{ marginTop: '30px' }}>
+                        <SaveBtn handleClick={drApiCall} name="Save" />
+                    </div>
+                </div>
 
                 <Row>
                     <Col md={12} className={styles.dropBoxParent}>
@@ -224,13 +224,16 @@ const Sequence = ({ drList }) => {
                     </Col>
                 </Row>
 
-                <h2 style={{ marginBottom: '20px' }}>Select rooms to show in the box</h2>
+                <h2 style={{ marginBottom: '20px', marginLeft: '0px' }}>
+                    Select rooms to show in the box
+                </h2>
                 <CardDeck
                     style={{
-                        paddingLeft: '15px',
+                        paddingLeft: '1.6vw',
                         display: 'flex',
                         flexWrap: 'wrap',
                     }}
+                    className={styles.cardDeckContainer}
                 >
                     <Card className={styles.createRoom}>
                         <AddAlertBtn handleClick={handleAddData} />

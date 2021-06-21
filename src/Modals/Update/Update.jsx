@@ -48,9 +48,26 @@ const Update = () => {
         e.preventDefault();
 
         async function updateDocument() {
-            const res = await db.collection(info.collection).doc(info.id).update(data);
+            let dataObj = {};
+            await db
+                .collection(info.collection)
+                .doc(info.id)
+                .get()
+                .then((doc) => {
+                    dataObj = doc.data();
+                    console.log(dataObj);
+                    const obj = {
+                        ...dataObj,
+                        ...data,
+                    };
+                    console.log(obj);
+                    db.collection(info.collection).doc(info.id).delete();
 
-            setInfo({});
+                    db.collection(info.collection).doc(obj.name).set(obj);
+
+                    dataObj = {};
+                    setInfo({});
+                });
         }
 
         updateDocument();
@@ -82,18 +99,17 @@ const Update = () => {
                 </h4>
                 <br />
                 <form id="addRoomForm" onSubmit={handleSubmit} className={styles.addRoomForm}>
-                    {info.type === 'doctor' ? null : (
-                        <>
-                            <label htmlFor="name">Name</label>
+                    <>
+                        <label htmlFor="name">Name</label>
 
-                            <input
-                                onChange={(e) => handleChange(e)}
-                                type="text"
-                                name="name"
-                                id="name"
-                            />
-                        </>
-                    )}
+                        <input
+                            onChange={(e) => handleChange(e)}
+                            type="text"
+                            name="name"
+                            id="name"
+                        />
+                    </>
+
                     {(info.type === 'doctor' ||
                         info.type === 'assistant' ||
                         info.type === 'receptionist') && (

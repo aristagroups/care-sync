@@ -13,7 +13,15 @@ const DrCard = (props) => {
     const { key, id, name, email, phone, rooms } = props.data;
     const { index, handleUpdateData, handleDelData } = props;
 
-    // console.log(key);
+    const updateHandler = (event, id) => {
+        event.stopPropagation();
+        handleUpdateData(id);
+    };
+
+    const delHandler = (event, id) => {
+        event.stopPropagation();
+        handleDelData(id);
+    };
 
     const alerts = [
         { border: '#63BFF2', bg: '#63BFF2' },
@@ -78,10 +86,10 @@ const DrCard = (props) => {
                                 style={{ width: '10%' }}
                                 className={[styles.tdBtn, styles.iconBtn].join(' ')}
                             >
-                                <button onClick={() => handleUpdateData(id)}>
+                                <button onClick={(event) => updateHandler(event, id)}>
                                     <FontAwesomeIcon icon={faPen} />
                                 </button>{' '}
-                                <button onClick={() => handleDelData(id)}>
+                                <button onClick={(event) => delHandler(event, id)}>
                                     <FontAwesomeIcon icon={faTrashAlt} />
                                 </button>
                             </td>
