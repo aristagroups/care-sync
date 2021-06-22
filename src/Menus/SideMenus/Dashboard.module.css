@@ -4,6 +4,7 @@
   margin: 0 !important;
   margin-left: 15px;
   background-color: #fff !important;
+  margin-top: -40px !important;
 }
 
 .dropBoxParent {
@@ -17,7 +18,7 @@
   min-width: 300vw;
   display: flex;
   align-items: center;
-  flex-direction: row;
+  flex-direction: row !important;
   padding-left: 15px;
   padding-top: 17px;
   padding-right: 15px;
@@ -68,23 +69,32 @@
 
 @media screen and (max-width: 575px) {
   #dashboard {
-    margin-top: 50px !important;
+    margin-top: 10px !important;
     width: 95% !important;
+    overflow: hidden;
   }
   .drAreaWrapper {
     border-right: none;
+    padding-right: 0px;
+    height: 150px;
   }
   .drArea {
-    width: 96% !important;
+    width: 100% !important;
+    padding-right: 0px;
   }
   .dropBoxParent {
-    overflow: inherit !important;
+    overflow: scroll !important;
     width: inherit !important;
   }
   #DropBox {
     height: auto;
     min-width: 100% !important;
-    flex-wrap: wrap !important;
-    justify-content: space-between !important;
+    display: flex;
+    flex-direction: row;
+    padding-right: 0px;
+  }
+
+  .drDeck {
+    width: 100%;
   }
 }

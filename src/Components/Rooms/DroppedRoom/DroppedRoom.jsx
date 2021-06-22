@@ -73,7 +73,7 @@ const DroppedRoom = (props) => {
             >
                 <div className={styles.roomNo}>{room.name}</div>
             </Card.Body>
-            <div style={{ minHeight: '25px' }}>
+            <div style={{ minHeight: '25px', textAlign: 'center' }}>
                 <span
                     style={{
                         color: 'var(--color4)',

@@ -1,3 +1,5 @@
+/* eslint-disable jsx-a11y/no-noninteractive-element-interactions */
+/* eslint-disable no-restricted-globals */
 /* eslint-disable import/no-extraneous-dependencies */
 /* eslint-disable react/require-default-props */
 /* eslint-disable import/no-cycle */

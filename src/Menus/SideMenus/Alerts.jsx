@@ -83,15 +83,18 @@ const Alerts = () => {
     };
 
     return (
-        <Container className="alertsContainer" fluid style={{ padding: '30px' }}>
+        <Container id="alertsContainer" fluid style={{ padding: '30px 0' }}>
             <Row>
-                <Col md={12} style={{ display: 'flex', justifyContent: 'flex-end' }}>
+                <Col
+                    className={styles.tableRow}
+                    md={12}
+                    style={{ display: 'flex', justifyContent: 'flex-end' }}
+                >
                     <SaveBtn handleClick={handleAddData} name="Add new" />
                 </Col>
             </Row>
             <Row
                 style={{
-                    marginTop: '15px',
                     display: 'flex',
                     height: 'auto',
                     minHeight: '85vh',
@@ -106,6 +109,7 @@ const Alerts = () => {
                         justifyContent: 'center',
                         alignItems: 'center',
                         height: '100%',
+                        padding: '0px ',
                     }}
                 >
                     <div className={styles.alertContainer}>

@@ -52,7 +52,7 @@ const Stuff = () => {
         <Router>
             <Container fluid style={{ padding: '30px' }} className={styles.stuff_container}>
                 <Row className={styles.stuff_wrapper}>
-                    <Col md={4} xs={12}>
+                    <Col md={8} xs={12} style={{ maxWidth: '510px' }}>
                         <ul
                             className={styles.tabLinks}
                             style={{
@@ -76,7 +76,7 @@ const Stuff = () => {
                         </ul>
                     </Col>
                     <Col
-                        md={8}
+                        md={4}
                         xs={12}
                         className={styles.button_wrapper}
                         style={{ display: 'flex', justifyContent: 'flex-end' }}
@@ -98,6 +98,7 @@ const Stuff = () => {
                         </Switch>
                     </Col>
                 </Row>
+                <br />
                 <Row>
                     <Col md={12} xs={12}>
                         <div>

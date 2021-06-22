@@ -158,3 +158,9 @@
 .ccContainer div::focus {
   transform: scale(1.15);
 }
+
+@media (max-width: 767px) {
+  .react-responsive-modal-modal {
+    width: 50px !important;
+  }
+}

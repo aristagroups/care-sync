@@ -6,6 +6,7 @@
   height: 100vh;
   background: var(--color14);
   padding: 10px;
+  margin-top: -40px !important;
 }
 
 .AdminLoginWrapper {

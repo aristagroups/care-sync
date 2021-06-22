@@ -25,9 +25,15 @@
 
 .tableRow {
   height: 56px;
-  border: 5px solid transparent;
+  border: 1px solid transparent;
   box-shadow: 0px 4px 20px rgba(178, 178, 233, 0.308);
   border-radius: 20px 0px;
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  font-size: 15px;
+  font-weight: 500;
+  padding: 5px 10px 5px 0px;
 }
 
 .tableRow:hover {
@@ -41,9 +47,7 @@
 }
 
 .tdNumber div {
-  height: 56px !important;
   width: 40px !important;
-  padding: 18px;
   text-align: center;
   display: flex;
   align-items: center;
@@ -53,6 +57,7 @@
   border-top-left-radius: 20px;
   background-color: #6ac7be;
   margin-right: 5px;
+  line-height: 56px;
 }
 
 .roomList {
@@ -63,42 +68,38 @@
   margin: 0 5px;
 }
 
-.wrapper {
-  overflow: hidden;
-  position: relative;
-  width: 20rem; /* real length of dropdown */
-  border: 1px solid lightgray;
-  border-radius: 20px;
-  padding: 9px 20px;
-  margin: 0px auto 10px auto;
+.innerRow {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  align-items: center;
+  width: 112%;
+  text-align: left;
 }
 
-.wrapper:after {
-  content: "▾";
-  font-size: 1.1rem;
-  pointer-events: none; /* ▼ click triggers dropdown */
-  position: absolute;
-  right: 1rem;
-  top: 0.5rem;
-  z-index: 1;
+.innerRow td {
+  width: 100% !important;
 }
 
-select {
-  /* remove default caret */
-  -webkit-appearance: none; /* webkit browsers */
-  -moz-appearance: none; /* firefox */
-  appearance: none; /* modern browsers */
-  width: 100%;
-  border: none;
-  background: transparent;
-  outline: none;
-  font-weight: 400;
-}
+@media (max-width: 900px) {
+  .innerRow {
+    display: flex;
+    flex-direction: column !important;
+    margin-right: auto !important;
+    align-items: flex-start;
+    text-align: left;
+    width: 100%;
+    padding-left: 10px;
+  }
+  .innerRow td {
+    padding: 5px 0px;
+  }
 
-label {
-  font-weight: 400;
-}
+  .tableRow {
+    height: 160px;
+  }
 
-select::-ms-expand {
-  display: none; /* remove default caret for ie */
+  .tdNumber div {
+    height: 160px;
+  }
 }

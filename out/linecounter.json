@@ -5,26 +5,26 @@
     "linecount": [
         {
             "version": "0.2.7",
-            "counttime": "2021-06-15 14:34:52",
-            "filesum": 107,
-            "codesum": 29144,
-            "commentsum": 343,
-            "blanksum": 7368,
+            "counttime": "2021-06-21 20:27:37",
+            "filesum": 103,
+            "codesum": 17521,
+            "commentsum": 312,
+            "blanksum": 4003,
             "statistics": {
-                ".js": {
-                    "code": 142,
-                    "comment": 54,
-                    "blank": 27
-                },
                 ".css": {
-                    "code": 2429,
+                    "code": 2609,
                     "comment": 48,
-                    "blank": 279
+                    "blank": 311
                 },
                 "": {
                     "code": 88,
                     "comment": 2,
                     "blank": 7
+                },
+                ".js": {
+                    "code": 137,
+                    "comment": 52,
+                    "blank": 25
                 },
                 ".svg": {
                     "code": 1,
@@ -32,24 +32,24 @@
                     "blank": 0
                 },
                 ".json": {
-                    "code": 112,
+                    "code": 108,
                     "comment": 0,
                     "blank": 3
                 },
-                ".jsx": {
-                    "code": 2580,
-                    "comment": 122,
-                    "blank": 246
+                ".html": {
+                    "code": 29,
+                    "comment": 24,
+                    "blank": 2
                 },
                 ".txt": {
                     "code": 3,
                     "comment": 1,
                     "blank": 0
                 },
-                ".html": {
-                    "code": 29,
-                    "comment": 24,
-                    "blank": 2
+                ".jsx": {
+                    "code": 2728,
+                    "comment": 133,
+                    "blank": 245
                 },
                 ".md": {
                     "code": 38,
@@ -57,14 +57,9 @@
                     "blank": 32
                 },
                 ".lock": {
-                    "code": 11816,
+                    "code": 11780,
                     "comment": 40,
-                    "blank": 3383
-                },
-                ".log": {
-                    "code": 11906,
-                    "comment": 40,
-                    "blank": 3389
+                    "blank": 3378
                 }
             },
             "filelist": [
@@ -91,12 +86,6 @@
                     "code": 37,
                     "comment": 1,
                     "filename": ".gitignore"
-                },
-                {
-                    "blank": 0,
-                    "code": 4,
-                    "comment": 0,
-                    "filename": "amplify-build-config.json"
                 },
                 {
                     "blank": 0,
@@ -178,12 +167,6 @@
                     "code": 1,
                     "comment": 0,
                     "filename": "src/Assets/plus-solid.svg"
-                },
-                {
-                    "blank": 2,
-                    "code": 2,
-                    "comment": 2,
-                    "filename": "src/aws-exports.js"
                 },
                 {
                     "blank": 2,
@@ -277,7 +260,7 @@
                 },
                 {
                     "blank": 3,
-                    "code": 34,
+                    "code": 35,
                     "comment": 0,
                     "filename": "src/Components/Buttons/SaveBtn/SaveBtn.module.css"
                 },
@@ -307,15 +290,21 @@
                 },
                 {
                     "blank": 5,
-                    "code": 42,
+                    "code": 55,
                     "comment": 5,
                     "filename": "src/Components/Cards/AssistantsCard/AssistantsCard.jsx"
                 },
                 {
-                    "blank": 7,
-                    "code": 57,
+                    "blank": 12,
+                    "code": 93,
                     "comment": 0,
                     "filename": "src/Components/Cards/AssistantsCard/AssistantsCard.module.css"
+                },
+                {
+                    "blank": 8,
+                    "code": 99,
+                    "comment": 7,
+                    "filename": "src/Components/Cards/AssistantsCard/Connect.jsx"
                 },
                 {
                     "blank": 6,
@@ -336,38 +325,38 @@
                     "filename": "src/Components/Cards/DashCard/MyStopWatch.jsx"
                 },
                 {
-                    "blank": 7,
-                    "code": 80,
-                    "comment": 6,
+                    "blank": 8,
+                    "code": 100,
+                    "comment": 12,
                     "filename": "src/Components/Cards/DrCard/DrCard.jsx"
                 },
                 {
-                    "blank": 7,
-                    "code": 56,
+                    "blank": 12,
+                    "code": 93,
                     "comment": 0,
                     "filename": "src/Components/Cards/DrCard/DrCard.module.css"
                 },
                 {
-                    "blank": 7,
-                    "code": 47,
+                    "blank": 5,
+                    "code": 52,
                     "comment": 5,
                     "filename": "src/Components/Cards/RecepCard/RecepCard.jsx"
                 },
                 {
-                    "blank": 7,
-                    "code": 57,
+                    "blank": 12,
+                    "code": 93,
                     "comment": 0,
                     "filename": "src/Components/Cards/RecepCard/RecepCard.module.css"
                 },
                 {
                     "blank": 7,
-                    "code": 99,
+                    "code": 101,
                     "comment": 8,
                     "filename": "src/Components/Cards/RoomCard/RoomCard.jsx"
                 },
                 {
-                    "blank": 11,
-                    "code": 133,
+                    "blank": 16,
+                    "code": 160,
                     "comment": 13,
                     "filename": "src/Components/Cards/RoomCard/RoomCard.module.css"
                 },
@@ -414,8 +403,8 @@
                     "filename": "src/Components/Rooms/DroppedRoom/DroppedRoom.jsx"
                 },
                 {
-                    "blank": 11,
-                    "code": 133,
+                    "blank": 16,
+                    "code": 160,
                     "comment": 13,
                     "filename": "src/Components/Rooms/DroppedRoom/DroppedRoom.module.css"
                 },
@@ -432,8 +421,8 @@
                     "filename": "src/Components/Rooms/Room/Room.module.css"
                 },
                 {
-                    "blank": 5,
-                    "code": 58,
+                    "blank": 6,
+                    "code": 65,
                     "comment": 0,
                     "filename": "src/Components/Tables/Table2/Table.module.css"
                 },
@@ -457,13 +446,13 @@
                 },
                 {
                     "blank": 15,
-                    "code": 82,
+                    "code": 83,
                     "comment": 3,
                     "filename": "src/index.css"
                 },
                 {
                     "blank": 2,
-                    "code": 17,
+                    "code": 14,
                     "comment": 3,
                     "filename": "src/index.js"
                 },
@@ -475,25 +464,25 @@
                 },
                 {
                     "blank": 10,
-                    "code": 110,
+                    "code": 114,
                     "comment": 3,
                     "filename": "src/Menus/SideMenus/Alerts.jsx"
                 },
                 {
-                    "blank": 1,
-                    "code": 0,
+                    "blank": 2,
+                    "code": 17,
                     "comment": 0,
                     "filename": "src/Menus/SideMenus/Alerts.module.css"
                 },
                 {
                     "blank": 9,
-                    "code": 129,
+                    "code": 144,
                     "comment": 6,
                     "filename": "src/Menus/SideMenus/Dashboard.jsx"
                 },
                 {
-                    "blank": 10,
-                    "code": 80,
+                    "blank": 11,
+                    "code": 89,
                     "comment": 0,
                     "filename": "src/Menus/SideMenus/Dashboard.module.css"
                 },
@@ -510,44 +499,32 @@
                     "filename": "src/Menus/SideMenus/DrSequence.jsx"
                 },
                 {
-                    "blank": 9,
-                    "code": 70,
-                    "comment": 5,
-                    "filename": "src/Menus/SideMenus/Modals/Assistants/ConnectDr.jsx"
-                },
-                {
-                    "blank": 9,
-                    "code": 96,
-                    "comment": 0,
-                    "filename": "src/Menus/SideMenus/Modals/Assistants/ConnectDr.module.css"
-                },
-                {
                     "blank": 23,
-                    "code": 214,
+                    "code": 217,
                     "comment": 24,
                     "filename": "src/Menus/SideMenus/Sequence.jsx"
                 },
                 {
-                    "blank": 13,
-                    "code": 147,
+                    "blank": 24,
+                    "code": 219,
                     "comment": 1,
                     "filename": "src/Menus/SideMenus/Sequence.module.css"
                 },
                 {
                     "blank": 8,
-                    "code": 123,
+                    "code": 124,
                     "comment": 2,
                     "filename": "src/Menus/SideMenus/Stuff.jsx"
                 },
                 {
-                    "blank": 2,
-                    "code": 26,
+                    "blank": 4,
+                    "code": 32,
                     "comment": 0,
                     "filename": "src/Menus/SideMenus/Stuff.module.css"
                 },
                 {
-                    "blank": 11,
-                    "code": 91,
+                    "blank": 9,
+                    "code": 90,
                     "comment": 3,
                     "filename": "src/Menus/TabMenus/Assistants.jsx"
                 },
@@ -576,9 +553,9 @@
                     "filename": "src/Modals/Del/Del.jsx"
                 },
                 {
-                    "blank": 7,
-                    "code": 83,
-                    "comment": 4,
+                    "blank": 8,
+                    "code": 94,
+                    "comment": 5,
                     "filename": "src/Modals/ModalComponent/App.jsx"
                 },
                 {
@@ -606,8 +583,8 @@
                     "filename": "src/Modals/Styles/Modal.Module.css"
                 },
                 {
-                    "blank": 15,
-                    "code": 136,
+                    "blank": 17,
+                    "code": 150,
                     "comment": 5,
                     "filename": "src/Modals/Update/Update.jsx"
                 },
@@ -619,8 +596,8 @@
                 },
                 {
                     "blank": 4,
-                    "code": 34,
-                    "comment": 1,
+                    "code": 50,
+                    "comment": 2,
                     "filename": "src/Pages/AdminLogin/AdminLogin.jsx"
                 },
                 {
@@ -631,8 +608,8 @@
                 },
                 {
                     "blank": 4,
-                    "code": 35,
-                    "comment": 1,
+                    "code": 51,
+                    "comment": 2,
                     "filename": "src/Pages/AssistantRegistration/AssistantRegistration.jsx"
                 },
                 {
@@ -702,14 +679,8 @@
                     "filename": "test.jsx"
                 },
                 {
-                    "blank": 3389,
-                    "code": 11906,
-                    "comment": 40,
-                    "filename": "yarn-error.log"
-                },
-                {
-                    "blank": 3383,
-                    "code": 11816,
+                    "blank": 3378,
+                    "code": 11780,
                     "comment": 40,
                     "filename": "yarn.lock"
                 }

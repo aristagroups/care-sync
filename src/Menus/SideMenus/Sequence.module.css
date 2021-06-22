@@ -6,6 +6,7 @@
   gap: 10px 10px;
   grid-template-areas: ".";
   width: 100%;
+  margin-top: -45px !important;
 }
 
 .sequenceTop {

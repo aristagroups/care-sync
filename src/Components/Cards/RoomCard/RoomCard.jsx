@@ -97,11 +97,13 @@ const RoomCard = (props) => {
                     {room.name}
                 </button>
             </Card.Body>
-            <div style={{ minHeight: '25px' }}>
+            <div style={{ minHeight: '25px', textAlign: 'center' }}>
                 <span
                     style={{
                         color: 'var(--color4)',
                         minHeight: '25px !important',
+                        margin: '0 auto !important',
+                        textAlign: 'center',
                     }}
                 >
                     {rooms.find((sRoom) => sRoom.name === room.name) ? specificDr.name : false}

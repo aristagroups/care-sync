@@ -12,6 +12,24 @@
   flex-direction: column;
 }
 
+/* @media (max-width: 599px) {
+  .sideBar {
+    width: 100% !important;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+  }
+
+  .navList li {
+    width: 300px !important;
+  }
+
+  .navList {
+    transform: translate(15%, 0);
+  }
+} */
+
 .main {
   min-height: 100vh;
   background: var(--color3);

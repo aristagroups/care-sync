@@ -1,20 +1,21 @@
-.AssistantRegistrationContainer {
+.ReceptionistLoginContainer {
   text-align: center;
   display: flex;
   justify-content: center;
   align-items: center;
   height: 100vh;
   background: var(--color14);
+  margin-top: -40px !important;
 }
 
-.AssistantRegistrationWrapper {
-  max-width: 500px;
+.ReceptionistLoginWrapper {
+  max-width: 480px;
   height: auto;
   background: var(--color5);
   padding: 50px 60px;
 }
 
-.AssistantRegistrationWrapper {
+.ReceptionistLoginWrapper {
   position: relative;
   -webkit-box-shadow: 0 1px 4px rgba(0, 0, 0, 0.3),
     0 0 40px rgba(0, 0, 0, 0.1) inset;
@@ -23,8 +24,8 @@
   box-shadow: 0 1px 4px rgba(0, 0, 0, 0.3), 0 0 40px rgba(0, 0, 0, 0.1) inset;
 }
 
-.AssistantRegistrationWrapper:before,
-.AssistantRegistrationWrapper:after {
+.ReceptionistLoginWrapper:before,
+.ReceptionistLoginWrapper:after {
   content: "";
   position: absolute;
   z-index: -1;
@@ -39,7 +40,7 @@
   border-radius: 100px / 10px;
 }
 
-.AssistantRegistrationWrapper:after {
+.ReceptionistLoginWrapper:after {
   right: 10px;
   left: auto;
   -webkit-transform: skew(8deg) rotate(3deg);
@@ -49,7 +50,7 @@
   transform: skew(8deg) rotate(3deg);
 }
 
-.AssistantRegistrationWrapper input {
+.ReceptionistLoginWrapper input {
   width: 320px;
   height: 44px;
   font-size: 20px;
@@ -60,48 +61,48 @@
   padding-left: 10px;
 }
 
-.AssistantRegistrationWrapper input[type="submit"] {
+.ReceptionistLoginWrapper input[type="submit"] {
   cursor: pointer;
   width: 332px;
 }
 
-.AssistantRegistrationWrapper input:hover,
-.AssistantRegistrationWrapper input:focus {
+.ReceptionistLoginWrapper input:hover,
+.ReceptionistLoginWrapper input:focus {
   background-color: #ccc;
   outline: none;
 }
 
 /* media query for responsive */
 @media screen and (max-width: 520px) {
-  .AssistantRegistrationWrapper {
+  .ReceptionistLoginWrapper {
     max-width: 420px;
     padding: 40px 40px;
   }
 }
 
 @media screen and (max-width: 440px) {
-  .AssistantRegistrationWrapper {
+  .ReceptionistLoginWrapper {
     max-width: 378px;
     padding: 30px 20px;
   }
 }
 
 @media screen and (max-width: 400px) {
-  .AssistantRegistrationWrapper {
+  .ReceptionistLoginWrapper {
     max-width: 320px;
     padding: 20px 20px;
   }
-  .AssistantRegistrationWrapper input {
+  .ReceptionistLoginWrapper input {
     width: 100%;
   }
 
-  .AssistantRegistrationWrapper input[type="submit"] {
+  .ReceptionistLoginWrapper input[type="submit"] {
     width: 100%;
   }
 }
 
 @media screen and (max-width: 324px) {
-  .AssistantRegistrationWrapper {
+  .ReceptionistLoginWrapper {
     max-width: 300px;
     padding: 10px 10px;
   }
