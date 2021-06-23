@@ -22,63 +22,61 @@ const DrCard = (props) => {
         handleDelData(id);
     };
 
-    const url = window.location.href;
-
     return (
-        <div className={[styles.tableContainer].join(' ')}>
-            <table>
-                <tbody>
-                    <tr className={[styles.tableRow].join(' ')} key={id}>
-                        <td
-                            style={{ width: '40px', marginRight: '10px', height: 'inherit' }}
-                            className={styles.tdNumber}
-                        >
-                            <div>
-                                <span>{index + 1}</span>
-                            </div>
-                        </td>
-                        <div className={styles.innerRow}>
-                            <td style={{ width: '20%' }}>{id}</td>
-                            <td style={{ width: '25%' }}>{email}</td>
-                            <td style={{ width: '10%' }}>{phone}</td>
+        <>
+            <div className={[styles.tableContainer].join(' ')}>
+                <table>
+                    <tbody>
+                        <tr className={[styles.tableRow].join(' ')} key={id}>
                             <td
-                                style={{
-                                    width: '15%',
-                                }}
+                                style={{ width: '40px', marginRight: '10px', height: 'inherit' }}
+                                className={styles.tdNumber}
                             >
-                                <div
-                                    style={{
-                                        display: 'flex',
-                                        flexDirection: 'row',
-                                        justifyContent: 'flex-start',
-                                        alignItems: 'center',
-                                    }}
-                                >
-                                    {rooms.map((alert, index) => (
-                                        <div
-                                            key={index}
-                                            style={{
-                                                marginLeft: '5px',
-                                                minWidth: '13px',
-                                                minHeight: '13px',
-                                                backgroundColor: `${alert.border}`,
-                                                border: `0.2px solid ${alert.border}`,
-                                                borderRadius: '50%',
-                                            }}
-                                        />
-                                    ))}
+                                <div>
+                                    <span>{index + 1}</span>
                                 </div>
                             </td>
-                            <td
-                                style={{
-                                    width: '30%',
-                                }}
-                            >
-                                <span style={{ marginRight: '5px' }}>Rooms</span>{' '}
-                                {rooms?.map((room) => ` ${room.name}, `)}
-                            </td>
-                        </div>
-                        {url !== 'http://localhost:3000/assistant/doctors' && (
+                            <div className={styles.innerRow}>
+                                <td style={{ width: '20%' }}>{id}</td>
+                                <td style={{ width: '25%' }}>{email}</td>
+                                <td style={{ width: '10%' }}>{phone}</td>
+                                <td
+                                    style={{
+                                        width: '15%',
+                                    }}
+                                >
+                                    <div
+                                        style={{
+                                            display: 'flex',
+                                            flexDirection: 'row',
+                                            justifyContent: 'flex-start',
+                                            alignItems: 'center',
+                                        }}
+                                    >
+                                        {rooms.map((alert, index) => (
+                                            <div
+                                                key={index}
+                                                style={{
+                                                    marginLeft: '5px',
+                                                    minWidth: '13px',
+                                                    minHeight: '13px',
+                                                    backgroundColor: `${alert.border}`,
+                                                    border: `0.2px solid ${alert.border}`,
+                                                    borderRadius: '50%',
+                                                }}
+                                            />
+                                        ))}
+                                    </div>
+                                </td>
+                                <td
+                                    style={{
+                                        width: '30%',
+                                    }}
+                                >
+                                    <span style={{ marginRight: '5px' }}>Rooms</span>{' '}
+                                    {rooms?.map((room) => ` ${room.name}, `)}
+                                </td>
+                            </div>
                             <td
                                 style={{ width: '10%', float: 'right', marginLeft: 'auto' }}
                                 className={[styles.tdBtn, styles.iconBtn].join(' ')}
@@ -90,11 +88,11 @@ const DrCard = (props) => {
                                     <FontAwesomeIcon icon={faTrashAlt} />
                                 </button>
                             </td>
-                        )}
-                    </tr>
-                </tbody>
-            </table>
-        </div>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+        </>
     );
 };
 

@@ -1,6 +1,6 @@
 /* eslint-disable import/no-cycle */
 /* eslint-disable react/no-array-index-key */
-import React, { Fragment, useContext, useEffect, useState } from 'react';
+import React, { useContext, useEffect, useState } from 'react';
 import { Container } from 'react-bootstrap';
 import { db } from '../../API/firebase';
 import { DataContext } from '../../App';
@@ -77,14 +77,12 @@ const Doctors = () => {
     return (
         <Container fluid>
             {data.map((pass, index) => (
-                <Fragment key={Math.random().toString(36).substr(2, 9)}>
-                    <DrCard
-                        data={pass}
-                        index={index}
-                        handleDelData={handleDelData}
-                        handleUpdateData={handleUpdateData}
-                    />
-                </Fragment>
+                <DrCard
+                    data={pass}
+                    index={index}
+                    handleDelData={handleDelData}
+                    handleUpdateData={handleUpdateData}
+                />
             ))}
             <Del />
             <Update />

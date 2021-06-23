@@ -24,7 +24,7 @@ import Toolbar from '@material-ui/core/Toolbar';
 import Typography from '@material-ui/core/Typography';
 import MenuIcon from '@material-ui/icons/Menu';
 import React, { useEffect, useState } from 'react';
-import { Link, Route, Switch, useRouteMatch } from 'react-router-dom';
+import { Link, Route, Switch, useHistory, useRouteMatch } from 'react-router-dom';
 import { db } from '../../API/firebase';
 import SignOutBtn from '../../Components/Buttons/SignOutBtn/SignOutBtn';
 import Alerts from '../../Menus/SideMenus/Alerts';
@@ -32,6 +32,7 @@ import Dashboard from '../../Menus/SideMenus/Dashboard';
 import Doctors from '../../Menus/SideMenus/Doctors';
 import Sequence from '../../Menus/SideMenus/Sequence';
 import Stuff from '../../Menus/SideMenus/Stuff';
+import DoctorsSelf from '../../Menus/TabMenus/DoctorsSelf';
 import styles from './ControlPanel.module.css';
 
 const drawerWidth = 240;
@@ -74,6 +75,8 @@ function ControlPanel(props) {
     const { path, url } = useRouteMatch();
     const [drList, setDrList] = useState([]);
 
+    const history = useHistory();
+
     useEffect(() => {
         async function getDoctors() {
             const drArray = [];
@@ -100,6 +103,10 @@ function ControlPanel(props) {
 
     const handleDrawerToggle = () => {
         setMobileOpen(!mobileOpen);
+    };
+
+    const logOut = () => {
+        sessionStorage.clear();
     };
 
     const drawer = (
@@ -202,7 +209,7 @@ function ControlPanel(props) {
                         </ul>
                     </div>
                     <div className={styles.signOutBtn}>
-                        <SignOutBtn />
+                        <SignOutBtn handleClick={logOut} />
                     </div>
                 </div>
             </List>
@@ -288,7 +295,9 @@ function ControlPanel(props) {
                         </Route>
                     </Switch>
                     <Switch>
-                        <Route path={`${path}/self-sequence`}>{/* <DrSequence /> */}</Route>
+                        <Route path={`${path}/self-sequence`}>
+                            <DoctorsSelf />
+                        </Route>
                     </Switch>
                 </div>
             </main>
