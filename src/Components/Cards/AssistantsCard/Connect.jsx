@@ -75,6 +75,7 @@ const Connect = (props) => {
                     style={{
                         display: 'flex',
                         justifyContent: 'center',
+                        alignItems: 'center',
                         flexDirection: 'column',
                         padding: '0px 30px',
                     }}
@@ -99,12 +100,10 @@ const Connect = (props) => {
                         </select>
                     </div>
                 </div>
-                <div
-                    style={{ display: 'flex', justifyContent: 'space-evenly', margin: '0px auto' }}
-                >
+                <br />
+                <div style={{ margin: '0 auto !important', width: '100%', paddingLeft: '135px' }}>
                     <SaveBtn handleClick={updateDr} name="Save" />
                 </div>
-                <br />
             </Modal>
         </div>
     );

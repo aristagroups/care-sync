@@ -33,6 +33,7 @@ const Assistants = () => {
                     name: doc.data().name,
                     email: doc.data().email,
                     phone: doc.data().phone,
+                    dr: doc.data().dr,
                 };
                 drList.push(appObj);
             });

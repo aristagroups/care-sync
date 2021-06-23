@@ -22,15 +22,6 @@ const DrCard = (props) => {
         handleDelData(id);
     };
 
-    const alerts = [
-        { border: '#63BFF2', bg: '#63BFF2' },
-        { border: '#939DFF', bg: '#939DFF' },
-        { border: '#F2D775', bg: '#F2D775' },
-        { border: '#74C386', bg: '#74C386' },
-        { border: '#FC6666', bg: '#FC6666' },
-        { border: '#DDDDDD', bg: '#FFFFFF' },
-    ];
-
     const url = window.location.href;
 
     return (

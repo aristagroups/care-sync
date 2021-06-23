@@ -1,12 +1,13 @@
 /* eslint-disable import/no-cycle */
 import React from 'react';
 import { BrowserRouter as Router, Route, Switch } from 'react-router-dom';
-import AdminLogin from '../Pages/AdminLogin/AdminLogin';
-import AssistantRegistration from '../Pages/AssistantRegistration/AssistantRegistration';
-import ControlPanel from '../Pages/ControlPanel/ControlPanel';
-import DoctorRegistration from '../Pages/DoctorRegistration/DoctorRegistration';
-import Home from '../Pages/Home/Home';
-import ReceptionistLogin from '../Pages/ReceptionistLogin/ReceptionistLogin';
+import AdminLogin from './Pages/AdminLogin/AdminLogin';
+import AssistantRegistration from './Pages/AssistantRegistration/AssistantRegistration';
+import ControlPanel from './Pages/ControlPanel/ControlPanel';
+import DoctorRegistration from './Pages/DoctorRegistration/DoctorRegistration';
+import Home from './Pages/Home/Home';
+import ReceptionistLogin from './Pages/ReceptionistLogin/ReceptionistLogin';
+import PrivateRoute from './PrivateRoute';
 
 const MainRouter = () => (
     <Router>
@@ -14,7 +15,7 @@ const MainRouter = () => (
             <Route exact path="/">
                 <Home />
             </Route>
-            <Route exact path="/admin-login">
+            <Route exact path="/login">
                 <AdminLogin />
             </Route>
             <Route exact path="/receptionist-login">
@@ -27,18 +28,18 @@ const MainRouter = () => (
                 <AssistantRegistration />
             </Route>
 
-            <Route path="/admin">
+            <PrivateRoute path="/admin">
                 <ControlPanel />
-            </Route>
-            <Route path="/assistant">
+            </PrivateRoute>
+            <PrivateRoute path="/assistant">
                 <ControlPanel />
-            </Route>
-            <Route path="/doctor">
+            </PrivateRoute>
+            <PrivateRoute path="/doctor">
                 <ControlPanel />
-            </Route>
-            <Route path="/receptionist">
+            </PrivateRoute>
+            <PrivateRoute path="/receptionist">
                 <ControlPanel />
-            </Route>
+            </PrivateRoute>
         </Switch>
     </Router>
 );

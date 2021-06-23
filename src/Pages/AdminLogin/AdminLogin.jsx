@@ -1,52 +1,93 @@
+/* eslint-disable import/no-cycle */
 /* eslint-disable no-alert */
 /* eslint-disable consistent-return */
 /* eslint-disable react/jsx-props-no-spreading */
-import React from 'react';
+import { useContext } from 'react';
 import { Container } from 'react-bootstrap';
 import { useForm } from 'react-hook-form';
+import { useHistory } from 'react-router';
 import { db } from '../../API/firebase';
+import { AuthContext, UserContext } from '../../App';
 import styles from './AdminLogin.module.css';
 
 const AdminLogin = () => {
+    const [loggedInUser, setLoggedInUser] = useContext(UserContext);
+    const [auth, setAuth] = useContext(AuthContext);
     const {
         register,
         handleSubmit,
         formState: { errors },
     } = useForm();
-    const onSubmit = (data) => {
-        async function getData() {
-            await db
-                .collection('admin')
-                .doc('bxqkMytRqnJYKkv1I0zC')
-                .get()
-                .then((doc) => {
-                    if (doc.data().email === data.email) {
-                        if (doc.data().password === data.password) {
-                            alert('Success');
-                        }
-                    } else {
-                        alert('Try again');
-                    }
-                });
+    const history = useHistory();
+
+    const historyCheck = () => {
+        if (auth.provider === '') {
+            history.push('/');
         }
-        getData();
     };
 
+    historyCheck();
+
+    console.log(auth);
+
+    const pageRedirect = () => {
+        history.push(`${auth.address}`);
+    };
+    const onSubmit = (data) => {
+        async function queryData() {
+            const ref = db.collection(auth.collection);
+            if (auth.provider === 'Admin') {
+                ref.doc('administrator')
+                    .get()
+                    .then((doc) => {
+                        if (
+                            doc.data().email === data.email &&
+                            doc.data().password === data.password
+                        ) {
+                            alert('Success');
+                            window.sessionStorage.setItem('user', doc.data().email);
+                            pageRedirect();
+                        } else {
+                            alert('Not Registered');
+                        }
+                    });
+            } else {
+                const queryRef = ref.where('email', '==', data.email);
+                await queryRef.get().then((res) => {
+                    if (res.empty) {
+                        alert('Not registered');
+                    } else if (!res.empty) {
+                        alert('Success');
+                        res.forEach((doc) => {
+                            window.sessionStorage.setItem('user', doc.data().email);
+                            pageRedirect();
+                        });
+                    }
+                });
+            }
+        }
+
+        queryData();
+    };
     return (
         <Container fluid className={styles.AdminLoginContainer}>
             <div className={styles.AdminLoginWrapper}>
-                <h1>Admin Login</h1>
+                <h1>
+                    <span>{auth.provider}</span> Login
+                </h1>
                 <form onSubmit={handleSubmit(onSubmit)}>
                     <input
                         type="text"
-                        placeholder="Admin Email"
+                        placeholder="Email"
                         {...register('email', { required: true })}
                     />
-                    <input
-                        type="text"
-                        placeholder="Password"
-                        {...register('password', { required: true })}
-                    />
+                    {auth.provider === 'Admin' ? (
+                        <input
+                            type="text"
+                            placeholder="Password"
+                            {...register('password', { required: true })}
+                        />
+                    ) : null}
 
                     <input type="submit" />
                 </form>

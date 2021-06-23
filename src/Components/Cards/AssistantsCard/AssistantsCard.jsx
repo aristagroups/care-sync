@@ -9,7 +9,7 @@ import React from 'react';
 import styles from './AssistantsCard.module.css';
 
 const AssistantsCard = (props) => {
-    const { id, name, email, phone } = props.data;
+    const { id, name, email, phone, dr } = props.data;
     const { index, handleUpdateData, handleDelData, handleConnectDr } = props;
 
     const alerts = [
@@ -37,9 +37,10 @@ const AssistantsCard = (props) => {
                             </div>
                         </td>
                         <div className={styles.innerRow}>
-                            <td style={{ width: '20%' }}>{id}</td>
-                            <td style={{ width: '25%' }}>{email}</td>
+                            <td style={{ width: '15%' }}>{id}</td>
+                            <td style={{ width: '20%' }}>{email}</td>
                             <td style={{ width: '10%' }}>{phone}</td>
+                            <td style={{ width: '15%' }}>Dr: {dr}</td>
                         </div>
                         <td
                             style={{
