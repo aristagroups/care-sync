@@ -107,6 +107,7 @@ function ControlPanel(props) {
 
     const logOut = () => {
         sessionStorage.clear();
+        location.reload();
     };
 
     const drawer = (
