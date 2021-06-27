@@ -87,6 +87,7 @@ function ControlPanel(props) {
                     name: doc.id,
                     email: doc.data().email,
                     phone: doc.data().phone,
+                    count: doc.data().count,
                     rooms: doc.data().rooms,
                 };
                 drArray.push(appObj);

@@ -1,10 +1,12 @@
+/* eslint-disable consistent-return */
+/* eslint-disable no-else-return */
 /* eslint-disable no-shadow */
 /* eslint-disable array-callback-return */
 /* eslint-disable react/no-array-index-key */
 /* eslint-disable import/no-cycle */
 import React, { useContext, useEffect, useState } from 'react';
 import { CardDeck, Col, Container, Row } from 'react-bootstrap';
-import { addDashData } from '../../API/Api';
+import { addDashData, countUpdate } from '../../API/Api';
 import { db } from '../../API/firebase';
 import { GlobalContext, ModalContext } from '../../App';
 import ResetBtn from '../../Components/Buttons/ResetBtn/ResetBtn';
@@ -38,6 +40,7 @@ const Dashboard = () => {
                     dr: item?.dr,
                     email: item?.email,
                     phone: item?.phone,
+                    count: item?.count,
                     rooms: item?.rooms,
                     id: doc.id,
                 };
@@ -82,10 +85,29 @@ const Dashboard = () => {
                 dr: doc.dr,
                 email: doc.email,
                 phone: doc.phone,
+                count: doc.count,
                 id: doc.id,
             },
             rooms: emptyRooms,
         });
+    };
+
+    const countUp = (doc) => {
+        countUpdate({
+            id: doc.id,
+            value: doc.count + 1,
+        });
+    };
+
+    const countDown = (doc) => {
+        if (doc.count === 0) {
+            return false;
+        } else {
+            countUpdate({
+                id: doc.id,
+                value: doc.count - 1,
+            });
+        }
     };
 
     return (
@@ -105,11 +127,9 @@ const Dashboard = () => {
                                 <p>
                                     <strong>
                                         {' '}
-                                        -{' '}
-                                        <span style={{ color: '#FC7E55' }}>
-                                            {doc.rooms.length}
-                                        </span>{' '}
-                                        +{' '}
+                                        - <span style={{ color: '#FC7E55' }}>
+                                            {doc.count}
+                                        </span> +{' '}
                                     </strong>
                                 </p>
                                 <p>
@@ -120,10 +140,10 @@ const Dashboard = () => {
                                             fontSize: '15px',
                                         }}
                                     >
-                                        in line
+                                        <StopBtn handleClick={() => countUp(doc)} name="Add" />
                                     </span>
                                 </p>
-                                <StopBtn />
+                                <StopBtn handleClick={() => countDown(doc)} name="Remove" />
                             </div>
                         </div>
                     </Col>
@@ -134,6 +154,7 @@ const Dashboard = () => {
                                     handler={() =>
                                         updateGlobalData({
                                             ...globalData,
+                                            count: doc.count,
                                             arrIndex: index,
                                             docId: doc.id,
                                         })

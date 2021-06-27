@@ -126,7 +126,7 @@ const Sequence = ({ drList }) => {
 
     const drSelect = (e) => {
         const selectedDr = drList.find((dr) => dr.id === e.target.value);
-        console.log(selectedDr);
+
         setSpecificDr(selectedDr);
         setSequence({
             dr: selectedDr,

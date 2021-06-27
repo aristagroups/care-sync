@@ -39,7 +39,7 @@ const DrCard = (props) => {
                             <div className={styles.innerRow}>
                                 <td style={{ width: '20%' }}>{id}</td>
                                 <td style={{ width: '25%' }}>{email}</td>
-                                <td style={{ width: '10%' }}>{phone}</td>
+                                <td style={{ width: '10%', marginLeft: '4%' }}>{phone}</td>
                                 <td
                                     style={{
                                         width: '15%',
@@ -78,7 +78,7 @@ const DrCard = (props) => {
                                 </td>
                             </div>
                             <td
-                                style={{ width: '10%', float: 'right', marginLeft: 'auto' }}
+                                style={{ width: '15%', float: 'right', marginLeft: 'auto' }}
                                 className={[styles.tdBtn, styles.iconBtn].join(' ')}
                             >
                                 <button onClick={(event) => updateHandler(event, id)}>

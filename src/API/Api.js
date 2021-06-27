@@ -17,11 +17,15 @@ export async function addDashData(data) {
         dr: data.dr.id,
         email: data.dr.email,
         phone: data.dr.phone,
+        count: data.dr.count,
         rooms: data.rooms,
     });
 }
 
-export async function doctorSimUpdate() {}
+export async function countUpdate(pass) {
+    const countRef = db.collection('dashboard').doc(pass.id);
+    await countRef.update({ count: pass.value });
+}
 
 // Alert Add
 export async function addAlert(data) {

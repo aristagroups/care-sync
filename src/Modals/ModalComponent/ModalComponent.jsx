@@ -4,7 +4,7 @@
 import React, { useContext, useState } from 'react';
 import { Modal } from 'react-responsive-modal';
 import 'react-responsive-modal/styles.css';
-import { addAlert } from '../../API/Api';
+import { addAlert, countUpdate } from '../../API/Api';
 import { GlobalContext, ModalContext } from '../../App';
 import './ModalBuiltIn.css';
 import styles from './ModalComponent.module.css';
@@ -18,32 +18,41 @@ const ModalComponent = ({ open, setOpen, items, detail, setDetail }) => {
     const leftSideItems = items.slice().splice(0, middleIndex);
     const rightSideItems = items.slice(middleIndex);
 
-    const apiCall = () => {};
-
-    const onCloseModal = () => {
+    const apiCall = () => {
         setOpen(false);
-        setMod({ ...mod, detail });
-        console.log(detail);
-        if (detail !== null) {
+    };
+
+    const onCloseModal = (item) => {
+        setMod({ ...mod, item });
+        if (item !== null) {
             addAlert({
                 docId: globalData.docId,
                 arrIndex: globalData.arrIndex,
-                alert: detail?.name,
-                bg: detail?.bg,
-                border: detail?.border,
+                alert: item?.name,
+                bg: item?.bg,
+                border: item?.border,
             });
         }
+        const countDown = () => {
+            console.log(globalData);
+            countUpdate({
+                id: globalData.docId,
+                value: globalData.count - 1,
+            });
+        };
+        countDown();
+        apiCall();
     };
 
     return (
         <div>
-            <Modal open={open} onClose={onCloseModal} center>
+            <Modal open={open} onClose={() => setOpen(false)} center>
                 <div className={styles.modalContainer}>
                     <div className={styles.rightSideItems}>
                         {leftSideItems.length > 0 &&
                             leftSideItems.map((item, index) => (
                                 <div
-                                    onClick={() => setDetail(item)}
+                                    onClick={() => onCloseModal(item)}
                                     className={
                                         item.id === detail?.id
                                             ? [styles.items, styles.active].join(' ')
@@ -77,7 +86,7 @@ const ModalComponent = ({ open, setOpen, items, detail, setDetail }) => {
                         {rightSideItems.length > 0 &&
                             rightSideItems.map((item, index) => (
                                 <div
-                                    onClick={() => setDetail(item)}
+                                    onClick={() => onCloseModal(item)}
                                     className={
                                         item.id === detail?.id
                                             ? [styles.items, styles.active].join(' ')

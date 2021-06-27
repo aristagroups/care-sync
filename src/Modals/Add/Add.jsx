@@ -64,7 +64,7 @@ const Add = () => {
     const handleChange = (e) => {
         e.preventDefault();
         if(info.type === 'doctor') {
-            setData({ ...data, [e.target.name]: e.target.value, rooms: []});
+            setData({ ...data, [e.target.name]: e.target.value,count: 0, rooms: []});
         } else if(info.type === 'assistant') {
             setData({ ...data, [e.target.name]: e.target.value, dr: ''});
         } else if(info.type === 'room') {
