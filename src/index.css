@@ -101,6 +101,22 @@ li {
   list-style: none;
 }
 
+@media(min-width: 767px) and (max-width: 1024px) {
+  .react-responsive-modal-root {
+    width: 100vw !important;
+    max-width: 480px;
+    height: auto;
+    top: 10%;
+    padding: 10px;
+  }
+
+  .react-responsive-modal-modal {
+    min-width: 0;
+    margin-left: 0;
+    width: 100%;
+  }
+}
+
 
 @media(max-width: 480px) {
   .react-responsive-modal-root {

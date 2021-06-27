@@ -34,13 +34,14 @@ const ModalComponent = ({ open, setOpen, items, detail, setDetail }) => {
             });
         }
         const countDown = () => {
-            console.log(globalData);
             countUpdate({
                 id: globalData.docId,
                 value: globalData.count - 1,
             });
         };
-        countDown();
+        if (globalData.count > 0) {
+            countDown();
+        }
         apiCall();
     };
 
