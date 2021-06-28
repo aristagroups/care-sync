@@ -7,6 +7,7 @@ import { faPen, faTimes } from '@fortawesome/free-solid-svg-icons';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import React, { useContext, useState } from 'react';
 import { Button, Card } from 'react-bootstrap';
+import { useToasts } from 'react-toast-notifications';
 import { db } from '../../../API/firebase';
 import { DataContext, GlobalContext } from '../../../App';
 import styles from './RoomCard.module.css';
@@ -27,6 +28,7 @@ const RoomCard = (props) => {
     } = props;
     const [onCard, setOnCard] = useState([]);
     const [data, setData] = useState([]);
+    const { addToast } = useToasts();
 
     async function getData() {
         const drList = [];
@@ -56,9 +58,15 @@ const RoomCard = (props) => {
     const clickHandler = (event) => {
         event.preventDefault();
         if (specificDr === undefined) {
-            alert('Select a doctor first');
+            addToast('Select a doctor first', {
+                appearance: 'error',
+                autoDismiss: true,
+            });
         } else if (specificDr.length === 0) {
-            alert('Select a doctor first');
+            addToast('Select a doctor first', {
+                appearance: 'error',
+                autoDismiss: true,
+            });
         } else {
             checkToAdd(room);
         }

@@ -6,11 +6,13 @@ import { useContext } from 'react';
 import { Container } from 'react-bootstrap';
 import { useForm } from 'react-hook-form';
 import { useHistory } from 'react-router';
+import { useToasts } from 'react-toast-notifications';
 import { db } from '../../API/firebase';
 import { AuthContext, UserContext } from '../../App';
 import styles from './AdminLogin.module.css';
 
 const AdminLogin = () => {
+    const { addToast } = useToasts();
     const [loggedInUser, setLoggedInUser] = useContext(UserContext);
     const [auth, setAuth] = useContext(AuthContext);
     const {
@@ -44,20 +46,32 @@ const AdminLogin = () => {
                             doc.data().email === data.email &&
                             doc.data().password === data.password
                         ) {
-                            alert('Success');
+                            addToast('Successfully logged in', {
+                                appearance: 'success',
+                                autoDismiss: true,
+                            });
                             window.sessionStorage.setItem('user', doc.data().email);
                             pageRedirect();
                         } else {
-                            alert('Not Registered');
+                            addToast('Try again', {
+                                appearance: 'error',
+                                autoDismiss: true,
+                            });
                         }
                     });
             } else {
                 const queryRef = ref.where('email', '==', data.email);
                 await queryRef.get().then((res) => {
                     if (res.empty) {
-                        alert('Not registered');
+                        addToast('Not registered', {
+                            appearance: 'error',
+                            autoDismiss: true,
+                        });
                     } else if (!res.empty) {
-                        alert('Success');
+                        addToast('Successfully logged in', {
+                            appearance: 'success',
+                            autoDismiss: true,
+                        });
                         res.forEach((doc) => {
                             window.sessionStorage.setItem('user', doc.data().email);
                             pageRedirect();

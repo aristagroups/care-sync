@@ -1,7 +1,9 @@
 import React from 'react';
+import { useToasts } from 'react-toast-notifications';
 import styles from './InputEmail.module.css';
 
 const InputEmail = (props) => {
+    const { addToast } = useToasts();
     const { value } = props;
     function ValidateEmail(e) {
         if (
@@ -12,7 +14,10 @@ const InputEmail = (props) => {
         ) {
             return true;
         }
-        alert('You have entered an invalid email address!');
+        addToast('You have entered an invalid email address!', {
+            appearance: 'error',
+            autoDismiss: true,
+        });
         return false;
     }
     return (

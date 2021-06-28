@@ -37,8 +37,10 @@
     "react-scripts": "4.0.3",
     "react-switch": "^6.0.0",
     "react-timer-hook": "^3.0.3",
+    "react-toast-notifications": "^2.4.4",
     "react-tooltip": "^4.2.19",
     "sass": "^1.32.8",
+    "toasted-notes": "^3.2.0",
     "uniqid": "^5.3.0",
     "web-vitals": "^1.0.1"
   },

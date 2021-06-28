@@ -3,10 +3,12 @@
 import React from 'react';
 import { Container } from 'react-bootstrap';
 import { useForm } from 'react-hook-form';
+import { useToasts } from 'react-toast-notifications';
 import { db } from '../../API/firebase';
 import styles from './ReceptionistLogin.module.css';
 
 const ReceptionistLogin = () => {
+    const { addToast } = useToasts();
     const {
         register,
         handleSubmit,
@@ -18,7 +20,10 @@ const ReceptionistLogin = () => {
             const queryRef = ref.where('email', '==', data.email);
             await queryRef.get().then((res) => {
                 if (res.empty) {
-                    alert('Not registered');
+                    addToast('Not registered', {
+                        appearance: 'error',
+                        autoDismiss: true,
+                    });
                 } else if (!res.empty) {
                     alert('Success');
                 }
