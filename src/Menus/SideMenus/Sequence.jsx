@@ -7,7 +7,6 @@
 import React, { useContext, useEffect, useState } from 'react';
 import { Card, CardDeck, Col, Container, Row } from 'react-bootstrap';
 import { ErrorBoundary } from 'react-error-boundary';
-import { useToasts } from 'react-toast-notifications';
 import { addDashData } from '../../API/Api';
 import { db } from '../../API/firebase';
 import { DataContext, GlobalContext, ModalContext } from '../../App';
@@ -33,7 +32,6 @@ const Sequence = ({ drList }) => {
     const [mainData, setMainData] = useState([]);
     const [sequence, setSequence] = useState([]);
     const [state, setState] = useState({});
-    const { addToast } = useToasts();
 
     const myFunction = () => {
         setState({
@@ -157,15 +155,9 @@ const Sequence = ({ drList }) => {
 
     const selected = (room) => {
         if (rooms?.find((rm) => rm.id.includes(room.id))) {
-            addToast('Already added', {
-                appearance: 'error',
-                autoDismiss: true,
-            });
+            alert('Already added');
         } else if (specificDr.rooms?.find((r) => r.id.includes(room.name))) {
-            addToast('Already added', {
-                appearance: 'error',
-                autoDismiss: true,
-            });
+            alert('Already added');
         } else {
             rooms.push(room);
             view();

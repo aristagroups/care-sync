@@ -2,7 +2,7 @@
 import React, { useContext, useEffect, useState } from 'react';
 import { Col, Container, Row } from 'react-bootstrap';
 import { db } from '../../API/firebase';
-import { AlertContext, ApiContext, DataContext } from '../../App';
+import { ApiContext, DataContext } from '../../App';
 import SaveBtn from '../../Components/Buttons/SaveBtn/SaveBtn';
 import Table2 from '../../Components/Tables/Table2/Table2';
 import Add from '../../Modals/Add/Add';
@@ -11,7 +11,6 @@ import styles from './Alerts.module.css';
 
 const Alerts = () => {
     const [header, setHeader] = useContext(ApiContext);
-    const [al, setAl] = useContext(AlertContext);
     const [info, setInfo] = useContext(DataContext);
     const [open, setOpen] = useState(null);
     const [addState, setAddState] = useState({ modal: false });
@@ -56,7 +55,7 @@ const Alerts = () => {
         return () => {
             setState({}); // This worked for me
         };
-    }, [allAlerts, setAl, setHeader]);
+    }, [allAlerts, setHeader]);
 
     const onOpenModal = () => {
         setOpen(true);

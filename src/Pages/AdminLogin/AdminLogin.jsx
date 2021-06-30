@@ -6,13 +6,11 @@ import { useContext } from 'react';
 import { Container } from 'react-bootstrap';
 import { useForm } from 'react-hook-form';
 import { useHistory } from 'react-router';
-import { useToasts } from 'react-toast-notifications';
 import { db } from '../../API/firebase';
 import { AuthContext, UserContext } from '../../App';
 import styles from './AdminLogin.module.css';
 
 const AdminLogin = () => {
-    const { addToast } = useToasts();
     const [loggedInUser, setLoggedInUser] = useContext(UserContext);
     const [auth, setAuth] = useContext(AuthContext);
     const {
@@ -46,32 +44,20 @@ const AdminLogin = () => {
                             doc.data().email === data.email &&
                             doc.data().password === data.password
                         ) {
-                            addToast('Successfully logged in', {
-                                appearance: 'success',
-                                autoDismiss: true,
-                            });
+                            alert('Success');
                             window.sessionStorage.setItem('user', doc.data().email);
                             pageRedirect();
                         } else {
-                            addToast('Try again', {
-                                appearance: 'error',
-                                autoDismiss: true,
-                            });
+                            alert('Not Registered');
                         }
                     });
             } else {
                 const queryRef = ref.where('email', '==', data.email);
                 await queryRef.get().then((res) => {
                     if (res.empty) {
-                        addToast('Not registered', {
-                            appearance: 'error',
-                            autoDismiss: true,
-                        });
+                        alert('Not registered');
                     } else if (!res.empty) {
-                        addToast('Successfully logged in', {
-                            appearance: 'success',
-                            autoDismiss: true,
-                        });
+                        alert('Success');
                         res.forEach((doc) => {
                             window.sessionStorage.setItem('user', doc.data().email);
                             pageRedirect();
