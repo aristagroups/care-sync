@@ -42,6 +42,12 @@ export async function addAlert(data) {
             // Assing desired element of object to local javascript variable
             const objectToupdate = objects[data.arrIndex];
 
+            objects.forEach((r, idx) => {
+                if (r.alert === objectToupdate.alert && idx !== data.arrIndex) {
+                    r.count = r.count && r.count > 1 ? r.count - 1 : 1;
+                }
+            });
+
             // Update field of the element assigned to local javascript variable
             objectToupdate.alert = data.alert;
             objectToupdate.bg = data.bg;
@@ -49,6 +55,8 @@ export async function addAlert(data) {
 
             // reassign object to local array variable
             objects[data.arrIndex] = objectToupdate;
+            console.log('CHECK DATA', objects, data.alert);
+            objects[data.arrIndex].count = objects.filter((r) => r.alert === data.alert).length;
 
             // Update complete array with update copy of element we have
             // created in local javascript variable.

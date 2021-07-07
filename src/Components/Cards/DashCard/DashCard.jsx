@@ -48,9 +48,7 @@ const DashCard = (props) => {
                         style={{ backgroundColor: `${room.bg}`, borderColor: `${room.border}` }}
                         className={styles.alert}
                     >
-                        <span style={{ color: `${room.border}` }}>
-                            {room.alert ? idx + 1 : false}
-                        </span>
+                        <span style={{ color: `${room.border}` }}>{room.count}</span>
                     </div>
                     <div>
                         <button
