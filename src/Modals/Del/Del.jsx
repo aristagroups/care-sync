@@ -2,6 +2,7 @@
 /* eslint-disable import/no-cycle */
 /* eslint-disable jsx-a11y/label-has-associated-control */
 import React, { useContext, useEffect, useState } from 'react';
+import toast from 'react-hot-toast';
 import { Modal } from 'react-responsive-modal';
 import 'react-responsive-modal/styles.css';
 import { db } from '../../API/firebase';
@@ -21,6 +22,7 @@ const Del = () => {
     async function deleteDocument(e) {
         e.preventDefault();
         const res = await db.collection(info.collection).doc(info.id).delete();
+        toast.success(`${info.type} deleted successfully`);
         setInfo({});
         onCloseModal();
     }

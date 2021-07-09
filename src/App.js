@@ -1,6 +1,7 @@
 /* eslint-disable import/no-cycle */
 import { createContext, useState } from 'react';
 import { ErrorBoundary } from 'react-error-boundary';
+import { Toaster } from 'react-hot-toast';
 import ErrorFallback from './ErrorFallback';
 import MainRouter from './MainRouter';
 
@@ -46,26 +47,31 @@ const App = () => {
     ]);
 
     return (
-        <ErrorBoundary
-            FallbackComponent={ErrorFallback}
-            onReset={() => {
-                document.location.reload(true);
-            }}
-        >
-            <UserContext.Provider value={[loggedInUser, setLoggedInUser]}>
-                <ApiContext.Provider value={[header, setHeader]}>
-                    <GlobalContext.Provider value={[globalData, updateGlobalData]}>
-                        <DataContext.Provider value={[info, setInfo]}>
-                            <ModalContext.Provider value={[mod, setMod]}>
-                                <AuthContext.Provider value={[auth, setAuth]}>
-                                    <MainRouter />
-                                </AuthContext.Provider>
-                            </ModalContext.Provider>
-                        </DataContext.Provider>
-                    </GlobalContext.Provider>
-                </ApiContext.Provider>
-            </UserContext.Provider>
-        </ErrorBoundary>
+        <>
+            <div>
+                <Toaster />
+            </div>
+            <ErrorBoundary
+                FallbackComponent={ErrorFallback}
+                onReset={() => {
+                    document.location.reload(true);
+                }}
+            >
+                <UserContext.Provider value={[loggedInUser, setLoggedInUser]}>
+                    <ApiContext.Provider value={[header, setHeader]}>
+                        <GlobalContext.Provider value={[globalData, updateGlobalData]}>
+                            <DataContext.Provider value={[info, setInfo]}>
+                                <ModalContext.Provider value={[mod, setMod]}>
+                                    <AuthContext.Provider value={[auth, setAuth]}>
+                                        <MainRouter />
+                                    </AuthContext.Provider>
+                                </ModalContext.Provider>
+                            </DataContext.Provider>
+                        </GlobalContext.Provider>
+                    </ApiContext.Provider>
+                </UserContext.Provider>
+            </ErrorBoundary>
+        </>
     );
 };
 

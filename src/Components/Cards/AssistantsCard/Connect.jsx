@@ -5,6 +5,7 @@
 /* eslint-disable jsx-a11y/label-has-associated-control */
 /* eslint-disable react/button-has-type */
 import React, { useContext, useEffect, useState } from 'react';
+import toast from 'react-hot-toast';
 import Modal from 'react-responsive-modal';
 import { db } from '../../../API/firebase';
 import { DataContext } from '../../../App';
@@ -64,6 +65,7 @@ const Connect = (props) => {
         const cityRef = db.collection('assistants').doc(info.id);
         const res = await cityRef.update({ dr: drId });
         onCloseModal();
+        toast.success('Doctor connected');
     }
 
     return (
@@ -92,6 +94,7 @@ const Connect = (props) => {
                             onChange={(e) => drSelect(e)}
                             className={styles.DrSelect}
                         >
+                            <option>Select Doctor</option>
                             {data.map((dr) => (
                                 <option key={dr.id} value={dr.id}>
                                     {dr.id}

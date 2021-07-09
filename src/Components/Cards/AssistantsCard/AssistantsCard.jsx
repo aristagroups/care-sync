@@ -44,7 +44,7 @@ const AssistantsCard = (props) => {
                         </div>
                         <td
                             style={{
-                                width: '15%',
+                                width: '20%',
                                 float: 'right',
                                 marginLeft: 'auto',
                                 display: 'flex',

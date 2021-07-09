@@ -210,7 +210,8 @@ select::-ms-expand {
 
 @media (min-width: 320px) and (max-width: 480px) {
   .createRoom {
-    max-width: 110px;
+    width: 30%;
+    margin: 0px 3% 3% 0px !important;
   }
 }
 

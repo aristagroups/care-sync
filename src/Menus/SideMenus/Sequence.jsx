@@ -1,3 +1,5 @@
+/* eslint-disable prettier/prettier */
+/* eslint-disable no-lonely-if */
 /* eslint-disable no-alert */
 /* eslint-disable object-shorthand */
 /* eslint-disable jsx-a11y/no-onchange */
@@ -7,6 +9,7 @@
 import React, { useContext, useEffect, useState } from 'react';
 import { Card, CardDeck, Col, Container, Row } from 'react-bootstrap';
 import { ErrorBoundary } from 'react-error-boundary';
+import toast from 'react-hot-toast';
 import { addDashData } from '../../API/Api';
 import { db } from '../../API/firebase';
 import { DataContext, GlobalContext, ModalContext } from '../../App';
@@ -110,9 +113,8 @@ const Sequence = ({ drList }) => {
     };
 
     const updateData = () => {
-        console.log('Not updating');
         addDashData(sequence);
-
+        toast.success('Sequence created successfully')
         setRooms([]);
         setSpecificDr({});
         updateGlobalData({});
@@ -120,8 +122,15 @@ const Sequence = ({ drList }) => {
 
     const drApiCall = (e) => {
         e.preventDefault();
-
-        updateData();
+        if ((sequence.dr === undefined)) {
+            toast.error('Select Doctor first');
+        } else if(sequence.dr !== undefined) {
+            if(!(sequence.rooms[0])){
+                toast.error('Assign room to Doctor');
+            }else if(sequence.rooms[0]){
+                updateData();
+            }
+        }
     };
 
     const drSelect = (e) => {
@@ -155,9 +164,9 @@ const Sequence = ({ drList }) => {
 
     const selected = (room) => {
         if (rooms?.find((rm) => rm.id.includes(room.id))) {
-            alert('Already added');
+            toast.error('Room already added');
         } else if (specificDr.rooms?.find((r) => r.id.includes(room.name))) {
-            alert('Already added');
+            toast.error('Room already added');
         } else {
             rooms.push(room);
             view();

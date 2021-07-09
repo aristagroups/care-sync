@@ -5,6 +5,7 @@
 /* eslint-disable import/no-cycle */
 /* eslint-disable jsx-a11y/label-has-associated-control */
 import React, { useContext, useEffect, useState } from 'react';
+import toast from 'react-hot-toast';
 import { Modal } from 'react-responsive-modal';
 import 'react-responsive-modal/styles.css';
 import { db } from '../../API/firebase';
@@ -54,7 +55,11 @@ const Add = () => {
 
             const res = await aTuringRef.set(data);
 
+            toast.success(`${info.type} created successfully`);
+
             setInfo({});
+
+            
         }
 
         storeData();

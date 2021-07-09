@@ -1,3 +1,4 @@
+/* eslint-disable prettier/prettier */
 /* eslint-disable jsx-a11y/no-static-element-interactions */
 /* eslint-disable import/no-cycle */
 /* eslint-disable react/no-array-index-key */
@@ -48,7 +49,11 @@ const DashCard = (props) => {
                         style={{ backgroundColor: `${room.bg}`, borderColor: `${room.border}` }}
                         className={styles.alert}
                     >
-                        <span style={{ color: `${room.border}` }}>{room.count}</span>
+                        {(room.alert === '' || room.alert === 'Empty' ) ? (
+                            <span style={{ color: 'white' }}>{room.count}</span>
+                        ) : (
+                            <span style={{ color: `${room.border}` }}>{room.count}</span>
+                        )}
                     </div>
                     <div>
                         <button

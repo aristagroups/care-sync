@@ -39,7 +39,7 @@ const ModalComponent = ({ open, setOpen, items, detail, setDetail }) => {
                 value: globalData.count - 1,
             });
         };
-        if (globalData.count > 0) {
+        if (globalData.count > 0 && item?.name === 'Patient IN') {
             countDown();
         }
         apiCall();

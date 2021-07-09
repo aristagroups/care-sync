@@ -5,6 +5,7 @@
 import { useContext } from 'react';
 import { Container } from 'react-bootstrap';
 import { useForm } from 'react-hook-form';
+import toast from 'react-hot-toast';
 import { useHistory } from 'react-router';
 import { db } from '../../API/firebase';
 import { AuthContext, UserContext } from '../../App';
@@ -44,11 +45,11 @@ const AdminLogin = () => {
                             doc.data().email === data.email &&
                             doc.data().password === data.password
                         ) {
-                            alert('Success');
+                            toast.success('Sign In Successful!');
                             window.sessionStorage.setItem('user', doc.data().email);
                             pageRedirect();
                         } else {
-                            alert('Not Registered');
+                            toast.error('Error: Not registered!');
                         }
                     });
             } else {
