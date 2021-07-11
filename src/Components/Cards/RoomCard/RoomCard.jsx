@@ -7,6 +7,7 @@ import { faPen, faTimes } from '@fortawesome/free-solid-svg-icons';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import React, { useContext, useState } from 'react';
 import { Button, Card } from 'react-bootstrap';
+import toast from 'react-hot-toast';
 import { db } from '../../../API/firebase';
 import { DataContext, GlobalContext } from '../../../App';
 import styles from './RoomCard.module.css';
@@ -56,9 +57,9 @@ const RoomCard = (props) => {
     const clickHandler = (event) => {
         event.preventDefault();
         if (specificDr === undefined) {
-            alert('Select a doctor first');
+            toast.error('Select a doctor first');
         } else if (specificDr.length === 0) {
-            alert('Select a doctor first');
+            toast.error('Select a doctor first');
         } else {
             checkToAdd(room);
         }

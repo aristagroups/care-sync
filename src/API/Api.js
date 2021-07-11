@@ -11,7 +11,7 @@ import { db } from './firebase';
 // Add Dashboard Data to database
 export async function addDashData(data) {
     const ref = db.collection('dashboard').doc(data.dr.id);
-    console.log(data);
+    // console.log(data);
 
     const res = await ref.set({
         dr: data.dr.id,
@@ -29,13 +29,13 @@ export async function countUpdate(pass) {
 
 // Alert Add
 export async function addAlert(data) {
-    console.log(data);
+    // console.log(data);
     // First data of the desired document
     db.collection('dashboard')
         .doc(data.docId)
         .get()
         .then((doc) => {
-            console.log(doc.data());
+            // console.log(doc.data());
             // Assign array to local javascript variable
             const objects = doc.data().rooms;
 
@@ -55,12 +55,12 @@ export async function addAlert(data) {
 
             // reassign object to local array variable
             objects[data.arrIndex] = objectToupdate;
-            console.log('CHECK DATA', objects, data.alert);
+            // console.log('CHECK DATA', objects, data.alert);
             objects[data.arrIndex].count = objects.filter((r) => r.alert === data.alert).length;
 
             // Update complete array with update copy of element we have
             // created in local javascript variable.
-            console.log(objects);
+            // console.log(objects);
             db.collection('dashboard').doc(data.docId).update({ rooms: objects });
         });
 }

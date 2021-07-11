@@ -56,7 +56,7 @@ const Update = () => {
                 .get()
                 .then((doc) => {
                     dataObj = doc.data();
-                    console.log(dataObj);
+                    // console.log(dataObj);
                     const obj = {
                         ...dataObj,
                         ...data,

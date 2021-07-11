@@ -8,6 +8,10 @@
   cursor: pointer;
 }
 
+.tdBtn {
+  display: flex;
+}
+
 .iconBtn button:hover {
   color: #1f7d74;
 }

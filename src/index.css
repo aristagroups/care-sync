@@ -1,6 +1,5 @@
 body {
   margin: 0;
-  padding-top: 40px;
   background: var(--color3);
   font-family: "Poppins", sans-serif !important;
   -webkit-font-smoothing: antialiased;
@@ -101,7 +100,7 @@ li {
   list-style: none;
 }
 
-@media(min-width: 767px) and (max-width: 1024px) {
+@media (min-width: 767px) and (max-width: 1024px) {
   .react-responsive-modal-root {
     width: 100vw !important;
     max-width: 480px;
@@ -117,8 +116,7 @@ li {
   }
 }
 
-
-@media(max-width: 480px) {
+@media (max-width: 480px) {
   .react-responsive-modal-root {
     width: 100vw !important;
     max-width: 480px;

@@ -36,7 +36,7 @@ const DoctorsSelf = () => {
             const queryRef = citiesRef.where('email', '==', sessionData);
             const snapshot = await queryRef.get();
             snapshot.forEach((doc) => {
-                console.log(doc.data());
+                // console.log(doc.data());
                 const item = doc.data();
                 const appObj = {
                     dr: item?.dr,
@@ -69,7 +69,7 @@ const DoctorsSelf = () => {
     };
 
     const reset = (doc) => {
-        console.log(doc);
+        // console.log(doc);
         const emptyRooms = [];
         const newRooms = doc.rooms.map((room) => {
             const rObj = {

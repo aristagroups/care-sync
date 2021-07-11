@@ -60,7 +60,7 @@
   line-height: 56px;
   min-height: 56px;
   object-fit: cover;
-  height: calc();
+  height: 100%;
 }
 
 .roomList {

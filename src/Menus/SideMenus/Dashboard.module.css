@@ -4,7 +4,6 @@
   margin: 0 !important;
   margin-left: 15px;
   background-color: #fff !important;
-  margin-top: -40px !important;
 }
 
 .dropBoxParent {
@@ -13,21 +12,21 @@
 }
 
 #DropBox {
-  height: 200px;
+  height: auto;
   width: auto;
   min-width: 300vw;
   display: flex;
   align-items: center;
   flex-direction: row !important;
-  padding-left: 15px;
-  padding-top: 17px;
-  padding-right: 15px;
+  padding-left: 5px;
+  padding-top: 12px;
+  padding-right: 10px;
   margin: 0px;
 }
 
 .drArea {
   padding: 20px 0px 0px 25px;
-  height: 220px;
+  height: auto;
   width: 100%;
 }
 

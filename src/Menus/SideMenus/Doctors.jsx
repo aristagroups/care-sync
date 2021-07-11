@@ -78,6 +78,7 @@ const Doctors = () => {
         <Container fluid>
             {data.map((pass, index) => (
                 <DrCard
+                    key={index}
                     data={pass}
                     index={index}
                     handleDelData={handleDelData}

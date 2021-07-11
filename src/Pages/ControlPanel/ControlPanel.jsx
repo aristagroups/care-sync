@@ -269,7 +269,7 @@ function ControlPanel(props) {
                     </Drawer>
                 </Hidden>
             </nav>
-            <main className={classes.content}>
+            <main style={{ overflowX: 'hidden' }} className={classes.content}>
                 <div className={styles.main}>
                     <Switch>
                         <Route path={`${path}/dashboard`}>

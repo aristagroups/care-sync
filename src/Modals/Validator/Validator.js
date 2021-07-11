@@ -1,3 +1,5 @@
+import toast from 'react-hot-toast';
+
 /* eslint-disable no-alert */
 function ValidateEmail(value) {
     if (value === '') {
@@ -6,7 +8,7 @@ function ValidateEmail(value) {
     if (/^[a-zA-Z0-9.!#$%&'*+/=?^_`{|}~-]+@[a-zA-Z0-9-]+(?:\.[a-zA-Z0-9-]+)*$/.test(value)) {
         return value;
     }
-    alert('You have entered an invalid email address!');
+    toast.error('Invalid email address!');
     return false;
 }
 

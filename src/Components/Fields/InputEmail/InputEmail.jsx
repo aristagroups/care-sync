@@ -1,4 +1,5 @@
 import React from 'react';
+import toast from 'react-hot-toast';
 import styles from './InputEmail.module.css';
 
 const InputEmail = (props) => {
@@ -12,7 +13,7 @@ const InputEmail = (props) => {
         ) {
             return true;
         }
-        alert('You have entered an invalid email address!');
+        toast.error('Invalid email address!');
         return false;
     }
     return (

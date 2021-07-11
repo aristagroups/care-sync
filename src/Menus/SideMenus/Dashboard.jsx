@@ -6,6 +6,7 @@
 /* eslint-disable import/no-cycle */
 import React, { useContext, useEffect, useState } from 'react';
 import { CardDeck, Col, Container, Row } from 'react-bootstrap';
+import toast from 'react-hot-toast';
 import { addDashData, countUpdate } from '../../API/Api';
 import { db } from '../../API/firebase';
 import { GlobalContext, ModalContext } from '../../App';
@@ -101,7 +102,7 @@ const Dashboard = () => {
 
     const countDown = (doc) => {
         if (doc.count === 0) {
-            return false;
+            toast.error("Patients can't be less than zero");
         } else {
             countUpdate({
                 id: doc.id,
