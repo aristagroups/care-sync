@@ -1,10 +1,13 @@
+/* eslint-disable consistent-return */
+/* eslint-disable no-else-return */
 /* eslint-disable no-shadow */
 /* eslint-disable array-callback-return */
 /* eslint-disable react/no-array-index-key */
 /* eslint-disable import/no-cycle */
 import React, { useContext, useEffect, useState } from 'react';
 import { CardDeck, Col, Container, Row } from 'react-bootstrap';
-import { addDashData } from '../../API/Api';
+import toast from 'react-hot-toast';
+import { addDashData, countUpdate } from '../../API/Api';
 import { db } from '../../API/firebase';
 import { GlobalContext, ModalContext } from '../../App';
 import ResetBtn from '../../Components/Buttons/ResetBtn/ResetBtn';
@@ -13,7 +16,7 @@ import DashCard from '../../Components/Cards/DashCard/DashCard';
 import App from '../../Modals/ModalComponent/App';
 import styles from './DoctorsSelf.module.css';
 
-const DoctorsSelf = () => {
+const Doctors = () => {
     const [mod, setMod] = useContext(ModalContext);
     const [globalData, updateGlobalData] = useContext(GlobalContext);
     const [open, setOpen] = useState(false);
@@ -27,36 +30,28 @@ const DoctorsSelf = () => {
         });
     };
 
-    const sessionData = window.sessionStorage.getItem('user');
-
     useEffect(() => {
-        async function getData() {
+        const citiesRef = db
+            .collection('dashboard')
+            .where('email', '==', window.sessionStorage.getItem('user'));
+        citiesRef.onSnapshot((querySnapshot) => {
             const drList = [];
-            const citiesRef = db.collection('dashboard');
-            const queryRef = citiesRef.where('email', '==', sessionData);
-            const snapshot = await queryRef.get();
-            snapshot.forEach((doc) => {
-                // console.log(doc.data());
+            querySnapshot.forEach((doc) => {
+                console.log('Data: ', doc.data());
                 const item = doc.data();
                 const appObj = {
                     dr: item?.dr,
                     email: item?.email,
                     phone: item?.phone,
+                    count: item?.count,
                     rooms: item?.rooms,
                     id: doc.id,
                 };
                 drList.push(appObj);
             });
             setData(drList);
-        }
-        getData();
-        myFunction();
-        return () => {
-            setState({}); // This worked for me
-        };
-    }, [data, mod.detail, sessionData, updateGlobalData]);
-
-    // console.log(data);
+        });
+    }, []);
 
     const onOpenModal = () => {
         setOpen(true);
@@ -69,7 +64,7 @@ const DoctorsSelf = () => {
     };
 
     const reset = (doc) => {
-        // console.log(doc);
+        console.log(doc);
         const emptyRooms = [];
         const newRooms = doc.rooms.map((room) => {
             const rObj = {
@@ -86,10 +81,29 @@ const DoctorsSelf = () => {
                 dr: doc.dr,
                 email: doc.email,
                 phone: doc.phone,
+                count: doc.count,
                 id: doc.id,
             },
             rooms: emptyRooms,
         });
+    };
+
+    const countUp = (doc) => {
+        countUpdate({
+            id: doc.id,
+            value: doc.count + 1,
+        });
+    };
+
+    const countDown = (doc) => {
+        if (doc.count === 0) {
+            toast.error("Patients can't be less than zero");
+        } else {
+            countUpdate({
+                id: doc.id,
+                value: doc.count - 1,
+            });
+        }
     };
 
     return (
@@ -109,11 +123,9 @@ const DoctorsSelf = () => {
                                 <p>
                                     <strong>
                                         {' '}
-                                        -{' '}
-                                        <span style={{ color: '#FC7E55' }}>
-                                            {doc.rooms.length}
-                                        </span>{' '}
-                                        +{' '}
+                                        - <span style={{ color: '#FC7E55' }}>
+                                            {doc.count}
+                                        </span> +{' '}
                                     </strong>
                                 </p>
                                 <p>
@@ -124,10 +136,10 @@ const DoctorsSelf = () => {
                                             fontSize: '15px',
                                         }}
                                     >
-                                        in line
+                                        <StopBtn handleClick={() => countUp(doc)} name="Add" />
                                     </span>
                                 </p>
-                                <StopBtn />
+                                <StopBtn handleClick={() => countDown(doc)} name="Remove" />
                             </div>
                         </div>
                     </Col>
@@ -138,6 +150,7 @@ const DoctorsSelf = () => {
                                     handler={() =>
                                         updateGlobalData({
                                             ...globalData,
+                                            count: doc.count,
                                             arrIndex: index,
                                             docId: doc.id,
                                         })
@@ -159,4 +172,4 @@ const DoctorsSelf = () => {
     );
 };
 
-export default DoctorsSelf;
+export default Doctors;

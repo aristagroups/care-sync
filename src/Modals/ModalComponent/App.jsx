@@ -64,10 +64,10 @@ function App() {
     ];
 
     useEffect(() => {
-        async function getData() {
+        const citiesRef = db.collection('alerts');
+        citiesRef.onSnapshot((querySnapshot) => {
             const alertList = [];
-            const snapshot = await db.collection('alerts').get();
-            snapshot.forEach((doc) => {
+            querySnapshot.forEach((doc) => {
                 const appObj = {
                     id: doc.id,
                     name: doc.data().name || '',
@@ -77,8 +77,8 @@ function App() {
                 alertList.push(appObj);
             });
             setItems(alertList);
-        }
-        getData();
+        });
+
         if (mod.onOpenModal !== undefined) {
             mod.onOpenModal = onOpenModal();
         }

@@ -6,7 +6,6 @@
   gap: 10px 10px;
   grid-template-areas: ".";
   width: 100%;
-  margin-top: -45px !important;
 }
 
 .sequenceTop {
@@ -18,7 +17,8 @@
 .wrapper {
   overflow: hidden;
   position: relative;
-  width: 20rem; /* real length of dropdown */
+  width: 20rem;
+  /* real length of dropdown */
   border: 1px solid lightgray;
   border-radius: 20px;
   padding: 9px 20px;
@@ -31,7 +31,8 @@
 .wrapper:after {
   content: "▾";
   font-size: 1.1rem;
-  pointer-events: none; /* ▼ click triggers dropdown */
+  pointer-events: none;
+  /* ▼ click triggers dropdown */
   position: absolute;
   right: 1rem;
   top: 0.5rem;
@@ -40,9 +41,12 @@
 
 select {
   /* remove default caret */
-  -webkit-appearance: none; /* webkit browsers */
-  -moz-appearance: none; /* firefox */
-  appearance: none; /* modern browsers */
+  -webkit-appearance: none;
+  /* webkit browsers */
+  -moz-appearance: none;
+  /* firefox */
+  appearance: none;
+  /* modern browsers */
   width: 100%;
   border: none;
   background: transparent;
@@ -55,7 +59,8 @@ label {
 }
 
 select::-ms-expand {
-  display: none; /* remove default caret for ie */
+  display: none;
+  /* remove default caret for ie */
 }
 
 .dropBoxParent {
@@ -80,38 +85,30 @@ select::-ms-expand {
 }
 
 #DropBox {
-  background-image: repeating-linear-gradient(
-      -2deg,
+  background-image: repeating-linear-gradient(-2deg,
       var(--color1),
       var(--color1) 5px,
       transparent 5px,
       transparent 10px,
-      var(--color1) 10px
-    ),
-    repeating-linear-gradient(
-      88deg,
+      var(--color1) 10px),
+    repeating-linear-gradient(88deg,
       var(--color1),
       var(--color1) 5px,
       transparent 5px,
       transparent 10px,
-      var(--color1) 10px
-    ),
-    repeating-linear-gradient(
-      178deg,
+      var(--color1) 10px),
+    repeating-linear-gradient(178deg,
       var(--color1),
       var(--color1) 5px,
       transparent 5px,
       transparent 10px,
-      var(--color1) 10px
-    ),
-    repeating-linear-gradient(
-      268deg,
+      var(--color1) 10px),
+    repeating-linear-gradient(268deg,
       var(--color1),
       var(--color1) 5px,
       transparent 5px,
       transparent 10px,
-      var(--color1) 10px
-    );
+      var(--color1) 10px);
   background-size: 1px 100%, 100% 1px, 1px 100%, 100% 1px;
   background-position: 0 0, 0 0, 100% 0, 0 100%;
   background-repeat: no-repeat;
@@ -193,6 +190,7 @@ select::-ms-expand {
     transform: translate(0, 6%);
     padding: 5px !important;
   }
+
   .sequenceTop {
     display: flex !important;
     flex-direction: column !important;
@@ -220,6 +218,7 @@ select::-ms-expand {
     min-width: 120px;
     max-width: 120px;
   }
+
   .wrapper {
     max-width: 400px;
   }
@@ -230,6 +229,7 @@ select::-ms-expand {
     min-width: 140px;
     max-width: 140px;
   }
+
   .wrapper {
     max-width: 480px;
   }
@@ -240,6 +240,7 @@ select::-ms-expand {
     min-width: 170px;
     max-width: 170px;
   }
+
   .wrapper {
     max-width: 320px;
   }

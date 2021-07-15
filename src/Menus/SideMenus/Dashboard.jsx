@@ -31,11 +31,11 @@ const Dashboard = () => {
     };
 
     useEffect(() => {
-        async function getData() {
+        const citiesRef = db.collection('dashboard');
+        citiesRef.onSnapshot((querySnapshot) => {
             const drList = [];
-            const citiesRef = db.collection('dashboard');
-            const snapshot = await citiesRef.get();
-            snapshot.forEach((doc) => {
+            querySnapshot.forEach((doc) => {
+                console.log('Data: ', doc.data());
                 const item = doc.data();
                 const appObj = {
                     dr: item?.dr,
@@ -48,15 +48,8 @@ const Dashboard = () => {
                 drList.push(appObj);
             });
             setData(drList);
-        }
-        getData();
-        myFunction();
-        return () => {
-            setState({}); // This worked for me
-        };
-    }, [data, mod.detail, updateGlobalData]);
-
-    // console.log(data);
+        });
+    }, []);
 
     const onOpenModal = () => {
         setOpen(true);

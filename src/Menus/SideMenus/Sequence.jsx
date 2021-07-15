@@ -23,7 +23,7 @@ import Del from '../../Modals/Del/Del';
 import Update from '../../Modals/Update/Update';
 import styles from './Sequence.module.css';
 
-const Sequence = ({ drList }) => {
+const Sequence = () => {
     const [globalData, updateGlobalData] = useContext(GlobalContext);
     const [mod, setMod] = useContext(ModalContext);
 
@@ -43,31 +43,49 @@ const Sequence = ({ drList }) => {
         });
     };
 
+    const [drList, setDrList] = useState([]);
+
     useEffect(() => {
-        async function getData() {
-            const roomList = [];
-            const snapshot = await db.collection('rooms').get();
-            snapshot.forEach((doc) => {
+        const citiesRef = db.collection('dashboard');
+
+        citiesRef.onSnapshot((querySnapshot) => {
+            const drArray = [];
+            querySnapshot.forEach((doc) => {
                 const appObj = {
                     id: doc.id,
-                    name: doc.data().name,
-                    alert: '',
-                    bg: '',
-                    border: '',
+                    name: doc.id,
+                    email: doc.data().email,
+                    phone: doc.data().phone,
+                    count: doc.data().count,
+                    rooms: doc.data().rooms,
                 };
-                roomList.push(appObj);
+                drArray.push(appObj);
+                
             });
-            setRoomData(roomList);
-        }
-        getData();
+            setDrList(drArray);
+        });
+    }, []);
 
-        updateGlobalData();
-        myFunction();
-        return () => {
-            setState({}); // This worked for me
-        };
-        // eslint-disable-next-line react-hooks/exhaustive-deps
-    }, [roomData, specificDr]);
+    useEffect(() => {
+        const citiesRef = db.collection('rooms');
+        citiesRef.onSnapshot((querySnapshot) => {
+            const roomsList = [];
+            querySnapshot.forEach((doc) => {
+                console.log('Data: ', doc.data());
+                const item = doc.data();
+                const appObj = {
+                    name: item.name,
+                    id: doc.id,
+                    alert: "",
+                    bg: "",
+                    border: ""
+                };
+                roomsList.push(appObj);
+                
+            });
+            setRoomData(roomsList);
+        });
+    }, []);
 
     const onOpenModal = () => {
         setOpen(true);

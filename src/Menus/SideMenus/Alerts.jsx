@@ -35,27 +35,23 @@ const Alerts = () => {
     };
 
     useEffect(() => {
-        async function getData() {
+        const citiesRef = db.collection('alerts');
+        citiesRef.onSnapshot((querySnapshot) => {
             const alertList = [];
-            const res = await db.collection('alerts').get();
-            res.forEach((doc) => {
+            querySnapshot.forEach((doc) => {
+                console.log('Data: ', doc.data());
+                const item = doc.data();
                 const appObj = {
-                    id: doc.id,
                     name: doc.data().name,
                     bg: doc.data().bg,
                     border: doc.data().border,
+                    id: doc.id,
                 };
                 alertList.push(appObj);
             });
             setAllAlerts(alertList);
-            setHeader(alertList);
-        }
-        getData();
-        myFunction();
-        return () => {
-            setState({}); // This worked for me
-        };
-    }, [allAlerts, setHeader]);
+        });
+    }, []);
 
     const onOpenModal = () => {
         setOpen(true);

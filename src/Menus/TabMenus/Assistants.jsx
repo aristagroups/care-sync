@@ -24,27 +24,24 @@ const Assistants = () => {
     };
 
     useEffect(() => {
-        async function getData() {
+        const citiesRef = db.collection('assistants');
+        citiesRef.onSnapshot((querySnapshot) => {
             const drList = [];
-            const snapshot = await db.collection('assistants').get();
-            snapshot.forEach((doc) => {
+            querySnapshot.forEach((doc) => {
+                console.log('Data: ', doc.data());
+                const item = doc.data();
                 const appObj = {
+                    dr: item?.dr,
+                    email: item?.email,
+                    phone: item?.phone,
+                    name: item?.name,
                     id: doc.id,
-                    name: doc.data().name,
-                    email: doc.data().email,
-                    phone: doc.data().phone,
-                    dr: doc.data().dr,
                 };
                 drList.push(appObj);
             });
             setDrData(drList);
-        }
-        getData();
-        myFunction();
-        return () => {
-            setState({}); // This worked for me
-        };
-    }, [drData]);
+        });
+    }, []);
 
     const onOpenModal = () => {
         setOpen(true);

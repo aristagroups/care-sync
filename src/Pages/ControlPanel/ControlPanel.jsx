@@ -23,9 +23,8 @@ import { makeStyles, useTheme } from '@material-ui/core/styles';
 import Toolbar from '@material-ui/core/Toolbar';
 import Typography from '@material-ui/core/Typography';
 import MenuIcon from '@material-ui/icons/Menu';
-import React, { useEffect, useState } from 'react';
+import React, { useState } from 'react';
 import { Link, Route, Switch, useHistory, useRouteMatch } from 'react-router-dom';
-import { db } from '../../API/firebase';
 import SignOutBtn from '../../Components/Buttons/SignOutBtn/SignOutBtn';
 import Alerts from '../../Menus/SideMenus/Alerts';
 import Dashboard from '../../Menus/SideMenus/Dashboard';
@@ -77,26 +76,6 @@ function ControlPanel(props) {
 
     const history = useHistory();
 
-    useEffect(() => {
-        async function getDoctors() {
-            const drArray = [];
-            const snapshot = await db.collection('dashboard').get();
-            snapshot.forEach((doc) => {
-                const appObj = {
-                    id: doc.id,
-                    name: doc.id,
-                    email: doc.data().email,
-                    phone: doc.data().phone,
-                    count: doc.data().count,
-                    rooms: doc.data().rooms,
-                };
-                drArray.push(appObj);
-            });
-            setDrList(drArray);
-        }
-
-        getDoctors();
-    }, [drList]);
     const { window } = props;
     const classes = useStyles();
     const theme = useTheme();
