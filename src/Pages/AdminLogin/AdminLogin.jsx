@@ -84,7 +84,7 @@ const AdminLogin = () => {
                     />
                     {auth.provider === 'Admin' ? (
                         <input
-                            type="text"
+                            type="password"
                             placeholder="Password"
                             {...register('password', { required: true })}
                         />
