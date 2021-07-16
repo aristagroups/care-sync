@@ -39,7 +39,6 @@ const Alerts = () => {
         citiesRef.onSnapshot((querySnapshot) => {
             const alertList = [];
             querySnapshot.forEach((doc) => {
-                console.log('Data: ', doc.data());
                 const item = doc.data();
                 const appObj = {
                     name: doc.data().name,
@@ -79,7 +78,7 @@ const Alerts = () => {
     };
 
     return (
-        <Container id="alertsContainer" fluid style={{ padding: '30px 0' }}>
+        <Container id={styles.alertsContainer} fluid>
             <Row>
                 <Col
                     className={styles.tableRow}

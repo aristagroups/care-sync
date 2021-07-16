@@ -6,6 +6,7 @@
 /* eslint-disable import/no-cycle */
 /* eslint-disable no-empty-function */
 /* eslint-disable import/prefer-default-export */
+import toast from 'react-hot-toast';
 import { db } from './firebase';
 
 // Add Dashboard Data to database
@@ -20,6 +21,8 @@ export async function addDashData(data) {
         count: data.dr.count,
         rooms: data.rooms,
     });
+
+    toast.success(`Sequence created successfully`);
 }
 
 export async function countUpdate(pass) {

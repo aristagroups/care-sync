@@ -91,7 +91,7 @@
   width: 42px;
   height: 42px;
   border-radius: 20px;
-  overflow: hidden;
+  overflow: auto;
   border: none;
   outline: none;
 }
@@ -124,6 +124,7 @@
 .effect.effect4 {
   transition: all 0.2s linear 0s;
 }
+
 .effect.effect4:before {
   content: "\f055";
   font-family: FontAwesome;
@@ -140,11 +141,13 @@
   transform: scale(0, 1);
   transition: all 0.2s linear 0s;
 }
+
 .effect.effect4:hover {
   text-indent: -9999px;
   background: var(--color1);
   color: #fff;
 }
+
 .effect.effect4:hover:before {
   transform: scale(1, 1);
   text-indent: 0;
@@ -224,9 +227,10 @@
 }
 
 .wrapper {
-  overflow: hidden;
+  overflow: auto;
   position: relative;
-  width: 200px; /* real length of dropdown */
+  width: 200px;
+  /* real length of dropdown */
   border: none;
   padding: 9px 15px;
   background: transparent;
@@ -236,7 +240,8 @@
 .wrapper:after {
   content: "▾";
   font-size: 1rem;
-  pointer-events: none; /* ▼ click triggers dropdown */
+  pointer-events: none;
+  /* ▼ click triggers dropdown */
   position: absolute;
   right: 1rem;
   top: 0.5rem;

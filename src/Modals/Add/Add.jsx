@@ -1,3 +1,4 @@
+/* eslint-disable consistent-return */
 /* eslint-disable prettier/prettier */
 /* eslint-disable react/no-array-index-key */
 /* eslint-disable jsx-a11y/no-static-element-interactions */
@@ -51,13 +52,21 @@ const Add = () => {
         e.preventDefault();
 
         async function storeData() {
-            const aTuringRef = db.collection(info.collection).doc(data.name);
+            if(info.collection === null){
+                return false;
+            // eslint-disable-next-line no-else-return
+            } else {
+                const aTuringRef = db.collection(info.collection).doc(data.name);
 
-            const res = await aTuringRef.set(data);
-
-            toast.success(`${info.type} created successfully`);
-
-            setInfo({});
+                await aTuringRef.set(data);
+    
+                toast.success(`${info.type} created successfully`);
+    
+                setInfo({});
+            }
+            
+            
+            
 
             
         }

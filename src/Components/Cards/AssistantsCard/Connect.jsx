@@ -33,7 +33,6 @@ const Connect = (props) => {
         citiesRef.onSnapshot((querySnapshot) => {
             const drList = [];
             querySnapshot.forEach((doc) => {
-                console.log('Data: ', doc.data());
                 const item = doc.data();
                 const appObj = {
                     dr: item?.dr,

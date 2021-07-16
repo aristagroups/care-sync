@@ -88,7 +88,7 @@
   width: 42px;
   height: 42px;
   border-radius: 20px;
-  overflow: hidden;
+  overflow: auto;
   border: none;
   outline: none;
 }
@@ -115,12 +115,13 @@
   outline: none;
   padding: 0;
   margin: 0;
-  overflow: hidden;
+  overflow: auto;
 }
 
 .effect.effect4 {
   transition: all 0.2s linear 0s;
 }
+
 .effect.effect4:before {
   content: "\f055";
   font-family: FontAwesome;
@@ -137,11 +138,13 @@
   transform: scale(0, 1);
   transition: all 0.2s linear 0s;
 }
+
 .effect.effect4:hover {
   text-indent: -9999px;
   background: var(--color1);
   color: #fff;
 }
+
 .effect.effect4:hover:before {
   transform: scale(1, 1);
   text-indent: 0;

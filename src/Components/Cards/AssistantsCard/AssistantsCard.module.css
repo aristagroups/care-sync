@@ -39,9 +39,11 @@
 .tableRow:hover {
   background-color: #d2eeeb;
 }
+
 .tableRow:hover .tdBtn {
   border-bottom-right-radius: 20px;
 }
+
 .tableRow:hover .tdNumber {
   border-top-left-radius: 20px;
 }
@@ -61,8 +63,9 @@
 }
 
 .roomList {
-  overflow: hidden;
+  overflow: auto;
 }
+
 .roomList ul li {
   display: inline-block;
   margin: 0 5px;
@@ -91,6 +94,7 @@
     width: 100%;
     padding-left: 10px;
   }
+
   .innerRow td {
     padding: 5px 0px;
   }
@@ -105,9 +109,10 @@
 }
 
 .wrapper {
-  overflow: hidden;
+  overflow: auto;
   position: relative;
-  width: 20rem; /* real length of dropdown */
+  width: 20rem;
+  /* real length of dropdown */
   border: 1px solid lightgray;
   border-radius: 20px;
   padding: 9px 20px;
@@ -120,7 +125,8 @@
 .wrapper:after {
   content: "▾";
   font-size: 1.1rem;
-  pointer-events: none; /* ▼ click triggers dropdown */
+  pointer-events: none;
+  /* ▼ click triggers dropdown */
   position: absolute;
   right: 1rem;
   top: 0.5rem;
@@ -129,9 +135,12 @@
 
 select {
   /* remove default caret */
-  -webkit-appearance: none; /* webkit browsers */
-  -moz-appearance: none; /* firefox */
-  appearance: none; /* modern browsers */
+  -webkit-appearance: none;
+  /* webkit browsers */
+  -moz-appearance: none;
+  /* firefox */
+  appearance: none;
+  /* modern browsers */
   width: 100%;
   border: none;
   background: transparent;
@@ -144,7 +153,8 @@ label {
 }
 
 select::-ms-expand {
-  display: none; /* remove default caret for ie */
+  display: none;
+  /* remove default caret for ie */
 }
 
 @media (max-width: 898px) {

@@ -112,6 +112,7 @@
   #appBar {
     display: block;
   }
+
   .main {
     grid-template-rows: inherit !important;
   }

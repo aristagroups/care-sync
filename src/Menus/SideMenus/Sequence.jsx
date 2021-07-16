@@ -1,5 +1,3 @@
-/* eslint-disable prettier/prettier */
-/* eslint-disable no-lonely-if */
 /* eslint-disable no-alert */
 /* eslint-disable object-shorthand */
 /* eslint-disable jsx-a11y/no-onchange */
@@ -35,6 +33,7 @@ const Sequence = () => {
     const [mainData, setMainData] = useState([]);
     const [sequence, setSequence] = useState([]);
     const [state, setState] = useState({});
+    const [drList, setDrList] = useState([]);
 
     const myFunction = () => {
         setState({
@@ -42,8 +41,6 @@ const Sequence = () => {
             surname: 'Doe',
         });
     };
-
-    const [drList, setDrList] = useState([]);
 
     useEffect(() => {
         const citiesRef = db.collection('dashboard');
@@ -60,32 +57,36 @@ const Sequence = () => {
                     rooms: doc.data().rooms,
                 };
                 drArray.push(appObj);
-                
             });
             setDrList(drArray);
         });
     }, []);
 
     useEffect(() => {
-        const citiesRef = db.collection('rooms');
-        citiesRef.onSnapshot((querySnapshot) => {
-            const roomsList = [];
-            querySnapshot.forEach((doc) => {
-                console.log('Data: ', doc.data());
-                const item = doc.data();
+        async function getData() {
+            const roomList = [];
+            const snapshot = await db.collection('rooms').get();
+            snapshot.forEach((doc) => {
                 const appObj = {
-                    name: item.name,
                     id: doc.id,
-                    alert: "",
-                    bg: "",
-                    border: ""
+                    name: doc.data().name,
+                    alert: '',
+                    bg: '',
+                    border: '',
                 };
-                roomsList.push(appObj);
-                
+                roomList.push(appObj);
             });
-            setRoomData(roomsList);
-        });
-    }, []);
+            setRoomData(roomList);
+        }
+        getData();
+
+        updateGlobalData();
+        myFunction();
+        return () => {
+            setState({}); // This worked for me
+        };
+        // eslint-disable-next-line react-hooks/exhaustive-deps
+    }, [roomData, specificDr]);
 
     const onOpenModal = () => {
         setOpen(true);
@@ -131,8 +132,9 @@ const Sequence = () => {
     };
 
     const updateData = () => {
+        console.log('Not updating');
         addDashData(sequence);
-        toast.success('Sequence created successfully')
+
         setRooms([]);
         setSpecificDr({});
         updateGlobalData({});
@@ -140,15 +142,8 @@ const Sequence = () => {
 
     const drApiCall = (e) => {
         e.preventDefault();
-        if ((sequence.dr === undefined)) {
-            toast.error('Select Doctor first');
-        } else if(sequence.dr !== undefined) {
-            if(!(sequence.rooms[0])){
-                toast.error('Assign room to Doctor');
-            }else if(sequence.rooms[0]){
-                updateData();
-            }
-        }
+
+        updateData();
     };
 
     const drSelect = (e) => {
@@ -182,9 +177,9 @@ const Sequence = () => {
 
     const selected = (room) => {
         if (rooms?.find((rm) => rm.id.includes(room.id))) {
-            toast.error('Room already added');
+            toast.error('Already added');
         } else if (specificDr.rooms?.find((r) => r.id.includes(room.name))) {
-            toast.error('Room already added');
+            toast.error('Already added');
         } else {
             rooms.push(room);
             view();

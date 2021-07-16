@@ -29,9 +29,11 @@
 .tableRow:hover {
   background-color: #d2eeeb;
 }
+
 .tableRow:hover .tdBtn {
   border-bottom-right-radius: 20px;
 }
+
 .tableRow:hover .tdNumber {
   border-top-left-radius: 20px;
 }
@@ -50,9 +52,11 @@
   background-color: #6ac7be;
   margin-right: 10px;
 }
+
 .roomList {
-  overflow: hidden;
+  overflow: auto;
 }
+
 .roomList ul li {
   display: inline-block;
   margin: 0 5px;

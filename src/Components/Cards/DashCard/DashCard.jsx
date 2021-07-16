@@ -11,7 +11,6 @@ import styles from './DashCard.module.css';
 import MyStopwatch from './MyStopWatch';
 
 const DashCard = (props) => {
-    // eslint-disable-next-line prettier/prettier
 
     const { data, room, alertSelector, openAlertModal, selectedAlert, docId, handler, idx } = props;
     const [globalData, updateGlobalData] = useContext(GlobalContext);

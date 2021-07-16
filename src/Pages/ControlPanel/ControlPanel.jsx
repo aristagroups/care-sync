@@ -25,6 +25,7 @@ import Typography from '@material-ui/core/Typography';
 import MenuIcon from '@material-ui/icons/Menu';
 import React, { useState } from 'react';
 import { Link, Route, Switch, useHistory, useRouteMatch } from 'react-router-dom';
+import useViewportSizes from 'use-viewport-sizes';
 import SignOutBtn from '../../Components/Buttons/SignOutBtn/SignOutBtn';
 import Alerts from '../../Menus/SideMenus/Alerts';
 import Dashboard from '../../Menus/SideMenus/Dashboard';
@@ -71,6 +72,7 @@ const useStyles = makeStyles((theme) => ({
 }));
 
 function ControlPanel(props) {
+    const [vpWidth, vpHeight] = useViewportSizes();
     const { path, url } = useRouteMatch();
     const [drList, setDrList] = useState([]);
 
@@ -83,6 +85,12 @@ function ControlPanel(props) {
 
     const handleDrawerToggle = () => {
         setMobileOpen(!mobileOpen);
+    };
+
+    const onCLickToggle = () => {
+        if (vpWidth < 600) {
+            handleDrawerToggle();
+        }
     };
 
     const logOut = () => {
@@ -104,7 +112,7 @@ function ControlPanel(props) {
                             {(url.includes('admin') ||
                                 url.includes('receptionist') ||
                                 url.includes('assistant')) && (
-                                <li>
+                                <li onClick={() => onCLickToggle()}>
                                     <Link to={`${url}/dashboard`}>
                                         <span>
                                             <FontAwesomeIcon
@@ -118,7 +126,7 @@ function ControlPanel(props) {
                                 </li>
                             )}
                             {(url.includes('admin') || url.includes('receptionist')) && (
-                                <li>
+                                <li onClick={() => onCLickToggle()}>
                                     <Link to={`${url}/stuff/doctors`}>
                                         <span>
                                             <FontAwesomeIcon
@@ -132,7 +140,7 @@ function ControlPanel(props) {
                                 </li>
                             )}
                             {url.includes('admin') && (
-                                <li>
+                                <li onClick={() => onCLickToggle()}>
                                     <Link to={`${url}/alerts`}>
                                         <span>
                                             <FontAwesomeIcon
@@ -146,7 +154,7 @@ function ControlPanel(props) {
                                 </li>
                             )}
                             {url.includes('admin') && (
-                                <li>
+                                <li onClick={() => onCLickToggle()}>
                                     <Link to={`${url}/sequence`}>
                                         <span>
                                             <FontAwesomeIcon
@@ -160,7 +168,7 @@ function ControlPanel(props) {
                                 </li>
                             )}
                             {url.includes('assistant') && (
-                                <li>
+                                <li onClick={() => onCLickToggle()}>
                                     <Link to={`${url}/doctors`}>
                                         <span>
                                             <FontAwesomeIcon
@@ -174,7 +182,7 @@ function ControlPanel(props) {
                                 </li>
                             )}
                             {url.includes('doctor') && (
-                                <li>
+                                <li onClick={() => onCLickToggle()}>
                                     <Link to={`${url}/self-sequence`}>
                                         <span>
                                             <FontAwesomeIcon

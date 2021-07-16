@@ -70,7 +70,7 @@
   #dashboard {
     margin-top: 10px !important;
     width: 95% !important;
-    overflow: hidden;
+    overflow: auto;
   }
 
   .drAreaWrapper {

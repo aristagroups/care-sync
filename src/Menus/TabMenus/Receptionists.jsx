@@ -27,7 +27,6 @@ const Receptionists = () => {
         citiesRef.onSnapshot((querySnapshot) => {
             const drList = [];
             querySnapshot.forEach((doc) => {
-                console.log('Data: ', doc.data());
                 const item = doc.data();
                 const appObj = {
                     name: item?.name,

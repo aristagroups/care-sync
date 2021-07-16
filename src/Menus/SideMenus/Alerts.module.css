@@ -5,6 +5,12 @@
   margin: 0 auto;
 }
 
+#alertsContainer {
+  margin-top: 2vw !important;
+}
+
+
+
 @media (min-width: 768px) {
   .tableRow {
     min-width: 600px;
@@ -15,5 +21,11 @@
   .tableRow {
     margin-left: auto !important;
     margin-right: 30px !important;
+  }
+}
+
+@media (max-width: 599px) {
+  #alertsContainer {
+    margin-top: 20vw !important;
   }
 }
