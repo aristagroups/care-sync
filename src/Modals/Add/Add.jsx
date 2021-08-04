@@ -82,7 +82,7 @@ const Add = () => {
         } else if(info.type === 'assistant') {
             setData({ ...data, [e.target.name]: e.target.value, dr: ''});
         } else if(info.type === 'room') {
-            setData({ ...data, [e.target.name]: e.target.value, alert: {
+            setData({ ...data, blink : false, [e.target.name]: e.target.value, alert: {
                 name: '',
                 bg: '',
                 border: '',

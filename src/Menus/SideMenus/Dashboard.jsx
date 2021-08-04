@@ -35,7 +35,7 @@ const Dashboard = () => {
         citiesRef.onSnapshot((querySnapshot) => {
             const drList = [];
             querySnapshot.forEach((doc) => {
-                // console.log('Data: ', doc.data());
+                console.log('Data: ', doc.data());
                 const item = doc.data();
                 const appObj = {
                     dr: item?.dr,
@@ -103,8 +103,6 @@ const Dashboard = () => {
             });
         }
     };
-
-    console.log('Data', data);
 
     return (
         <Container fluid id={styles.dashboard}>

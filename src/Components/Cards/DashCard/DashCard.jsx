@@ -4,11 +4,14 @@
 /* eslint-disable react/no-array-index-key */
 import React, { useContext } from 'react';
 import { Card } from 'react-bootstrap';
-import { addAlert } from '../../../API/Api';
+import ReactTooltip from 'react-tooltip';
+import { addAlert, toggleEmergency } from '../../../API/Api';
 import { GlobalContext, ModalContext } from '../../../App';
 import RBtn from '../../Buttons/RBtn/RBtn';
+import './blinker.css';
 import styles from './DashCard.module.css';
 import MyStopwatch from './MyStopWatch';
+
 
 const DashCard = (props) => {
 
@@ -26,10 +29,30 @@ const DashCard = (props) => {
         });
     };
 
+    
+
     const resetDashCard = () => {
         handler();
         apiCall();
     };
+
+    
+
+    const addEmergency = () => {
+        if(room.blink === false) {
+            toggleEmergency({
+                docId,
+                idx,
+                blink: true,
+            });
+        } else if(room.blink === true) {
+            toggleEmergency({
+                docId,
+                idx,
+                blink: false,
+            });
+        }
+    }
 
     return (
         <div onClick={handler}>
@@ -38,6 +61,21 @@ const DashCard = (props) => {
                     <div className={styles.topLeft}>
                         <span>{room.name}</span>
                         <RBtn handleClick={resetDashCard} />
+                        
+                    </div>
+                    <button data-tip="emergency" onClick={()=>addEmergency(docId,idx,room)} id="emergencyBtn" type="button" >
+                    <i className="fa fa-bell" />
+                    </button>
+                    <ReactTooltip >
+                        <small>                        Emergency Button
+</small>
+                    </ReactTooltip>
+                    <div id="blinker">
+                    {
+                        room.blink ? (<span>
+                            <i className="fa fa-circle fa-fw" />
+                        </span>) : (<span />)
+                    }
                     </div>
                     <div className={styles.timer}>
                         <span>{room.alert ? <MyStopwatch /> : '00:00'}</span>

@@ -73,3 +73,15 @@
     min-width: 600px;
   }
 }
+
+#alertDelBtn {
+  color: var(--color1);
+  width: 30px;
+  font-size: 22px;
+  border: none;
+  background-color: transparent;
+}
+
+#alertDelBtn:hover {
+  color: var(--color17);
+}

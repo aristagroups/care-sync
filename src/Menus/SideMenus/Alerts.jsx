@@ -48,7 +48,8 @@ const Alerts = () => {
                 };
                 alertList.push(appObj);
             });
-            setAllAlerts(alertList);
+            const sortedList = alertList.sort((a, b) => a.name.localeCompare(b.name));
+            setAllAlerts(sortedList);
         });
     }, []);
 
@@ -113,6 +114,7 @@ const Alerts = () => {
                 </Col>
             </Row>
             <Add />
+
             <Update />
         </Container>
     );

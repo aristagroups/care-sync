@@ -68,6 +68,34 @@ export async function addAlert(data) {
         });
 }
 
+export async function toggleEmergency(data) {
+    // console.log(data);
+    // First data of the desired document
+    db.collection('dashboard')
+        .doc(data.docId)
+        .get()
+        .then((doc) => {
+            // console.log(doc.data());
+            // Assign array to local javascript variable
+            const objects = doc.data().rooms;
+
+            // Assing desired element of object to local javascript variable
+            const objectToupdate = objects[data.idx];
+
+            // Update field of the element assigned to local javascript variable
+            objectToupdate.blink = data.blink;
+
+            // reassign object to local array variable
+            objects[data.idx] = objectToupdate;
+            // console.log('CHECK DATA', objects, data.alert);
+
+            // Update complete array with update copy of element we have
+            // created in local javascript variable.
+            // console.log(objects);
+            db.collection('dashboard').doc(data.docId).update({ rooms: objects });
+        });
+}
+
 // // Reset All
 // export async function resetAll(data) {
 //     console.log(data);

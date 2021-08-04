@@ -6,6 +6,7 @@ import { Modal } from 'react-responsive-modal';
 import 'react-responsive-modal/styles.css';
 import { addAlert, countUpdate } from '../../API/Api';
 import { GlobalContext, ModalContext } from '../../App';
+import sound from '../../Assets/beep.mp3';
 import './ModalBuiltIn.css';
 import styles from './ModalComponent.module.css';
 
@@ -43,6 +44,7 @@ const ModalComponent = ({ open, setOpen, items, detail, setDetail }) => {
             countDown();
         }
         apiCall();
+        new Audio(sound).play();
     };
 
     return (

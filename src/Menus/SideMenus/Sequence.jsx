@@ -73,6 +73,7 @@ const Sequence = () => {
                     alert: '',
                     bg: '',
                     border: '',
+                    blink: doc.data().blink,
                 };
                 roomList.push(appObj);
             });
