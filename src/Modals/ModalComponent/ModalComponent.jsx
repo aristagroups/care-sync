@@ -44,7 +44,10 @@ const ModalComponent = ({ open, setOpen, items, detail, setDetail }) => {
             countDown();
         }
         apiCall();
-        new Audio(sound).play();
+        if (item?.sound === true) {
+            new Audio(sound).play();
+        }
+        console.log(item);
     };
 
     return (

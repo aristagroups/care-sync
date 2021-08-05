@@ -70,6 +70,7 @@ function App() {
             querySnapshot.forEach((doc) => {
                 const appObj = {
                     id: doc.id,
+                    sound: doc.data().sound,
                     name: doc.data().name || '',
                     bg: doc.data().bg || '',
                     border: doc.data().border || '',

@@ -42,10 +42,25 @@ const Add = () => {
         { border: '#E485F3', bg: '#FAE8FD' },
         { border: '#86E8EF', bg: '#E8FBFC' },
         { border: '#C4E6E9', bg: '#F4FAFB' },
+        { border: '#3a405a', bg: '#aec5eb' },
+        { border: '#27FB6B', bg: '#0A2E36' },
+        { border: '#3E92CC', bg: '#0A2463' },
+        { border: '#F71735', bg: '#011627' },
+        { border: '#1A936F', bg: '#114B5F' },
+        { border: '#FBF2C0', bg: '#48392A' },
+        { border: '#305252', bg: '#77878B' },
+        { border: '#270722', bg: '#ECCE8E' },
+        { border: '#FFBA49', bg: '#20A39E' },
+        { border: '#465775', bg: '#EF6F6C' },
+        { border: '#131200', bg: '#78BC61' },
+        { border: '#01295F', bg: '#FE5D26' },
     ];
 
     const colorSetter = (color) => {
         setData({ ...data, bg: color.bg, border: color.border });
+        if((data.sound)){
+            setData({ ...data, sound: false})
+        }
     };
 
     const handleSubmit = (e) => {
@@ -74,6 +89,11 @@ const Add = () => {
         storeData();
         onCloseModal();
     };
+
+    const onCheck = () => {
+        console.log('sound')
+        setData({ ...data, sound: true})
+    }
 
     const handleChange = (e) => {
         e.preventDefault();
@@ -174,6 +194,11 @@ const Add = () => {
                         </>
                     )}
 
+                    {
+                        info.type === 'alert' ? 
+                        (<div><label style={{height: '16px', color: 'green'}}><input onChange={() =>onCheck()}style={{marginRight: '7px', marginTop: '3px'}} type="checkbox" name="Add notification sound" id="" />Add notification sound</label></div>) : (<div />)
+                    }
+<br />
                     <SaveBtn name="Save" />
                 </form>
             </Modal>
