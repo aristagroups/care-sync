@@ -1,10 +1,11 @@
 /* eslint-disable react-hooks/exhaustive-deps */
 /* eslint-disable import/no-cycle */
 /* eslint-disable jsx-a11y/no-static-element-interactions */
-import React, { useContext, useState } from 'react';
+import React, { useContext, useEffect, useState } from 'react';
 import { Modal } from 'react-responsive-modal';
 import 'react-responsive-modal/styles.css';
 import { addAlert, countUpdate } from '../../API/Api';
+import { db } from '../../API/firebase';
 import { GlobalContext, ModalContext } from '../../App';
 import sound from '../../Assets/beep.mp3';
 import './ModalBuiltIn.css';
@@ -14,10 +15,21 @@ const ModalComponent = ({ open, setOpen, items, detail, setDetail }) => {
     const [data, setData] = useState({});
     const [mod, setMod] = useContext(ModalContext);
     const [globalData, updateGlobalData] = useContext(GlobalContext);
+    const [counterAlert, setCounterAlert] = useState('');
 
     const middleIndex = Math.ceil(items.length / 2);
     const leftSideItems = items.slice().splice(0, middleIndex);
     const rightSideItems = items.slice(middleIndex);
+
+    useEffect(() => {
+        const citiesRef = db.collection('counterAlert');
+        citiesRef.onSnapshot((querySnapshot) => {
+            const alertList = [];
+            querySnapshot.forEach((doc) => {
+                setCounterAlert(doc.data().value);
+            });
+        });
+    }, [setCounterAlert]);
 
     const apiCall = () => {
         setOpen(false);
@@ -40,7 +52,7 @@ const ModalComponent = ({ open, setOpen, items, detail, setDetail }) => {
                 value: globalData.count - 1,
             });
         };
-        if (globalData.count > 0 && item?.name === 'Patient IN') {
+        if (globalData.count > 0 && item?.name === counterAlert) {
             countDown();
         }
         apiCall();

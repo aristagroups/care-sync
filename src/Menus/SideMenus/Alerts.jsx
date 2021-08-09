@@ -1,6 +1,7 @@
 /* eslint-disable import/no-cycle */
 import React, { useContext, useEffect, useState } from 'react';
-import { Col, Container, Row } from 'react-bootstrap';
+import { Col, Container, Nav, Navbar, NavDropdown, Row } from 'react-bootstrap';
+import toast from 'react-hot-toast';
 import { db } from '../../API/firebase';
 import { ApiContext, DataContext } from '../../App';
 import SaveBtn from '../../Components/Buttons/SaveBtn/SaveBtn';
@@ -78,17 +79,53 @@ const Alerts = () => {
         });
     };
 
+    async function countSelected(value) {
+        const aTuringRef = db.collection('counterAlert').doc('yb9ciS93fi2rkrwTWnfm');
+
+        await aTuringRef.set({ value }).then((res) => {
+            toast.success(`${value} set for counter successfully`);
+        });
+    }
+
     return (
         <Container id={styles.alertsContainer} fluid>
-            <Row>
-                <Col
-                    className={styles.tableRow}
-                    md={12}
-                    style={{ display: 'flex', justifyContent: 'flex-end' }}
-                >
-                    <SaveBtn handleClick={handleAddData} name="Add new" />
-                </Col>
-            </Row>
+            <Navbar variant="light" bg="light" expand="lg">
+                <Container fluid>
+                    <Navbar.Toggle aria-controls="navbar-dark-example" />
+                    <Navbar.Collapse id="navbar-dark-example">
+                        <Nav
+                            fluid
+                            style={{
+                                display: 'flex',
+                                justifyContent: 'spaceBetween',
+                                width: '100%',
+                            }}
+                        >
+                            <NavDropdown
+                                style={{
+                                    width: '100%',
+                                    minWidth: '300px',
+                                    border: '1px dotted lightgrey',
+                                    paddingLeft: '15px',
+                                }}
+                                id="nav-dropdown-dark-example"
+                                title="Select for count "
+                                menuVariant="dark"
+                            >
+                                {allAlerts.map((alrt) => {
+                                    return (
+                                        <NavDropdown.Item onClick={() => countSelected(alrt.name)}>
+                                            {alrt.name}
+                                        </NavDropdown.Item>
+                                    );
+                                })}
+                            </NavDropdown>
+                            <div style={{ height: '10px', width: '20px' }} />
+                            <SaveBtn handleClick={handleAddData} name="Add new" />
+                        </Nav>
+                    </Navbar.Collapse>
+                </Container>
+            </Navbar>
             <Row
                 style={{
                     display: 'flex',
