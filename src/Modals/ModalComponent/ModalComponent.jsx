@@ -59,7 +59,6 @@ const ModalComponent = ({ open, setOpen, items, detail, setDetail }) => {
         if (item?.sound === true) {
             new Audio(sound).play();
         }
-        console.log(item);
     };
 
     return (

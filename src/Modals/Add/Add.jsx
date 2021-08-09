@@ -91,7 +91,6 @@ const Add = () => {
     };
 
     const onCheck = () => {
-        console.log('sound')
         setData({ ...data, sound: true})
     }
 

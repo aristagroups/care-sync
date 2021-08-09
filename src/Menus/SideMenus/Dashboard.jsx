@@ -35,7 +35,6 @@ const Dashboard = () => {
         citiesRef.onSnapshot((querySnapshot) => {
             const drList = [];
             querySnapshot.forEach((doc) => {
-                console.log('Data: ', doc.data());
                 const item = doc.data();
                 const appObj = {
                     dr: item?.dr,
@@ -62,7 +61,6 @@ const Dashboard = () => {
     };
 
     const reset = (doc) => {
-        console.log(doc);
         const emptyRooms = [];
         const newRooms = doc.rooms.map((room) => {
             const rObj = {

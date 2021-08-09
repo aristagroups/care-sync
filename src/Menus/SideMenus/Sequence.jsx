@@ -133,7 +133,6 @@ const Sequence = () => {
     };
 
     const updateData = () => {
-        console.log('Not updating');
         addDashData(sequence);
 
         setRooms([]);

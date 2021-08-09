@@ -63,7 +63,6 @@ const Doctors = () => {
     };
 
     const reset = (doc) => {
-        console.log(doc);
         const emptyRooms = [];
         const newRooms = doc.rooms.map((room) => {
             const rObj = {

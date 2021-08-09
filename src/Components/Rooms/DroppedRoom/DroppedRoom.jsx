@@ -25,8 +25,6 @@ const DroppedRoom = (props) => {
     } = props;
     const [onCard, setOnCard] = useState([]);
 
-    console.log(props);
-
     const handelDel = () => {
         if (rooms.find((sRoom) => sRoom.id === room.id)) {
             const newRoomList = rooms.filter((rm) => rm !== room);
