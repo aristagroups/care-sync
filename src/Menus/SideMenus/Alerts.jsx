@@ -83,7 +83,7 @@ const Alerts = () => {
         const aTuringRef = db.collection('counterAlert').doc('yb9ciS93fi2rkrwTWnfm');
 
         await aTuringRef.set({ value }).then((res) => {
-            toast.success(`${value} set for counter successfully`);
+            toast.success(`${value} added`);
         });
     }
 
