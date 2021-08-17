@@ -28,6 +28,7 @@ import { Link, Route, Switch, useHistory, useRouteMatch } from 'react-router-dom
 import useViewportSizes from 'use-viewport-sizes';
 import SignOutBtn from '../../Components/Buttons/SignOutBtn/SignOutBtn';
 import Alerts from '../../Menus/SideMenus/Alerts';
+import AssistantDashboard from '../../Menus/SideMenus/AssistantDashboard';
 import Dashboard from '../../Menus/SideMenus/Dashboard';
 import Doctors from '../../Menus/SideMenus/Doctors';
 import Sequence from '../../Menus/SideMenus/Sequence';
@@ -109,11 +110,23 @@ function ControlPanel(props) {
                     </div>
                     <div className={styles.nav}>
                         <ul className={styles.navList}>
-                            {(url.includes('admin') ||
-                                url.includes('receptionist') ||
-                                url.includes('assistant')) && (
+                            {(url.includes('admin') || url.includes('receptionist')) && (
                                 <li onClick={() => onCLickToggle()}>
                                     <Link to={`${url}/dashboard`}>
+                                        <span>
+                                            <FontAwesomeIcon
+                                                className={styles.plusIcon}
+                                                icon={faColumns}
+                                                size="2x"
+                                            />
+                                        </span>{' '}
+                                        Dashboard
+                                    </Link>
+                                </li>
+                            )}
+                            {url.includes('assistant') && (
+                                <li onClick={() => onCLickToggle()}>
+                                    <Link to={`${url}/assistant-dashboard`}>
                                         <span>
                                             <FontAwesomeIcon
                                                 className={styles.plusIcon}
@@ -135,7 +148,7 @@ function ControlPanel(props) {
                                                 size="2x"
                                             />
                                         </span>{' '}
-                                        Stuff
+                                        Roles
                                     </Link>
                                 </li>
                             )}
@@ -261,6 +274,11 @@ function ControlPanel(props) {
                     <Switch>
                         <Route path={`${path}/dashboard`}>
                             <Dashboard />
+                        </Route>
+                    </Switch>
+                    <Switch>
+                        <Route path={`${path}/assistant-dashboard`}>
+                            <AssistantDashboard />
                         </Route>
                     </Switch>
                     <Switch>

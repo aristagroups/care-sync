@@ -14,14 +14,15 @@ import ResetBtn from '../../Components/Buttons/ResetBtn/ResetBtn';
 import StopBtn from '../../Components/Buttons/StopBtn/StopBtn';
 import DashCard from '../../Components/Cards/DashCard/DashCard';
 import App from '../../Modals/ModalComponent/App';
-import styles from './DoctorsSelf.module.css';
+import styles from './Dashboard.module.css';
 
-const Doctors = () => {
+const AssistantDashboard = () => {
     const [mod, setMod] = useContext(ModalContext);
     const [globalData, updateGlobalData] = useContext(GlobalContext);
     const [open, setOpen] = useState(false);
     const [data, setData] = useState([]);
     const [state, setState] = useState({});
+    const [ast, setAst] = useState({});
 
     const myFunction = () => {
         setState({
@@ -32,10 +33,26 @@ const Doctors = () => {
 
     useEffect(() => {
         const citiesRef = db
-            .collection('dashboard')
+            .collection('assistants')
             .where('email', '==', window.sessionStorage.getItem('user'));
         citiesRef.onSnapshot((querySnapshot) => {
             const drList = [];
+            querySnapshot.forEach((doc) => {
+                const item = doc.data();
+                setAst({
+                    dr: item?.dr,
+                    email: item?.email,
+                    phone: item?.phone,
+                    name: item?.name,
+                    id: doc.id,
+                });
+            });
+        });
+    }, []);
+
+    useEffect(() => {
+        const citiesRef = db.collection('dashboard');
+        citiesRef.onSnapshot((querySnapshot) => {
             querySnapshot.forEach((doc) => {
                 const item = doc.data();
                 const appObj = {
@@ -46,11 +63,12 @@ const Doctors = () => {
                     rooms: item?.rooms,
                     id: doc.id,
                 };
-                drList.push(appObj);
+                if (appObj.dr === ast.dr) {
+                    setData([appObj]);
+                }
             });
-            setData(drList);
         });
-    }, []);
+    });
 
     const onOpenModal = () => {
         setOpen(true);
@@ -71,7 +89,6 @@ const Doctors = () => {
                 border: '',
                 id: room.id,
                 name: room.id,
-                blink: room.blink,
             };
             emptyRooms.push(rObj);
         });
@@ -104,6 +121,8 @@ const Doctors = () => {
             });
         }
     };
+
+    console.log('Data', data);
 
     return (
         <Container fluid id={styles.dashboard}>
@@ -171,4 +190,4 @@ const Doctors = () => {
     );
 };
 
-export default Doctors;
+export default AssistantDashboard;

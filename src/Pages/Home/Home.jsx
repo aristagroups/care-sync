@@ -66,7 +66,7 @@ const Home = () => {
                             setAuth({
                                 provider: 'Assistant',
                                 collection: 'assistants',
-                                address: '/assistant/dashboard',
+                                address: '/assistant/assistant-dashboard',
                             })
                         }
                         className={styles.homeButtons}
