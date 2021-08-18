@@ -197,6 +197,18 @@ const Add = () => {
                         info.type === 'alert' ? 
                         (<div><label style={{height: '16px', color: 'green'}}><input onChange={() =>onCheck()}style={{marginRight: '7px', marginTop: '3px'}} type="checkbox" name="Add notification sound" id="" />Add notification sound</label></div>) : (<div />)
                     }
+                    {(info.type === 'doctor' ) && (
+                            <>
+                                <label htmlFor="role">Role</label>
+                                <input
+                                    required
+                                    onChange={(e) => handleChange(e)}
+                                    type="text"
+                                    name="role"
+                                    id="role"
+                                />
+                            </>
+                        )}
 <br />
                     <SaveBtn name="Save" />
                 </form>

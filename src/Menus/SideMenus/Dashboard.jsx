@@ -41,6 +41,7 @@ const Dashboard = () => {
                     email: item?.email,
                     phone: item?.phone,
                     count: item?.count,
+                    role: item?.role,
                     rooms: item?.rooms,
                     id: doc.id,
                 };
@@ -113,7 +114,7 @@ const Dashboard = () => {
                             </div>
                             <div className={styles.drAreaTitle}>
                                 <h1>{doc.id}</h1>
-                                <p>Therapist</p>
+                                <p>{doc.role}</p>
                             </div>
                             <div className={styles.drAreaBottom}>
                                 <p>

@@ -214,6 +214,17 @@ const Update = () => {
                     ) : (
                         <div />
                     )}
+                    {info.type === 'doctor' && (
+                        <>
+                            <label htmlFor="role">Role</label>
+                            <input
+                                onChange={(e) => handleChange(e)}
+                                type="text"
+                                name="role"
+                                id="role"
+                            />
+                        </>
+                    )}
                     <br />
                     <SaveBtn name="Save" />
                 </form>
