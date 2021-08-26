@@ -55,7 +55,49 @@ const DashCard = (props) => {
     }
 
     return (
-        <div onClick={handler}>
+        <div>
+            {
+                        room.blink ? (<div  onClick={handler}>
+                            <Card id="alarming" className={styles.dashCard}>
+                                <Card.Header className={styles.roomCardTop}>
+                                    <div className={styles.topLeft}>
+                                        <span>{room.name}</span>
+                                        <RBtn handleClick={resetDashCard} />
+                                        
+                                    </div>
+                                    <button data-tip="emergency" onClick={()=>addEmergency(docId,idx,room)} id="emergencyBtn" type="button" >
+                                    <i className="fa fa-bell" />
+                                    </button>
+                                    <ReactTooltip >
+                                        <small>                        Emergency Button
+                </small>
+                                    </ReactTooltip>
+                                    <div className={styles.timer}>
+                                        <span>{room.alert ? <MyStopwatch /> : '00:00'}</span>
+                                    </div>
+                                </Card.Header>
+                                <Card.Body className={styles.roomCardMid}>
+                                    <div onClick={() => openAlertModal()}
+                                        style={{ backgroundColor: `${room.bg}`, borderColor: `${room.border}`, cursor: 'pointer' }}
+                                        className={styles.alert}
+                                    >
+                                        {(room.alert === '' || room.alert === 'Empty' ) ? (
+                                            <span style={{ color: 'white' }}>{room.count}</span>
+                                        ) : (
+                                            <span style={{ color: `${room.border}` }}>{room.count}</span>
+                                        )}
+                                    </div>
+                                    <div>
+                                        <div
+                                            
+                                            className={styles.wrapper}
+                                        >
+                                            {room.alert || 'Empty'}
+                                        </div>
+                                    </div>
+                                </Card.Body>
+                            </Card>
+                        </div>) : (<div  onClick={handler}>
             <Card className={styles.dashCard}>
                 <Card.Header className={styles.roomCardTop}>
                     <div className={styles.topLeft}>
@@ -70,20 +112,13 @@ const DashCard = (props) => {
                         <small>                        Emergency Button
 </small>
                     </ReactTooltip>
-                    <div id="blinker">
-                    {
-                        room.blink ? (<span>
-                            <i className="fa fa-circle fa-fw" />
-                        </span>) : (<span />)
-                    }
-                    </div>
                     <div className={styles.timer}>
                         <span>{room.alert ? <MyStopwatch /> : '00:00'}</span>
                     </div>
                 </Card.Header>
                 <Card.Body className={styles.roomCardMid}>
-                    <div
-                        style={{ backgroundColor: `${room.bg}`, borderColor: `${room.border}` }}
+                    <div onClick={() => openAlertModal()}
+                        style={{ backgroundColor: `${room.bg}`, borderColor: `${room.border}`, cursor: 'pointer' }}
                         className={styles.alert}
                     >
                         {(room.alert === '' || room.alert === 'Empty' ) ? (
@@ -93,17 +128,19 @@ const DashCard = (props) => {
                         )}
                     </div>
                     <div>
-                        <button
-                            onClick={() => openAlertModal()}
-                            type="button"
+                        <div
+                            
                             className={styles.wrapper}
                         >
                             {room.alert || 'Empty'}
-                        </button>
+                        </div>
                     </div>
                 </Card.Body>
             </Card>
+        </div>)
+                    }
         </div>
+        
     );
 };
 

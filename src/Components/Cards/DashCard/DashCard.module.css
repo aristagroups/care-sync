@@ -230,23 +230,16 @@
   overflow: auto;
   position: relative;
   width: 200px;
+  text-align: center;
   /* real length of dropdown */
   border: none;
   padding: 9px 15px;
   background: transparent;
-  margin: 0 auto;
+  margin: 0 auto !important;
+  color: var(--color4);
 }
 
-.wrapper:after {
-  content: "▾";
-  font-size: 1rem;
-  pointer-events: none;
-  /* ▼ click triggers dropdown */
-  position: absolute;
-  right: 1rem;
-  top: 0.5rem;
-  z-index: 1;
-}
+
 
 @media screen and (max-width: 575px) {
   .dashCard {

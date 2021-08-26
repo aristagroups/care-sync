@@ -117,26 +117,18 @@ const Dashboard = () => {
                                 <p>{doc.role}</p>
                             </div>
                             <div className={styles.drAreaBottom}>
-                                <p>
-                                    <strong>
-                                        {' '}
-                                        - <span style={{ color: '#FC7E55' }}>
-                                            {doc.count}
-                                        </span> +{' '}
-                                    </strong>
+                                <StopBtn handleClick={() => countUp(doc)} sign="Add" />
+                                <p
+                                    style={{
+                                        color: '#FC7E55',
+                                        fontWeight: 'bold',
+                                        fontSize: '30px',
+                                        marginTop: '-9px',
+                                    }}
+                                >
+                                    {doc.count}
                                 </p>
-                                <p>
-                                    <span
-                                        style={{
-                                            color: '#969696',
-                                            fontWeight: '500',
-                                            fontSize: '15px',
-                                        }}
-                                    >
-                                        <StopBtn handleClick={() => countUp(doc)} name="Add" />
-                                    </span>
-                                </p>
-                                <StopBtn handleClick={() => countDown(doc)} name="Remove" />
+                                <StopBtn handleClick={() => countDown(doc)} sign="Remove" />
                             </div>
                         </div>
                     </Col>

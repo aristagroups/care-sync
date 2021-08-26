@@ -4,10 +4,10 @@ import React from 'react';
 import styles from './StopBtn.module.css';
 
 const StopBtn = (props) => {
-    const { handleClick, name } = props;
+    const { handleClick, name, sign } = props;
     return (
         <button type="button" id={styles.StopBtn} onClick={handleClick}>
-            {name === 'Add' ? (
+            {sign === 'Add' ? (
                 <FontAwesomeIcon className={styles.plusIcon} icon={faPlus} />
             ) : (
                 <FontAwesomeIcon className={styles.plusIcon} icon={faMinus} />

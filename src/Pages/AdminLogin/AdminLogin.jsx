@@ -2,11 +2,14 @@
 /* eslint-disable no-alert */
 /* eslint-disable consistent-return */
 /* eslint-disable react/jsx-props-no-spreading */
+import { faArrowAltCircleLeft } from '@fortawesome/free-solid-svg-icons';
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { useContext } from 'react';
 import { Container } from 'react-bootstrap';
 import { useForm } from 'react-hook-form';
 import toast from 'react-hot-toast';
 import { useHistory } from 'react-router';
+import { Link } from 'react-router-dom';
 import { db } from '../../API/firebase';
 import { AuthContext, UserContext } from '../../App';
 import styles from './AdminLogin.module.css';
@@ -93,6 +96,14 @@ const AdminLogin = () => {
                     <input type="submit" />
                 </form>
             </div>
+            <Link to="/" className={styles.exitBtn} type="button">
+                <FontAwesomeIcon
+                    className={styles.plusIcon}
+                    icon={faArrowAltCircleLeft}
+                    size="1x"
+                />{' '}
+                EXIT
+            </Link>
         </Container>
     );
 };

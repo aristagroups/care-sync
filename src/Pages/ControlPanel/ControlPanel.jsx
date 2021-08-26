@@ -7,7 +7,6 @@ import {
     faBell,
     faColumns,
     faStethoscope,
-    faUserMd,
     // eslint-disable-next-line prettier/prettier
     faWaveSquare
 } from '@fortawesome/free-solid-svg-icons';
@@ -110,7 +109,7 @@ function ControlPanel(props) {
                     </div>
                     <div className={styles.nav}>
                         <ul className={styles.navList}>
-                            {(url.includes('admin') || url.includes('receptionist')) && (
+                            {url.includes('admin') && (
                                 <li onClick={() => onCLickToggle()}>
                                     <Link to={`${url}/dashboard`}>
                                         <span>
@@ -124,21 +123,8 @@ function ControlPanel(props) {
                                     </Link>
                                 </li>
                             )}
-                            {url.includes('assistant') && (
-                                <li onClick={() => onCLickToggle()}>
-                                    <Link to={`${url}/assistant-dashboard`}>
-                                        <span>
-                                            <FontAwesomeIcon
-                                                className={styles.plusIcon}
-                                                icon={faColumns}
-                                                size="2x"
-                                            />
-                                        </span>{' '}
-                                        Dashboard
-                                    </Link>
-                                </li>
-                            )}
-                            {(url.includes('admin') || url.includes('receptionist')) && (
+
+                            {url.includes('admin') && (
                                 <li onClick={() => onCLickToggle()}>
                                     <Link to={`${url}/stuff/doctors`}>
                                         <span>
@@ -176,24 +162,11 @@ function ControlPanel(props) {
                                                 size="2x"
                                             />
                                         </span>{' '}
-                                        Sequence
+                                        Resources
                                     </Link>
                                 </li>
                             )}
-                            {url.includes('assistant') && (
-                                <li onClick={() => onCLickToggle()}>
-                                    <Link to={`${url}/doctors`}>
-                                        <span>
-                                            <FontAwesomeIcon
-                                                className={styles.plusIcon}
-                                                icon={faUserMd}
-                                                size="2x"
-                                            />
-                                        </span>{' '}
-                                        Doctors
-                                    </Link>
-                                </li>
-                            )}
+
                             {url.includes('doctor') && (
                                 <li onClick={() => onCLickToggle()}>
                                     <Link to={`${url}/self-sequence`}>
@@ -204,7 +177,7 @@ function ControlPanel(props) {
                                                 size="2x"
                                             />
                                         </span>{' '}
-                                        Sequence
+                                        Resources
                                     </Link>
                                 </li>
                             )}
