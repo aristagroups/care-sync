@@ -32,20 +32,22 @@ const AssistantDashboard = () => {
     };
 
     useEffect(() => {
-        const citiesRef = db
-            .collection('assistants')
-            .where('email', '==', window.sessionStorage.getItem('user'));
+        const citiesRef = db.collection('assistants');
         citiesRef.onSnapshot((querySnapshot) => {
             const drList = [];
             querySnapshot.forEach((doc) => {
                 const item = doc.data();
-                setAst({
-                    dr: item?.dr,
-                    email: item?.email,
-                    phone: item?.phone,
-                    name: item?.name,
-                    id: doc.id,
-                });
+                if (item.email === window.sessionStorage.getItem('user')) {
+                    setAst({
+                        dr: item?.dr,
+                        email: item?.email,
+                        phone: item?.phone,
+                        count: item?.count,
+                        role: item?.role,
+                        rooms: item?.rooms,
+                        id: doc.id,
+                    });
+                }
             });
         });
     }, []);
@@ -53,6 +55,7 @@ const AssistantDashboard = () => {
     useEffect(() => {
         const citiesRef = db.collection('dashboard');
         citiesRef.onSnapshot((querySnapshot) => {
+            const drList = [];
             querySnapshot.forEach((doc) => {
                 const item = doc.data();
                 const appObj = {
@@ -60,15 +63,15 @@ const AssistantDashboard = () => {
                     email: item?.email,
                     phone: item?.phone,
                     count: item?.count,
+                    role: item?.role,
                     rooms: item?.rooms,
                     id: doc.id,
                 };
-                if (appObj.dr === ast.dr) {
-                    setData([appObj]);
-                }
+                drList.push(appObj);
             });
+            setData(drList);
         });
-    });
+    }, []);
 
     const onOpenModal = () => {
         setOpen(true);
@@ -124,57 +127,61 @@ const AssistantDashboard = () => {
 
     return (
         <Container fluid id={styles.dashboard}>
-            {data.map((doc, index) => (
-                <Row key={index} className={styles.drDeck}>
-                    <Col md={3} className={styles.drArea}>
-                        <div className={styles.drAreaWrapper}>
-                            <div className={styles.drAreaTop}>
-                                <ResetBtn handleClick={() => reset(doc)} />
+            {data.map((doc, index) =>
+                doc.dr === ast.dr ? (
+                    <Row key={index} className={styles.drDeck}>
+                        <Col md={3} className={styles.drArea}>
+                            <div className={styles.drAreaWrapper}>
+                                <div className={styles.drAreaTop}>
+                                    <ResetBtn handleClick={() => reset(doc)} />
+                                </div>
+                                <div className={styles.drAreaTitle}>
+                                    <h1>{doc.id}</h1>
+                                    <p>{doc.role}</p>
+                                </div>
+                                <div className={styles.drAreaBottom}>
+                                    <StopBtn handleClick={() => countUp(doc)} sign="Add" />
+                                    <p
+                                        style={{
+                                            color: '#FC7E55',
+                                            fontWeight: 'bold',
+                                            fontSize: '30px',
+                                            marginTop: '-9px',
+                                        }}
+                                    >
+                                        {doc.count}
+                                    </p>
+                                    <StopBtn handleClick={() => countDown(doc)} sign="Remove" />
+                                </div>
                             </div>
-                            <div className={styles.drAreaTitle}>
-                                <h1>{doc.id}</h1>
-                                <p>Therapist</p>
-                            </div>
-                            <div className={styles.drAreaBottom}>
-                                <StopBtn handleClick={() => countUp(doc)} sign="Add" />
-                                <p
-                                    style={{
-                                        color: '#FC7E55',
-                                        fontWeight: 'bold',
-                                        fontSize: '30px',
-                                        marginTop: '-9px',
-                                    }}
-                                >
-                                    {doc.count}
-                                </p>
-                                <StopBtn handleClick={() => countDown(doc)} sign="Remove" />
-                            </div>
-                        </div>
-                    </Col>
-                    <Col md={9} sm={8} className={styles.dropBoxParent}>
-                        <CardDeck id={styles.DropBox}>
-                            {doc.rooms?.map((room, index) => (
-                                <DashCard
-                                    handler={() =>
-                                        updateGlobalData({
-                                            ...globalData,
-                                            count: doc.count,
-                                            arrIndex: index,
-                                            docId: doc.id,
-                                        })
-                                    }
-                                    docId={doc.id}
-                                    key={room.id}
-                                    idx={index}
-                                    room={room}
-                                    data={doc}
-                                    openAlertModal={openAlertModal}
-                                />
-                            ))}
-                        </CardDeck>
-                    </Col>
-                </Row>
-            ))}
+                        </Col>
+                        <Col md={9} sm={8} className={styles.dropBoxParent}>
+                            <CardDeck id={styles.DropBox}>
+                                {doc.rooms?.map((room, index) => (
+                                    <DashCard
+                                        handler={() =>
+                                            updateGlobalData({
+                                                ...globalData,
+                                                count: doc.count,
+                                                arrIndex: index,
+                                                docId: doc.id,
+                                            })
+                                        }
+                                        docId={doc.id}
+                                        key={room.id}
+                                        idx={index}
+                                        room={room}
+                                        data={doc}
+                                        openAlertModal={openAlertModal}
+                                    />
+                                ))}
+                            </CardDeck>
+                        </Col>
+                    </Row>
+                ) : (
+                    <></>
+                )
+            )}
             <App />
         </Container>
     );
