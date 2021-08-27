@@ -122,8 +122,6 @@ const AssistantDashboard = () => {
         }
     };
 
-    console.log('Data', data);
-
     return (
         <Container fluid id={styles.dashboard}>
             {data.map((doc, index) => (
