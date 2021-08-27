@@ -37,9 +37,9 @@ const AssistantsCard = (props) => {
                             </div>
                         </td>
                         <div className={styles.innerRow}>
-                            <td style={{ width: '15%' }}>{id}</td>
-                            <td style={{ width: '20%' }}>{email}</td>
-                            <td style={{ width: '10%' }}>{phone}</td>
+                            <td style={{ width: '10%' }}>{id}</td>
+                            <td style={{ width: '10%', marginLeft: '-50px' }}>{email}</td>
+                            <td style={{ width: '10%', marginLeft: '50px' }}>{phone}</td>
                             <td style={{ width: '15%' }}>Dr: {dr}</td>
                         </div>
                         <td
