@@ -166,21 +166,6 @@ function ControlPanel(props) {
                                     </Link>
                                 </li>
                             )}
-
-                            {url.includes('doctor') && (
-                                <li onClick={() => onCLickToggle()}>
-                                    <Link to={`${url}/self-sequence`}>
-                                        <span>
-                                            <FontAwesomeIcon
-                                                className={styles.plusIcon}
-                                                icon={faWaveSquare}
-                                                size="2x"
-                                            />
-                                        </span>{' '}
-                                        Resources
-                                    </Link>
-                                </li>
-                            )}
                         </ul>
                     </div>
                     <div className={styles.signOutBtn}>

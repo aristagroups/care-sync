@@ -119,39 +119,18 @@ const Doctors = () => {
                                 <p>Therapist</p>
                             </div>
                             <div className={styles.drAreaBottom}>
-                                <p style={{ marginTop: '-10px' }}>
-                                    <strong>
-                                        <span
-                                            style={{
-                                                color: '#FC7E55',
-                                                fontWeight: 'bold',
-                                                fontSize: '30px',
-                                                marginLeft: '10px',
-                                            }}
-                                        >
-                                            {doc.count}
-                                        </span>
-                                    </strong>
-                                </p>
-                                <p>
-                                    <span
-                                        style={{
-                                            color: '#969696',
-                                            fontWeight: '500',
-                                            fontSize: '15px',
-                                        }}
-                                    />
-                                </p>
-                                <div
+                                <StopBtn handleClick={() => countUp(doc)} sign="Add" />
+                                <p
                                     style={{
-                                        display: 'flex',
-                                        flexDirection: 'row',
+                                        color: '#FC7E55',
+                                        fontWeight: 'bold',
+                                        fontSize: '30px',
+                                        marginTop: '-9px',
                                     }}
                                 >
-                                    <StopBtn handleClick={() => countUp(doc)} sign="Add" />
-                                    <div style={{ width: '10px' }} />
-                                    <StopBtn handleClick={() => countDown(doc)} sign="Remove" />
-                                </div>
+                                    {doc.count}
+                                </p>
+                                <StopBtn handleClick={() => countDown(doc)} sign="Remove" />
                             </div>
                         </div>
                     </Col>
