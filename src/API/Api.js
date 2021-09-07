@@ -1,3 +1,4 @@
+/* eslint-disable no-else-return */
 /* eslint-disable no-alert */
 /* eslint-disable array-callback-return */
 /* eslint-disable no-param-reassign */
@@ -37,6 +38,7 @@ export async function addAlert(data) {
     db.collection('dashboard')
         .doc(data.docId)
         .get()
+        // eslint-disable-next-line consistent-return
         .then((doc) => {
             // console.log(doc.data());
             // Assign array to local javascript variable
@@ -56,15 +58,19 @@ export async function addAlert(data) {
             objectToupdate.bg = data.bg;
             objectToupdate.border = data.border;
 
-            // reassign object to local array variable
-            objects[data.arrIndex] = objectToupdate;
-            // console.log('CHECK DATA', objects, data.alert);
-            objects[data.arrIndex].count = objects.filter((r) => r.alert === data.alert).length;
+            if (objectToupdate.count === objects.filter((r) => r.alert === data.alert).length) {
+                return false;
+            } else {
+                // reassign object to local array variable
+                objects[data.arrIndex] = objectToupdate;
+                // console.log('CHECK DATA', objects, data.alert);
+                objects[data.arrIndex].count = objects.filter((r) => r.alert === data.alert).length;
 
-            // Update complete array with update copy of element we have
-            // created in local javascript variable.
-            // console.log(objects);
-            db.collection('dashboard').doc(data.docId).update({ rooms: objects });
+                // Update complete array with update copy of element we have
+                // created in local javascript variable.
+                // console.log(objects);
+                db.collection('dashboard').doc(data.docId).update({ rooms: objects });
+            }
         });
 }
 

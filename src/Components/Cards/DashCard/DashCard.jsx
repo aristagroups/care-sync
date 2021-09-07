@@ -26,6 +26,7 @@ const DashCard = (props) => {
             alert: '',
             bg: '',
             border: '',
+            blink: false,
         });
     };
 
@@ -57,7 +58,7 @@ const DashCard = (props) => {
     return (
         <div>
             {
-                        room.blink ? (<div  onClick={handler}>
+                        room.blink ? (<div   onClick={handler}>
                             <Card id="alarming" className={styles.dashCard}>
                                 <Card.Header className={styles.roomCardTop}>
                                     <div className={styles.topLeft}>

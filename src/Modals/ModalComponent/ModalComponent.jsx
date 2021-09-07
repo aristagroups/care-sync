@@ -38,6 +38,8 @@ const ModalComponent = ({ open, setOpen, items, detail, setDetail }) => {
     const onCloseModal = (item) => {
         setMod({ ...mod, item });
         if (item !== null) {
+            console.log(globalData);
+
             addAlert({
                 docId: globalData.docId,
                 arrIndex: globalData.arrIndex,

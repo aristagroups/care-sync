@@ -71,7 +71,6 @@ const Doctors = () => {
                 border: '',
                 id: room.id,
                 name: room.id,
-                blink: room.blink,
             };
             emptyRooms.push(rObj);
         });
