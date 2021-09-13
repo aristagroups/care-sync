@@ -92,6 +92,7 @@ const AssistantDashboard = () => {
                 border: '',
                 id: room.id,
                 name: room.id,
+                blink: false,
             };
             emptyRooms.push(rObj);
         });
