@@ -47,8 +47,15 @@ export async function addAlert(data) {
             // Assing desired element of object to local javascript variable
             const objectToupdate = objects[data.arrIndex];
 
+            console.log('objectToupdate 1', JSON.stringify(objectToupdate, null, 4));
+
+            console.log('objects 1', JSON.stringify(objects, null, 4));
+
+            // let checkAlert =  objectToupdate.alert !== data.alert ? objectToupdate.alert :
             objects.forEach((r, idx) => {
-                if (r.alert === objectToupdate.alert && idx !== data.arrIndex) {
+                if (r.alert === objectToupdate.alert && objectToupdate.count < r.count) {
+                    r.count = r.count && r.count > 1 ? r.count - 1 : 1;
+                } else if (r.alert === data.alert && data.count < r.count) {
                     r.count = r.count && r.count > 1 ? r.count - 1 : 1;
                 }
             });
@@ -58,19 +65,19 @@ export async function addAlert(data) {
             objectToupdate.bg = data.bg;
             objectToupdate.border = data.border;
 
-            if (objectToupdate.count === objects.filter((r) => r.alert === data.alert).length) {
-                return false;
-            } else {
-                // reassign object to local array variable
-                objects[data.arrIndex] = objectToupdate;
-                // console.log('CHECK DATA', objects, data.alert);
-                objects[data.arrIndex].count = objects.filter((r) => r.alert === data.alert).length;
+            // reassign object to local array variable
+            objects[data.arrIndex] = objectToupdate;
+            // console.log('CHECK DATA', objects, data.alert);
+            objects[data.arrIndex].count = objects.filter((r) => r.alert === data.alert).length;
 
-                // Update complete array with update copy of element we have
-                // created in local javascript variable.
-                // console.log(objects);
-                db.collection('dashboard').doc(data.docId).update({ rooms: objects });
-            }
+            console.log('objectToupdate 2', JSON.stringify(objectToupdate, null, 4));
+
+            console.log('objects 2', JSON.stringify(objects, null, 4));
+
+            // Update complete array with update copy of element we have
+            // created in local javascript variable.
+            // console.log(objects);
+            db.collection('dashboard').doc(data.docId).update({ rooms: objects });
         });
 }
 
